@@ -1,0 +1,58 @@
+<svg viewBox="0 0 820 350" width="820" height="350" role="img" aria-labelledby="daT daD">
+  <title id="daT">Density altitude on a hot day at a high aerodrome</title>
+  <desc id="daD">An aerodrome sits at 5,500 feet pressure altitude. On a standard day the aircraft
+  performs as though at 5,500 feet. At 35 degrees Celsius — 31 degrees warmer than standard — the
+  air is as thin as it would be at 9,220 feet, so the aircraft performs as though nearly 4,000 feet
+  higher, with a longer takeoff run and a poorer climb.</desc>
+
+  <rect width="820" height="350" fill="#fbfaf7"/>
+
+  <!-- vertical scale -->
+  <line x1="96" y1="40" x2="96" y2="292" stroke="#22303f" stroke-width="1.5"/>
+  <text x="80" y="88" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">9 220</text>
+  <text x="80" y="212" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">5 500</text>
+  <text x="80" y="296" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
+  <line x1="90" y1="84" x2="102" y2="84" stroke="#22303f" stroke-width="1.5"/>
+  <line x1="90" y1="208" x2="102" y2="208" stroke="#22303f" stroke-width="1.5"/>
+  <line x1="90" y1="292" x2="102" y2="292" stroke="#22303f" stroke-width="1.5"/>
+
+  <!-- ground / aerodrome -->
+  <rect x="130" y="208" width="290" height="84" fill="#c9bfa4"/>
+  <path fill="none" d="M130,208 L420,208" stroke="#7a6a48" stroke-width="2.5"/>
+  <text x="275" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">aerodrome &mdash; 5 500 ft pressure altitude</text>
+
+  <!-- standard day aircraft -->
+  <g transform="translate(210,208)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
+  </g>
+  <text x="210" y="192" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12" font-weight="bold">standard day, +4&deg;C</text>
+  <path d="M240,196 L330,150" fill="none" stroke="#1e8449" stroke-width="2.5"/>
+  <path d="M330,150 L318,152 L325,161 Z" fill="#1e8449"/>
+  <text x="285" y="130" fill="#146034" font-family="Georgia,serif" font-size="12">healthy climb</text>
+
+  <!-- hot day: the air behaves like 9220 -->
+  <rect x="470" y="84" width="300" height="208" fill="#fdf1ef" opacity="0.75"/>
+  <line x1="470" y1="84" x2="770" y2="84" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="7 4"/>
+  <text x="620" y="74" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">the air here is as thin as 9 220 ft</text>
+
+  <path fill="none" d="M470,208 L770,208" stroke="#7a6a48" stroke-width="2.5"/>
+  <rect x="470" y="208" width="300" height="84" fill="#c9bfa4"/>
+  <text x="620" y="250" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12.5">same aerodrome, same 5 500 ft</text>
+
+  <g transform="translate(540,208)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
+  </g>
+  <text x="540" y="192" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12" font-weight="bold">hot day, +35&deg;C</text>
+  <path d="M570,196 L690,178" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  <path d="M690,178 L678,174 L680,185 Z" fill="#c0392b"/>
+  <text x="700" y="172" fill="#8e2c21" font-family="Georgia,serif" font-size="12">flat</text>
+
+  <!-- the penalty bracket -->
+  <line x1="446" y1="84" x2="446" y2="208" stroke="#c0392b" stroke-width="2"/>
+  <path d="M441,89 L446,82 L451,89" fill="#c0392b"/>
+  <path d="M441,203 L446,210 L451,203" fill="#c0392b"/>
+  <rect x="386" y="132" width="120" height="26" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
+  <text x="446" y="150" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5" font-weight="bold">3 720 ft penalty</text>
+
+  <text x="410" y="326" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">The aeroplane never left 5 500 feet. Its performance did.</text>
+</svg>

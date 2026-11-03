@@ -1,0 +1,227 @@
+
+  @page { size: A4; margin: 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 25px;
+    background: #fafafa;
+  }
+  h1, h2, h3, h4, h5 { font-family: inherit; font-weight: 700; color: #1a3a6c; }
+  h1 { font-size: 2.2em; border-bottom: 4px solid #2c5aa0; padding-bottom: 10px; margin-bottom: 8px; }
+  h2 { font-size: 1.6em; margin-top: 35px; border-left: 6px solid #2c5aa0; padding-left: 12px; background: #f0f4fa; padding: 10px 12px; border-radius: 4px; }
+  h3 { font-size: 1.25em; margin-top: 25px; color: #2c5aa0; }
+  h4 { font-size: 1.1em; margin-top: 18px; color: #1a3a6c; }
+  p { margin: 8px 0; }
+  ul, ol { margin: 8px 0 8px 20px; padding-left: 15px; }
+  li { padding: 3px 0; }
+
+  .reg-value {
+    font-weight: 800;
+    color: #c0392b;
+    background: #fff3e0;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: "Courier New", monospace;
+  }
+
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, #e8f1fb 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 3px solid #2c5aa0;
+    margin-bottom: 30px;
+    page-break-after: always;
+  }
+  .cover .subject { font-size: 2.8em; font-weight: 900; color: #1a3a6c; margin: 10px 0; }
+  .cover .course { font-size: 1.4em; color: #2c5aa0; margin: 10px 0; }
+  .cover .author { font-size: 1.2em; color: #555; margin-top: 25px; font-style: italic; }
+  .cover .chapter-num {
+    display: inline-block;
+    background: #2c5aa0;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  /* TOC */
+  .toc { background: #ffffff; border: 2px solid #2c5aa0; padding: 22px 30px; border-radius: 8px; margin-bottom: 30px; page-break-after: always; }
+  .toc h2 { background: none; border: none; padding: 0; margin-top: 0; }
+  .toc ol { list-style-type: decimal; }
+  .toc a { color: #2c5aa0; text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .toc li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+  .toc-qa { background: #e8f5e9; padding: 6px 10px; border-radius: 4px; font-weight: 700; }
+
+  /* Info Boxes */
+  .box {
+    padding: 15px 18px;
+    margin: 15px 0;
+    border-radius: 6px;
+    page-break-inside: avoid;
+  }
+  .box-blue { background: #e8f1fb; border-left: 5px solid #2c5aa0; }
+  .box-red { background: #fdecea; border-left: 5px solid #c0392b; }
+  .box-green { background: #e8f5e9; border-left: 5px solid #2e7d32; }
+  .box-amber { background: #fff8e1; border-left: 5px solid #f57c00; }
+  .box-title { font-weight: 800; margin-bottom: 6px; font-size: 1.05em; }
+  .box-blue .box-title { color: #1a3a6c; }
+  .box-red .box-title { color: #962b20; }
+  .box-green .box-title { color: #1b5e20; }
+  .box-amber .box-title { color: #c66200; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  th, td { border: 1px solid #c5d2e3; padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #2c5aa0; color: white; font-weight: 700; }
+  tr:nth-child(even) td { background: #f5f8fd; }
+
+  /* Mermaid */
+  pre.mermaid {
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 18px;
+    margin: 18px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+
+  /* SVG container */
+  .svg-container {
+    text-align: center;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    background: white;
+    padding: 18px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+  }
+
+  /* Blockquote (verbatim regulatory) */
+  blockquote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    background: #f4f4f4;
+    border-left: 4px solid #888;
+    padding: 12px 18px;
+    margin: 14px 0;
+    color: #333;
+  }
+
+  /* Worked example */
+  .worked-example {
+    background: #f5f8fd;
+    border: 2px dashed #2c5aa0;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+  }
+  .worked-example .we-title { font-weight: 800; color: #2c5aa0; margin-bottom: 8px; }
+
+  /* Q&A blocks */
+  .qa-intro { background: #e8f1fb; padding: 18px; border-radius: 8px; margin: 20px 0; }
+  .qa-section-header { page-break-before: always; }
+
+  .qa-block {
+    border: 2px solid #2c5aa0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+    page-break-inside: avoid;
+    background: #ffffff;
+  }
+  .qa-question {
+    background: #e8f1fb;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .q-number {
+    font-weight: 900;
+    color: #2c5aa0;
+    font-size: 1.15em;
+    margin-right: 8px;
+  }
+  .q-text { font-weight: 600; }
+  .q-options { margin-top: 12px; padding-left: 25px; }
+  .q-options li { padding: 4px 0; }
+  .answer-reveal {
+    background: #e8f5e9;
+    border-left: 5px solid #2e7d32;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 1.05em;
+  }
+  .answer-explanation {
+    background: #f5f5f5;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    line-height: 1.7;
+  }
+  .distractor-analysis {
+    background: #fdecea;
+    border-left: 5px solid #c0392b;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+  }
+  .distractor-analysis ul { margin-top: 8px; padding-left: 20px; }
+  .instructor-note {
+    background: #fff8e1;
+    border-left: 5px solid #f57c00;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-style: italic;
+  }
+  .ref-link { color: #2c5aa0; text-decoration: none; font-weight: 600; }
+  .ref-link:hover { text-decoration: underline; }
+
+  /* Section dividers */
+  .section { margin-bottom: 30px; }
+
+  /* Watermark — DO NOT MODIFY */
+  .watermark {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.12);
+    z-index: 9999;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+  }
+
+  @media print {
+    body { background: white; padding: 0; max-width: 100%; font-size: 11pt; }
+    .qa-block, table, pre.mermaid, .svg-container, .box, .worked-example { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+    .watermark { position: fixed; }
+  }
+
+
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }

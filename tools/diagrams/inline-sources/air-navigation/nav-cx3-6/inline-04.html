@@ -1,0 +1,48 @@
+<svg viewBox="0 0 820 400" width="820" height="400" role="img" aria-labelledby="taT taD">
+  <title id="taT">Indicated against true altitude on a cold day</title>
+  <desc id="taD">On a standard day an indicated 20,000 feet is a true 20,000 feet. On a day that is
+  10 degrees colder than standard, the same indicated 20,000 feet is a true 19,200 feet — the
+  aircraft sits 800 feet lower than the altimeter reports, and that margin is lost from terrain
+  clearance.</desc>
+
+  <rect width="820" height="400" fill="#fbfaf7"/>
+
+  <!-- ground -->
+  <path fill="none" d="M0,352 L820,352" stroke="#7a6a48" stroke-width="2"/>
+  <path d="M470,352 L560,232 L620,282 L700,196 L790,352 Z" fill="#8a7a58" stroke="#5f5335" stroke-width="1.5"/>
+  <text x="640" y="340" text-anchor="middle" fill="#4a4128" font-family="Georgia,serif" font-size="12">high ground</text>
+
+  <!-- scale -->
+  <line x1="86" y1="72" x2="86" y2="352" stroke="#22303f" stroke-width="1.5"/>
+  <text x="70" y="76" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">20 000</text>
+  <text x="70" y="128" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">19 200</text>
+  <text x="70" y="356" text-anchor="end" fill="#5a6b7d" font-family="monospace" font-size="11">0</text>
+
+  <!-- standard day -->
+  <line x1="86" y1="72" x2="400" y2="72" stroke="#1e8449" stroke-width="2.5" stroke-dasharray="7 4"/>
+  <g transform="translate(228,72)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#1e8449"/>
+  </g>
+  <text x="228" y="52" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="13" font-weight="bold">STANDARD DAY</text>
+  <text x="228" y="98" text-anchor="middle" fill="#146034" font-family="Georgia,serif" font-size="12.5">altimeter 20 000 &middot; you are at 20 000</text>
+
+  <!-- cold day -->
+  <line x1="440" y1="72" x2="800" y2="72" stroke="#8fa3ba" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <text x="620" y="64" text-anchor="middle" fill="#5a6b7d" font-family="Georgia,serif" font-size="12">what the altimeter claims &mdash; 20 000</text>
+
+  <line x1="440" y1="128" x2="800" y2="128" stroke="#c0392b" stroke-width="2.5"/>
+  <g transform="translate(600,128)">
+    <path d="M 22,0 C 22,4 12,4 -12,4 L -22,8 L -22,2 L -14,0 L -22,-10 L -17,-10 L -8,-2 L 12,-2 C 18,-2 22,-2 22,0 Z" fill="#c0392b"/>
+  </g>
+  <text x="620" y="44" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">ISA &minus;10 DAY</text>
+  <text x="620" y="152" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="12.5">you are actually at 19 200</text>
+
+  <!-- the gap -->
+  <line x1="420" y1="72" x2="420" y2="128" stroke="#c0392b" stroke-width="2"/>
+  <path d="M415,77 L420,70 L425,77" fill="#c0392b"/>
+  <path d="M415,123 L420,130 L425,123" fill="#c0392b"/>
+  <rect x="330" y="88" width="80" height="24" rx="4" fill="#fdf1ef" stroke="#c0392b" stroke-width="1.4"/>
+  <text x="370" y="105" text-anchor="middle" fill="#8e2c21" font-family="Georgia,serif" font-size="13" font-weight="bold">800 ft</text>
+
+  <text x="410" y="196" text-anchor="middle" fill="#22303f" font-family="Georgia,serif" font-size="13.5" font-weight="bold">800 feet you thought you had, and do not</text>
+</svg>

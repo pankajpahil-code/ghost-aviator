@@ -1,0 +1,48 @@
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
+    <rect width="680" height="300" fill="#0f1e38" rx="8"/>
+
+    <!-- Runway In Use -->
+    <rect x="0" y="100" width="680" height="40" fill="#4a4a5a"/>
+    <!-- Centre line dashes -->
+    <line x1="20" y1="120" x2="80" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="110" y1="120" x2="170" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="200" y1="120" x2="260" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="290" y1="120" x2="350" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="380" y1="120" x2="440" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="470" y1="120" x2="530" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+    <line x1="560" y1="120" x2="620" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+
+    <text x="340" y="126" fill="#d4af37" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">RUNWAY IN USE</text>
+
+    <!-- Landing Aircraft approach arrow -->
+    <polygon points="640,120 600,110 600,130" fill="#00e5ff"/>
+    <line x1="640" y1="120" x2="600" y2="120" stroke="#00e5ff" stroke-width="3"/>
+    <text x="590" y="95" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">LANDING</text>
+    <text x="590" y="107" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">AIRCRAFT ➤</text>
+
+    <!-- Holding position line (taxiway) -->
+    <!-- Yellow holding bar -->
+    <line x1="200" y1="140" x2="200" y2="230" stroke="#ffd700" stroke-width="3" stroke-dasharray="10,6"/>
+    <text x="200" y="250" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">HOLDING</text>
+    <text x="200" y="262" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">POSITION</text>
+
+    <!-- Holding aircraft (simplified) -->
+    <!-- Body -->
+    <ellipse cx="200" cy="195" rx="28" ry="9" fill="#ff6b35"/>
+    <!-- Wings -->
+    <ellipse cx="200" cy="195" rx="8" ry="22" fill="#ff6b35"/>
+    <!-- Nose -->
+    <polygon points="228,195 240,192 240,198" fill="#ff6b35"/>
+
+    <text x="200" y="286" fill="#ff6b35" font-size="9" font-family="JetBrains Mono" text-anchor="middle">HOLDING AIRCRAFT</text>
+
+    <!-- Distance arrows for RWY >= 900m -->
+    <!-- Edge of runway -->
+    <line x1="0" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+    <!-- 50m label box -->
+    <rect x="380" y="148" width="260" height="54" fill="rgba(212,175,55,0.12)" rx="4" stroke="#d4af37" stroke-width="1"/>
+    <text x="390" y="164" fill="#d4af37" font-size="10" font-family="JetBrains Mono" font-weight="700">At RWY Holding Position, OR:</text>
+    <text x="390" y="180" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 50 m from RWY edge — if RWY ≥ 900 m</text>
+    <text x="390" y="196" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 30 m from RWY edge — if RWY &lt; 900 m</text>
+  </svg>

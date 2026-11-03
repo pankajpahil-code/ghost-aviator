@@ -1,0 +1,418 @@
+
+/* ==========================================================================
+   GHOST AVIATOR — GenNav CX-3 chapter stylesheet
+   navy #1a2942 · gold #c9a227 · Playfair Display / Source Serif 4
+   ========================================================================== */
+
+:root {
+  --navy:      #1a2942;
+  --navy-soft: #24354f;
+  --gold:      #c9a227;
+  --gold-soft: #f3ead0;
+  --ink:       #22303f;
+  --ink-soft:  #5a6b7d;
+  --paper:     #ffffff;
+  --rule:      #d8d2c4;
+
+  --red:       #c0392b;
+  --red-bg:    #fdf1ef;
+  --amber:     #b9770e;
+  --amber-bg:  #fdf6e8;
+  --blue:      #2e86ab;
+  --blue-bg:   #eef6fa;
+  --green:     #1e8449;
+  --green-bg:  #eef8f1;
+
+  --serif:   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono:    'IBM Plex Mono', 'Consolas', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: transparent;          /* Layer 2 of the watermark sits on <html> */
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ga-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  background: rgba(255,255,255,0.86);   /* lets the tiled watermark show through */
+}
+
+/* ---------- audit banner ---------- */
+.audit-banner {
+  border: 2px solid var(--red);
+  background: var(--red-bg);
+  color: #8e2c21;
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+.audit-banner strong { display: block; letter-spacing: 0.06em; margin-bottom: 0.3rem; color: var(--red); }
+
+/* ---------- headings ---------- */
+.chapter-head { border-bottom: 3px solid var(--gold); padding-bottom: 1.6rem; margin-bottom: 2.4rem; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 900; color: var(--navy);
+  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.1; margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+.h1-sub { font-size: 0.62em; font-weight: 700; color: var(--ink); display: block; margin-top: 0.35rem; }
+.standfirst { font-size: 1.08rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+
+h2 {
+  font-family: var(--display); font-weight: 700; color: var(--navy);
+  font-size: 1.55rem; margin: 3rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold); text-wrap: balance;
+}
+h3 {
+  font-family: var(--serif); font-weight: 700; color: var(--navy);
+  font-size: 1.16rem; margin: 2rem 0 0.6rem;
+}
+p { margin: 0 0 1rem; }
+
+/* ---------- scenario ---------- */
+.scenario {
+  background: var(--navy); color: #e8eef5; border-radius: 5px;
+  padding: 1.5rem 1.6rem; margin: 2rem 0;
+  border-left: 5px solid var(--gold);
+}
+.scenario-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+}
+.scenario p:last-child { margin-bottom: 0; }
+.scenario strong { color: #fff; }
+.scenario em { color: var(--gold-soft); }
+
+/* ---------- callouts ---------- */
+.callout { border-radius: 4px; padding: 1.05rem 1.25rem; margin: 1.5rem 0; border-left: 5px solid; }
+.callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 700; margin-bottom: 0.45rem; font-size: 1rem; }
+
+.callout.red   { border-color: var(--red);   background: var(--red-bg); }
+.callout.red   .callout-title { color: var(--red); }
+.callout.amber { border-color: var(--amber); background: var(--amber-bg); }
+.callout.amber .callout-title { color: var(--amber); }
+.callout.blue  { border-color: var(--blue);  background: var(--blue-bg); }
+.callout.blue  .callout-title { color: #1d6d8f; }
+.callout.green { border-color: var(--green); background: var(--green-bg); }
+.callout.green .callout-title { color: var(--green); }
+
+/* ---------- formula ---------- */
+.formula-block {
+  background: var(--gold-soft); border: 1px solid #e0cf9a; border-radius: 4px;
+  padding: 1.1rem 1.25rem; margin: 1.4rem 0; text-align: center;
+}
+.formula { font-family: var(--display); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.formula-units { font-family: var(--serif); font-size: 0.72em; font-weight: 400; font-style: italic; color: var(--ink-soft); }
+.formula-note { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem; font-style: italic; }
+
+/* ---------- CX-3 keystroke panel ---------- */
+.keystroke {
+  background: var(--navy); color: #dde6f0; border-radius: 5px;
+  padding: 1.15rem 1.3rem; margin: 1.5rem 0; font-size: 0.95rem;
+}
+.keystroke-title {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.65rem;
+}
+.keystroke-path { font-size: 1.05rem; margin-bottom: 0.85rem; color: #fff; }
+.keystroke p { margin: 0.5rem 0 0; }
+.keystroke code { background: rgba(255,255,255,0.12); color: var(--gold-soft); }
+
+.key {
+  display: inline-block; font-family: var(--mono); font-size: 0.8em; font-weight: 700;
+  background: #3c4f68; color: #fff; border: 1px solid #55688a; border-bottom-width: 2px;
+  border-radius: 3px; padding: 1px 6px; margin: 0 1px; white-space: nowrap;
+}
+.callout .key, .worked .key, .ref-table .key, .drill .key {
+  background: var(--navy); border-color: #0e1826; color: #fff;
+}
+
+.field-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.field-table th {
+  text-align: left; vertical-align: top; padding: 0.35rem 0.9rem 0.35rem 0;
+  color: var(--gold); font-weight: 700; white-space: nowrap; width: 1%;
+}
+.field-table td { padding: 0.35rem 0; vertical-align: top; }
+
+code {
+  font-family: var(--mono); font-size: 0.86em;
+  background: #eef0f3; padding: 1px 5px; border-radius: 3px;
+}
+
+/* ---------- worked examples ---------- */
+.worked {
+  border: 1px solid var(--rule); border-left: 5px solid var(--navy);
+  border-radius: 4px; padding: 1.1rem 1.25rem; margin: 1.5rem 0; background: #fbfaf7;
+}
+.worked.compact { margin: 1.1rem 0; padding: 0.95rem 1.1rem; }
+.worked .problem { margin-bottom: 0.7rem; }
+.steps { margin: 0 0 0.8rem; padding-left: 1.3rem; }
+.steps li { margin-bottom: 0.32rem; }
+.answer {
+  background: var(--green-bg); border-left: 4px solid var(--green);
+  padding: 0.55rem 0.85rem; border-radius: 3px; margin: 0.7rem 0 !important;
+  font-size: 1.02rem;
+}
+.answer strong { color: var(--green); }
+.sanity {
+  font-size: 0.9rem; color: var(--ink-soft); font-style: italic;
+  border-top: 1px dotted var(--rule); padding-top: 0.55rem; margin-bottom: 0 !important;
+}
+.sanity strong { color: var(--ink); font-style: normal; }
+
+.verified-note {
+  font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  border-left: 3px solid var(--rule); padding-left: 0.8rem; margin: -0.5rem 0 1.4rem;
+}
+.same-method {
+  font-size: 0.93rem; color: var(--ink-soft); font-style: italic;
+  background: #f4f2ec; border-radius: 3px; padding: 0.55rem 0.85rem;
+}
+
+.method { margin: 0.4rem 0 0; padding-left: 1.3rem; }
+.method li { margin-bottom: 0.4rem; }
+.method-note { font-size: 0.9rem; font-style: italic; color: var(--ink-soft); margin-top: 0.6rem !important; }
+.numbers { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.numbers li { margin-bottom: 0.3rem; }
+
+/* ---------- figures ---------- */
+figure { margin: 1.8rem 0; }
+figure img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--rule); border-radius: 4px; background: #f0eee9;
+}
+figcaption {
+  font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.55rem;
+  padding-left: 0.6rem; border-left: 3px solid var(--gold);
+}
+figcaption strong { color: var(--navy); }
+
+/* ---------- tables ---------- */
+.q-table-wrap, .ref-table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+.q-table, .ref-table {
+  width: 100%; border-collapse: collapse; font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+.q-table th, .ref-table th {
+  background: var(--navy); color: #fff; font-weight: 700;
+  text-align: left; padding: 0.55rem 0.7rem; font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+.q-table td, .ref-table td {
+  border-bottom: 1px solid var(--rule); padding: 0.5rem 0.7rem; vertical-align: top;
+}
+.q-table tbody tr:nth-child(even) { background: #faf9f6; }
+.q-table td:first-child { color: var(--ink-soft); font-family: var(--mono); font-size: 0.85em; }
+.q-table.answers .calc { font-weight: 700; color: var(--green); }
+.note-cell { font-size: 0.83em; font-style: italic; color: var(--amber); }
+.ref-table.card td:last-child { font-size: 0.92em; }
+.gap-row { background: var(--amber-bg) !important; }
+.gap-row td { border-bottom-color: #e6cfa0; }
+.card-intro { font-style: italic; color: var(--ink-soft); }
+
+/* ---------- speed drill ---------- */
+.drill {
+  border: 2px solid var(--gold); border-radius: 5px;
+  padding: 1.3rem 1.4rem; margin: 1.5rem 0; background: #fffdf7;
+}
+.drill-intro { font-weight: 700; color: var(--navy); margin-bottom: 0.9rem; }
+.drill-list { margin: 0; padding-left: 1.4rem; }
+.drill-list li { margin-bottom: 0.45rem; }
+.drill-answers { margin-top: 1.2rem; border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+.drill-answers summary {
+  cursor: pointer; font-weight: 700; color: var(--gold); font-family: var(--mono);
+  font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.drill-answers summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.drill-answers ol { margin: 0.8rem 0 0; padding-left: 1.4rem; }
+.drill-answers li { margin-bottom: 0.35rem; font-size: 0.94rem; }
+
+/* ---------- misc ---------- */
+.section-rule { border: 0; border-top: 2px solid var(--gold); margin: 3rem 0 0; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+li { margin-bottom: 0.25rem; }
+
+.chapter-foot {
+  margin-top: 3.5rem; padding-top: 1.4rem; border-top: 3px solid var(--gold);
+  font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+}
+.chapter-foot p { margin: 0.25rem 0; }
+.foot-next { margin-top: 1rem !important; font-style: italic; }
+
+/* ==========================================================================
+   PRINT — A4, 20mm margins
+   ========================================================================== */
+@page { size: A4; margin: 20mm; }
+
+@media print {
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .ga-content { max-width: none; padding: 0; background: transparent; }
+
+  h2 { page-break-after: avoid; break-after: avoid; }
+  h3 { page-break-after: avoid; break-after: avoid; }
+
+  .callout, .worked, .keystroke, .formula-block, figure,
+  .drill, .audit-banner, .scenario,
+  table, tr, .q-table-wrap, .ref-table-wrap {
+    page-break-inside: avoid; break-inside: avoid;
+  }
+
+  .scenario, .keystroke, .audit-banner, .callout,
+  .formula-block, .answer, .drill, .q-table th, .ref-table th, .key {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .drill-answers[open] summary ~ * { display: block; }
+  .drill-answers { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { list-style: none; }
+
+  a { text-decoration: none; color: inherit; }
+}
+
+/* ==========================================================================
+   v2 additions — figure legends, dual-method blocks, decision flowchart
+   ========================================================================== */
+
+/* ---------- figure colour legends (never baked into the PNG) ---------- */
+.fig-legend {
+  display: flex; flex-wrap: wrap; gap: .45rem 1.1rem;
+  margin-top: .5rem; padding-left: .6rem;
+  font-size: .85rem; color: var(--ink-soft);
+}
+.fig-legend .lg { display: inline-flex; align-items: center; gap: .38rem; }
+.fig-legend .sw {
+  width: 15px; height: 10px; border-radius: 2px; display: inline-block;
+  border: 1px solid rgba(0,0,0,.18); flex: none;
+}
+.fig-legend .sw.gold  { background: var(--gold); }
+.fig-legend .sw.cyan  { background: var(--blue); }
+.fig-legend .sw.white { background: #f5f2e8; }
+.fig-legend .sw.plain { background: transparent; border-style: dashed; }
+
+/* ---------- dual-method blocks ---------- */
+.dual { margin: .7rem 0; }
+.dual-h {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .28rem;
+}
+.dual-f {
+  background: var(--gold-soft); border-left: 4px solid var(--gold);
+  border-radius: 3px; padding: .5rem .85rem; margin: 0 !important;
+  font-size: .97rem;
+}
+.dual-f strong { color: var(--navy); }
+.dual .answer { margin: 0 !important; }
+
+/* ---------- decision flowchart ---------- */
+figure.flow { margin: 1.6rem 0; }
+figure.flow svg {
+  width: 100%; height: auto; display: block;
+  background: #fbfaf7; border: 1px solid var(--rule); border-radius: 4px;
+}
+
+@media print {
+  .fig-legend, .dual-f, figure.flow svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  figure.flow, .dual { page-break-inside: avoid; break-inside: avoid; }
+}
+
+/* ===== watermark layers 1, 2 and 5 — GenNav_CX3_WATERMARK_TEMPLATE.html v2.0 ===== */
+
+/* ---------- LAYER 2: repeating tiled watermark (screen + print) ----------
+   A repeating SVG background on the html element. This tiles exactly and,
+   unlike a ::after text hack, repeats cleanly on every printed page.
+   Removing Layer 1 does not remove this. Removing this requires editing CSS. */
+html {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='260'><text x='210' y='130' font-family='Georgia,serif' font-size='15' font-weight='700' fill='rgba(0,0,0,0.045)' text-anchor='middle' transform='rotate(-30 210 130)'>Capt. Pankaj Pahil %C2%B7 www.GhostAviator.com</text></svg>");
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+/* Body must stay transparent or it will cover Layer 2. If the chapter needs a
+   page colour, set it on .ga-content instead, at less than full opacity. */
+body {
+  background: transparent;
+}
+
+/* ---------- LAYER 1: visible diagonal watermark ----------
+   40px. MEASURED, not guessed:
+     A4 printable width at 20mm margins = 643px
+     46px -> rotated extent 648px  -> CLIPS (this was the v1.0 defect)
+     40px -> rotated extent 567px  -> fits, with headroom for a wider
+                                      substitute font if Playfair fails to load
+   Do not raise this value above 42px. */
+.ga-watermark-l1 {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.075);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  letter-spacing: 1px;
+}
+
+/* ---------- LAYER 5: print-only reinforcement ---------- */
+@media print {
+  /* Force all watermark layers to survive the print colour pass */
+  html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .ga-watermark-l1 {
+    color: rgba(0, 0, 0, 0.13) !important;
+    font-size: 40px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* A second, offset print-only mark. Sits opposite Layer 1 so that removing
+     Layer 1 from the DOM still leaves a printed mark on every page. */
+  body::before {
+    content: "Capt. Pankaj Pahil \00B7 www.GhostAviator.com";
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.10) !important;
+    white-space: nowrap;
+    z-index: 99999;
+    pointer-events: none;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+
+
+  * { -webkit-user-select:none!important; -moz-user-select:none!important; -ms-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; }
+  img, svg { -webkit-user-drag:none!important; user-drag:none!important; }
+  @media print { html, body { display:none !important; } }

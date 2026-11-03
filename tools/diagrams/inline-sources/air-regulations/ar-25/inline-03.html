@@ -1,0 +1,48 @@
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Axes -->
+  <line x1="60" y1="280" x2="660" y2="280" stroke="#0b2545" stroke-width="2"/>
+  <line x1="60" y1="40"  x2="60"  y2="280" stroke="#0b2545" stroke-width="2"/>
+  <text x="350" y="333" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#0b2545">Temperature (°C)</text>
+  <text x="20" y="160" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b2545" transform="rotate(-90 20 160)">Altitude (ft)</text>
+
+  <!-- Temperature labels along X -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="10" fill="#0b2545">
+    <text x="60"  y="295" text-anchor="middle">-60</text>
+    <text x="180" y="295" text-anchor="middle">-40</text>
+    <text x="300" y="295" text-anchor="middle">-20</text>
+    <text x="420" y="295" text-anchor="middle">0</text>
+    <text x="540" y="295" text-anchor="middle">+15</text>
+    <text x="630" y="295" text-anchor="middle">+30</text>
+  </g>
+
+  <!-- Altitude labels along Y -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="10" fill="#0b2545">
+    <text x="55" y="284" text-anchor="end">0</text>
+    <text x="55" y="220" text-anchor="end">10,000</text>
+    <text x="55" y="160" text-anchor="end">20,000</text>
+    <text x="55" y="100" text-anchor="end">36,090</text>
+    <text x="55" y="60"  text-anchor="end">50,000+</text>
+  </g>
+
+  <!-- ISA line: sloped to 36090 then vertical -->
+  <line x1="540" y1="280" x2="115" y2="100" stroke="#b91c1c" stroke-width="3"/>
+  <line x1="115" y1="100" x2="115" y2="40" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="5,4"/>
+
+  <!-- Tropopause line -->
+  <line x1="60" y1="100" x2="660" y2="100" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="665" y="105" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" fill="#b45309" font-weight="700">Tropopause @ 36,090 ft</text>
+
+  <!-- Annotations -->
+  <text x="380" y="200" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" fill="#b91c1c" font-weight="700">Troposphere</text>
+  <text x="380" y="216" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" fill="#b91c1c">↓ 1.98 °C / 1000 ft</text>
+
+  <text x="200" y="70" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" fill="#1d4ed8" font-weight="700">Stratosphere — Isothermal layer</text>
+  <text x="200" y="84" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" fill="#1d4ed8">Constant temp = –56.5 °C</text>
+
+  <!-- Sea level marker -->
+  <circle cx="540" cy="280" r="5" fill="#15803d"/>
+  <text x="555" y="275" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" fill="#15803d" font-weight="700">+15 °C @ SL</text>
+
+  <!-- Tropopause marker -->
+  <circle cx="115" cy="100" r="5" fill="#d4a017"/>
+</svg>

@@ -828,90 +828,7 @@ p { margin-bottom: 8px; }
 <!-- VISUAL CIRCUIT SVG DIAGRAM -->
 <div class="diagram-container no-break">
   <div class="diagram-title">📐 Visual Traffic Circuit Diagram (Doc 4444 / AIP India)</div>
-  <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;">
-    <!-- Background -->
-    <rect width="700" height="360" fill="#0f1e38" rx="8"/>
-
-    <!-- Runway -->
-    <rect x="220" y="200" width="260" height="24" fill="#4a4a5a" rx="2"/>
-    <!-- Runway centre line dashes -->
-    <line x1="230" y1="212" x2="280" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
-    <line x1="300" y1="212" x2="360" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
-    <line x1="380" y1="212" x2="440" y2="212" stroke="#fff" stroke-width="2" stroke-dasharray="14,10"/>
-    <!-- Runway label -->
-    <text x="320" y="218" fill="#d4af37" font-size="12" font-family="JetBrains Mono" font-weight="700" text-anchor="middle" dominant-baseline="middle">RUNWAY</text>
-
-    <!-- Threshold arrow -->
-    <polygon points="220,212 230,206 230,218" fill="#d4af37"/>
-
-    <!-- CIRCUIT PATH -->
-    <!-- Upwind leg (right side, going up) -->
-    <line x1="480" y1="212" x2="480" y2="100" stroke="#00e5ff" stroke-width="2.5" stroke-dasharray="none"/>
-    <!-- Arrow upwind -->
-    <polygon points="480,100 474,114 486,114" fill="#00e5ff"/>
-
-    <!-- Crosswind leg (top, going left) -->
-    <line x1="480" y1="100" x2="320" y2="100" stroke="#00e5ff" stroke-width="2.5"/>
-    <polygon points="320,100 334,94 334,106" fill="#00e5ff"/>
-
-    <!-- Downwind leg (going further left, top) -->
-    <line x1="320" y1="100" x2="140" y2="100" stroke="#00e5ff" stroke-width="2.5" stroke-dasharray="8,4"/>
-    <polygon points="140,100 154,94 154,106" fill="#00e5ff"/>
-
-    <!-- Base leg (left side, going down) -->
-    <line x1="140" y1="100" x2="140" y2="212" stroke="#00e5ff" stroke-width="2.5"/>
-    <polygon points="140,212 134,198 146,198" fill="#00e5ff"/>
-
-    <!-- Final (coming right, to runway) -->
-    <line x1="140" y1="212" x2="220" y2="212" stroke="#00e5ff" stroke-width="2.5"/>
-    <!-- Long Final extended -->
-    <line x1="30" y1="212" x2="140" y2="212" stroke="#00e5ff" stroke-width="2" stroke-dasharray="6,4"/>
-    <polygon points="140,212 126,206 126,218" fill="#00e5ff"/>
-
-    <!-- LABELS -->
-    <text x="490" y="158" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700">UPWIND</text>
-
-    <text x="310" y="87" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">DOWNWIND</text>
-
-    <text x="128" y="160" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="end">BASE LEG</text>
-
-    <text x="180" y="235" fill="#00e5ff" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">FINAL</text>
-
-    <text x="66" y="235" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">LONG</text>
-    <text x="66" y="247" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">FINAL</text>
-
-    <!-- Crosswind label -->
-    <text x="400" y="87" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">CROSSWIND</text>
-
-    <!-- Wind direction arrow -->
-    <line x1="320" y1="145" x2="420" y2="145" stroke="#ff6b35" stroke-width="2"/>
-    <polygon points="420,145 408,139 408,151" fill="#ff6b35"/>
-    <text x="365" y="140" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" text-anchor="middle">WIND</text>
-
-    <!-- Distances -->
-    <!-- 4NM bracket -->
-    <line x1="80" y1="268" x2="220" y2="268" stroke="#d4af37" stroke-width="1.5"/>
-    <line x1="80" y1="262" x2="80" y2="274" stroke="#d4af37" stroke-width="1.5"/>
-    <line x1="220" y1="262" x2="220" y2="274" stroke="#d4af37" stroke-width="1.5"/>
-    <text x="150" y="285" fill="#d4af37" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">← 4 NM →</text>
-    <text x="150" y="298" fill="#aaa" font-size="9" font-family="JetBrains Mono" text-anchor="middle">(Final)</text>
-
-    <!-- Beyond 4NM bracket -->
-    <line x1="30" y1="308" x2="220" y2="308" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <line x1="30" y1="302" x2="30" y2="314" stroke="#ffd700" stroke-width="1.5"/>
-    <line x1="220" y1="302" x2="220" y2="314" stroke="#ffd700" stroke-width="1.5"/>
-    <text x="125" y="328" fill="#ffd700" font-size="10" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">Beyond 4 NM, up to 8 NM</text>
-    <text x="125" y="342" fill="#ffd700" font-size="9" font-family="JetBrains Mono" text-anchor="middle">(Long Final)</text>
-
-    <!-- Legend -->
-    <rect x="520" y="280" width="160" height="64" fill="rgba(0,0,0,0.4)" rx="4"/>
-    <line x1="530" y1="296" x2="560" y2="296" stroke="#00e5ff" stroke-width="2"/>
-    <text x="568" y="300" fill="#00e5ff" font-size="9" font-family="JetBrains Mono">Visual Circuit</text>
-    <line x1="530" y1="316" x2="560" y2="316" stroke="#00e5ff" stroke-width="2" stroke-dasharray="6,4"/>
-    <text x="568" y="320" fill="#00e5ff" font-size="9" font-family="JetBrains Mono">Extended (Long)</text>
-    <line x1="530" y1="336" x2="560" y2="336" stroke="#ff6b35" stroke-width="2"/>
-    <text x="568" y="340" fill="#ff6b35" font-size="9" font-family="JetBrains Mono">Wind Direction</text>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-7/figs/inline-02.svg" alt="5 · Designated Positions in the Aerodrome Traffic &amp; Taxi Circuits" width="724" height="384" loading="lazy" decoding="async" style="display:block;width:1127px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-7/figs/inline-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>RUNWAY; UPWIND; DOWNWIND; BASE LEG; FINAL; LONG; FINAL; CROSSWIND; WIND; ← 4 NM →; (Final); Beyond 4 NM, up to 8 NM; (Long Final); Visual Circuit; Extended (Long); Wind Direction</p></details></figure>
 </div>
 
 <!-- ============================================================ -->
@@ -979,54 +896,7 @@ p { margin-bottom: 8px; }
 <!-- Runway Holding Position SVG -->
 <div class="diagram-container no-break">
   <div class="diagram-title">📐 Runway Holding Position — Minimum Distances</div>
-  <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
-    <rect width="680" height="300" fill="#0f1e38" rx="8"/>
-
-    <!-- Runway In Use -->
-    <rect x="0" y="100" width="680" height="40" fill="#4a4a5a"/>
-    <!-- Centre line dashes -->
-    <line x1="20" y1="120" x2="80" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="110" y1="120" x2="170" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="200" y1="120" x2="260" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="290" y1="120" x2="350" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="380" y1="120" x2="440" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="470" y1="120" x2="530" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-    <line x1="560" y1="120" x2="620" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
-
-    <text x="340" y="126" fill="#d4af37" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">RUNWAY IN USE</text>
-
-    <!-- Landing Aircraft approach arrow -->
-    <polygon points="640,120 600,110 600,130" fill="#00e5ff"/>
-    <line x1="640" y1="120" x2="600" y2="120" stroke="#00e5ff" stroke-width="3"/>
-    <text x="590" y="95" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">LANDING</text>
-    <text x="590" y="107" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle">AIRCRAFT ➤</text>
-
-    <!-- Holding position line (taxiway) -->
-    <!-- Yellow holding bar -->
-    <line x1="200" y1="140" x2="200" y2="230" stroke="#ffd700" stroke-width="3" stroke-dasharray="10,6"/>
-    <text x="200" y="250" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">HOLDING</text>
-    <text x="200" y="262" fill="#ffd700" font-size="9" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">POSITION</text>
-
-    <!-- Holding aircraft (simplified) -->
-    <!-- Body -->
-    <ellipse cx="200" cy="195" rx="28" ry="9" fill="#ff6b35"/>
-    <!-- Wings -->
-    <ellipse cx="200" cy="195" rx="8" ry="22" fill="#ff6b35"/>
-    <!-- Nose -->
-    <polygon points="228,195 240,192 240,198" fill="#ff6b35"/>
-
-    <text x="200" y="286" fill="#ff6b35" font-size="9" font-family="JetBrains Mono" text-anchor="middle">HOLDING AIRCRAFT</text>
-
-    <!-- Distance arrows for RWY >= 900m -->
-    <!-- Edge of runway -->
-    <line x1="0" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-
-    <!-- 50m label box -->
-    <rect x="380" y="148" width="260" height="54" fill="rgba(212,175,55,0.12)" rx="4" stroke="#d4af37" stroke-width="1"/>
-    <text x="390" y="164" fill="#d4af37" font-size="10" font-family="JetBrains Mono" font-weight="700">At RWY Holding Position, OR:</text>
-    <text x="390" y="180" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 50 m from RWY edge — if RWY ≥ 900 m</text>
-    <text x="390" y="196" fill="#d4af37" font-size="10" font-family="JetBrains Mono">▸ 30 m from RWY edge — if RWY &lt; 900 m</text>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-7/figs/inline-03.svg" alt="8 · Use of Runway-Holding Positions" width="704" height="324" loading="lazy" decoding="async" style="display:block;width:1096px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-7/figs/inline-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>RUNWAY IN USE; LANDING; AIRCRAFT ➤; HOLDING; POSITION; HOLDING AIRCRAFT; At RWY Holding Position, OR:; ▸ 50 m from RWY edge — if RWY ≥ 900 m; ▸ 30 m from RWY edge — if RWY &lt; 900 m</p></details></figure>
 </div>
 
 <div class="no-break">
@@ -1439,57 +1309,7 @@ p { margin-bottom: 8px; }
 <!-- Diagram of departure positions -->
 <div class="diagram-container no-break">
   <div class="diagram-title">📐 Departure / Arrival Separation — Position Limits (Doc 4444)</div>
-  <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
-    <rect width="680" height="220" fill="#0f1e38" rx="8"/>
-
-    <!-- Runway in Use (horizontal, centre) -->
-    <rect x="0" y="90" width="680" height="30" fill="#4a4a5a"/>
-    <text x="340" y="111" fill="#d4af37" font-size="12" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">RUNWAY IN USE</text>
-
-    <!-- Centre dashes -->
-    <line x1="40" y1="105" x2="100" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-    <line x1="130" y1="105" x2="200" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-    <line x1="230" y1="105" x2="300" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-    <line x1="330" y1="105" x2="400" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-    <line x1="430" y1="105" x2="500" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-    <line x1="530" y1="105" x2="600" y2="105" stroke="#fff" stroke-width="1.5" stroke-dasharray="16,10"/>
-
-    <!-- Intersecting taxiway -->
-    <rect x="298" y="0" width="24" height="90" fill="#3a3a4a"/>
-    <rect x="298" y="120" width="24" height="100" fill="#3a3a4a"/>
-
-    <!-- Aircraft A (landed, on taxiway exiting) -->
-    <!-- Body -->
-    <ellipse cx="310" cy="160" rx="10" ry="28" fill="#ff6b35"/>
-    <ellipse cx="310" cy="160" rx="24" ry="8" fill="#ff6b35"/>
-    <polygon points="310,134 305,128 315,128" fill="#ff6b35"/>
-    <text x="310" y="195" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">A</text>
-    <text x="310" y="207" fill="#ff6b35" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Landed)</text>
-
-    <!-- Aircraft B (departing, just cleared end left) -->
-    <ellipse cx="80" cy="60" rx="28" ry="9" fill="#00e5ff"/>
-    <ellipse cx="80" cy="60" rx="8" ry="20" fill="#00e5ff"/>
-    <polygon points="80,40 74,28 86,28" fill="#00e5ff"/>
-    <line x1="80" y1="20" x2="80" y2="60" stroke="rgba(0,229,255,0.3)" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <text x="80" y="78" fill="#00e5ff" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">B</text>
-    <text x="80" y="89" fill="#00e5ff" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Started turn)</text>
-
-    <!-- Aircraft C (arriving from right) -->
-    <ellipse cx="600" cy="60" rx="28" ry="9" fill="#a8ff78"/>
-    <ellipse cx="600" cy="60" rx="8" ry="20" fill="#a8ff78"/>
-    <polygon points="580,60 594,55 594,65" fill="#a8ff78"/>
-    <line x1="640" y1="60" x2="600" y2="60" stroke="rgba(168,255,120,0.4)" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <text x="600" y="78" fill="#a8ff78" font-size="10" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">C</text>
-    <text x="600" y="89" fill="#a8ff78" font-size="8" font-family="JetBrains Mono" text-anchor="middle">(Arriving)</text>
-
-    <!-- Legend box -->
-    <rect x="400" y="128" width="265" height="78" fill="rgba(0,0,0,0.4)" rx="4"/>
-    <text x="410" y="144" fill="#fff" font-size="9" font-family="JetBrains Mono">B or C must pass position limits</text>
-    <text x="410" y="157" fill="#fff" font-size="9" font-family="JetBrains Mono">before arriving aircraft crosses</text>
-    <text x="410" y="170" fill="#fff" font-size="9" font-family="JetBrains Mono">runway threshold, OR before</text>
-    <text x="410" y="183" fill="#fff" font-size="9" font-family="JetBrains Mono">departing aircraft may take off.</text>
-    <text x="410" y="198" fill="#d4af37" font-size="8" font-family="JetBrains Mono">(Unless otherwise by ATS authority)</text>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-7/figs/inline-04.svg" alt="20 · Control of Departing Aircraft" width="704" height="244" loading="lazy" decoding="async" style="display:block;width:1232px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-7/figs/inline-04.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>RUNWAY IN USE; A; (Landed); B; (Started turn); C; (Arriving); B or C must pass position limits; before arriving aircraft crosses; runway threshold, OR before; departing aircraft may take off.; (Unless otherwise by ATS authority)</p></details></figure>
 </div>
 
 <!-- ============================================================ -->

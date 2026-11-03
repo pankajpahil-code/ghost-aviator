@@ -762,44 +762,7 @@ p { margin-bottom: 12px; }
 
 <!-- System overview SVG -->
 <div class="diagram-wrap no-break">
-  <svg viewBox="0 0 820 320" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
-    <!-- Background -->
-    <rect width="820" height="320" fill="#f7f9fc" rx="8"/>
-    <!-- Title -->
-    <text x="410" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">ATS Surveillance System Family</text>
-    <!-- Central node -->
-    <ellipse cx="410" cy="160" rx="80" ry="38" fill="#0d1b2a"/>
-    <text x="410" y="155" text-anchor="middle" font-size="13" font-weight="700" fill="white">ATS</text>
-    <text x="410" y="171" text-anchor="middle" font-size="11" fill="#c8961e">Surveillance</text>
-    <!-- PSR node -->
-    <rect x="50" y="100" width="130" height="60" rx="8" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
-    <text x="115" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#1a6fa8">PSR</text>
-    <text x="115" y="143" text-anchor="middle" font-size="11" fill="#0d1b2a">Primary Surveillance</text>
-    <text x="115" y="157" text-anchor="middle" font-size="11" fill="#0d1b2a">Radar</text>
-    <line x1="180" y1="130" x2="330" y2="152" stroke="#1a6fa8" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <!-- SSR node -->
-    <rect x="50" y="200" width="130" height="60" rx="8" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
-    <text x="115" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#1a5c2a">SSR</text>
-    <text x="115" y="243" text-anchor="middle" font-size="11" fill="#0d1b2a">Secondary Surveillance</text>
-    <text x="115" y="257" text-anchor="middle" font-size="11" fill="#0d1b2a">Radar</text>
-    <line x1="180" y1="230" x2="330" y2="168" stroke="#1a5c2a" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <!-- ADS-B node -->
-    <rect x="630" y="100" width="140" height="60" rx="8" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
-    <text x="700" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#7a5800">ADS-B</text>
-    <text x="700" y="143" text-anchor="middle" font-size="11" fill="#0d1b2a">Auto Dependent</text>
-    <text x="700" y="157" text-anchor="middle" font-size="11" fill="#0d1b2a">Surveillance — Broadcast</text>
-    <line x1="630" y1="130" x2="490" y2="152" stroke="#c8961e" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <!-- MLAT node -->
-    <rect x="630" y="200" width="140" height="60" rx="8" fill="#f8f0ff" stroke="#4a1a6b" stroke-width="2"/>
-    <text x="700" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#4a1a6b">MLAT</text>
-    <text x="700" y="243" text-anchor="middle" font-size="11" fill="#0d1b2a">Multilateration</text>
-    <text x="700" y="257" text-anchor="middle" font-size="11" fill="#0d1b2a">TDOA-based</text>
-    <line x1="630" y1="230" x2="490" y2="168" stroke="#4a1a6b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <!-- ADS-C note bottom -->
-    <rect x="290" y="260" width="240" height="42" rx="6" fill="#fff0f0" stroke="#f5b8b8" stroke-width="1.5"/>
-    <text x="410" y="278" text-anchor="middle" font-size="12" font-weight="700" fill="#8b1a1a">⚠ ADS-C is DIFFERENT from ADS-B</text>
-    <text x="410" y="294" text-anchor="middle" font-size="11" fill="#8b1a1a">ADS-C is point-to-point (not broadcast)</text>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-8/figs/inline-01.svg" alt="Introduction — ATS Surveillance Systems" width="844" height="344" loading="lazy" decoding="async" style="display:block;width:1075px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-8/figs/inline-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>ATS Surveillance System Family; ATS; Surveillance; PSR; Primary Surveillance; Radar; SSR; Secondary Surveillance; Radar; ADS-B; Auto Dependent; Surveillance — Broadcast; MLAT; Multilateration; TDOA-based; ⚠ ADS-C is DIFFERENT from ADS-B; ADS-C is point-to-point (not broadcast)</p></details></figure>
   <figcaption>Fig 1.1 — The ATS Surveillance System family and their key distinctions</figcaption>
 </div>
 
@@ -926,35 +889,7 @@ p { margin-bottom: 12px; }
 
 <!-- MLAT SVG -->
 <div class="diagram-wrap no-break">
-  <svg viewBox="0 0 700 280" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
-    <rect width="700" height="280" fill="#f7f9fc" rx="8"/>
-    <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">How MLAT Works — Time Difference of Arrival (TDOA)</text>
-    <!-- Aircraft -->
-    <polygon points="350,70 335,100 365,100" fill="#0d1b2a"/>
-    <text x="350" y="120" text-anchor="middle" font-size="12" fill="#0d1b2a" font-weight="700">Aircraft</text>
-    <!-- Ground station 1 -->
-    <rect x="60" y="160" width="100" height="40" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
-    <text x="110" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">Station 1</text>
-    <text x="110" y="192" text-anchor="middle" font-size="10" fill="#1a6fa8">Receives at T₁</text>
-    <!-- Ground station 2 -->
-    <rect x="290" y="200" width="120" height="40" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
-    <text x="350" y="217" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">Station 2</text>
-    <text x="350" y="232" text-anchor="middle" font-size="10" fill="#1a5c2a">Receives at T₂</text>
-    <!-- Ground station 3 -->
-    <rect x="540" y="160" width="100" height="40" rx="6" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
-    <text x="590" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#7a5800">Station 3</text>
-    <text x="590" y="192" text-anchor="middle" font-size="10" fill="#7a5800">Receives at T₃</text>
-    <!-- Signal lines -->
-    <line x1="340" y1="98" x2="160" y2="162" stroke="#1a6fa8" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <line x1="350" y1="100" x2="350" y2="202" stroke="#1a5c2a" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <line x1="360" y1="98" x2="542" y2="162" stroke="#c8961e" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <!-- Central processor -->
-    <rect x="265" y="250" width="170" height="24" rx="5" fill="#0d1b2a"/>
-    <text x="350" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#c8961e">Central Processor → Calculates Position</text>
-    <line x1="110" y1="200" x2="265" y2="258" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
-    <line x1="350" y1="240" x2="350" y2="250" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
-    <line x1="590" y1="200" x2="435" y2="258" stroke="#0d1b2a" stroke-width="1" stroke-dasharray="3,2"/>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-8/figs/inline-02.svg" alt="MLAT — Multilateration Applications" width="724" height="304" loading="lazy" decoding="async" style="display:block;width:1014px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-8/figs/inline-02.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>How MLAT Works — Time Difference of Arrival (TDOA); Aircraft; Station 1; Receives at T₁; Station 2; Receives at T₂; Station 3; Receives at T₃; Central Processor → Calculates Position</p></details></figure>
   <figcaption>Fig 5.1 — MLAT calculates aircraft position by measuring Time Difference of Arrival at multiple ground stations</figcaption>
 </div>
 
@@ -1279,35 +1214,7 @@ p { margin-bottom: 12px; }
 
 <!-- SVG Separation Ruler -->
 <div class="diagram-wrap no-break">
-  <svg viewBox="0 0 720 160" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
-    <rect width="720" height="160" fill="#f7f9fc" rx="8"/>
-    <text x="360" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0d1b2a">Horizontal Radar Separation Minima — ICAO Visual Scale</text>
-    <!-- Track -->
-    <line x1="60" y1="80" x2="660" y2="80" stroke="#d4dde8" stroke-width="2"/>
-    <!-- Aircraft 1 -->
-    <polygon points="60,72 48,90 72,90" fill="#0d1b2a"/>
-    <text x="60" y="106" text-anchor="middle" font-size="10" fill="#0d1b2a">A/C 1</text>
-    <!-- 2.5 NM mark -->
-    <line x1="230" y1="65" x2="230" y2="95" stroke="#e53e3e" stroke-width="2"/>
-    <text x="230" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#e53e3e">2.5 NM</text>
-    <text x="230" y="110" text-anchor="middle" font-size="10" fill="#8b1a1a">4.6 km</text>
-    <text x="230" y="124" text-anchor="middle" font-size="9" fill="#8b1a1a">(Final Approach)</text>
-    <!-- 3.0 NM mark -->
-    <line x1="370" y1="65" x2="370" y2="95" stroke="#ed8936" stroke-width="2"/>
-    <text x="370" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#ed8936">3.0 NM</text>
-    <text x="370" y="110" text-anchor="middle" font-size="10" fill="#7a4500">5.6 km</text>
-    <text x="370" y="124" text-anchor="middle" font-size="9" fill="#7a4500">(Reduced Min.)</text>
-    <!-- 5.0 NM mark -->
-    <line x1="560" y1="65" x2="560" y2="95" stroke="#38a169" stroke-width="2"/>
-    <text x="560" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#38a169">5.0 NM</text>
-    <text x="560" y="110" text-anchor="middle" font-size="10" fill="#1a5c2a">9.3 km</text>
-    <text x="560" y="124" text-anchor="middle" font-size="9" fill="#1a5c2a">(Standard Min.)</text>
-    <!-- Bracket from 60 to 230 -->
-    <path d="M60,140 L230,140" stroke="#e53e3e" stroke-width="2" fill="none" marker-start="url(#a)" marker-end="url(#b)"/>
-    <text x="145" y="155" text-anchor="middle" font-size="9" fill="#e53e3e">Minimum gap possible</text>
-    <!-- Bracket 60 to 560 -->
-    <path d="M60,75 Q60,30 560,30" stroke="#38a169" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-8/figs/inline-03.svg" alt="Horizontal Separation Minima — Visual Scale" width="744" height="184" loading="lazy" decoding="async" style="display:block;width:1158px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-8/figs/inline-03.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Horizontal Radar Separation Minima — ICAO Visual Scale; A/C 1; 2.5 NM; 4.6 km; (Final Approach); 3.0 NM; 5.6 km; (Reduced Min.); 5.0 NM; 9.3 km; (Standard Min.); Minimum gap possible</p></details></figure>
   <figcaption>Fig 10.1 — ICAO Horizontal Radar Separation Minima (Note: values decrease from standard to final approach minimum)</figcaption>
 </div>
 
@@ -1387,21 +1294,7 @@ p { margin-bottom: 12px; }
 
 <!-- Speed control SVG -->
 <div class="diagram-wrap no-break">
-  <svg viewBox="0 0 700 200" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
-    <rect width="700" height="200" fill="#f7f9fc" rx="8"/>
-    <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0d1b2a">Speed Control — Below 10,000 ft (AIP India)</text>
-    <!-- Outer ring label -->
-    <ellipse cx="350" cy="120" rx="280" ry="60" fill="none" stroke="#d4dde8" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="350" y="185" text-anchor="middle" font-size="11" fill="#1a6fa8" font-weight="700">Below 10,000 ft — All A/C → MAX 250 KT IAS</text>
-    <!-- Inner ring label -->
-    <ellipse cx="350" cy="120" rx="160" ry="38" fill="#fff0f0" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
-    <text x="350" y="110" text-anchor="middle" font-size="10" fill="#8b1a1a" font-weight="700">Within 15 NM of VOR/DME</text>
-    <text x="350" y="126" text-anchor="middle" font-size="10" fill="#8b1a1a">Below 10,000 ft</text>
-    <text x="350" y="142" text-anchor="middle" font-size="12" fill="#8b1a1a" font-weight="700">Arrivals → MAX 220 KT IAS</text>
-    <!-- Aerodrome -->
-    <rect x="320" y="106" width="60" height="28" rx="4" fill="#0d1b2a" opacity="0.0"/>
-    <text x="350" y="120" text-anchor="middle" font-size="18">🛬</text>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-8/figs/inline-04.svg" alt="Speed Control Procedures" width="724" height="224" loading="lazy" decoding="async" style="display:block;width:1014px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-8/figs/inline-04.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Speed Control — Below 10,000 ft (AIP India); Below 10,000 ft — All A/C → MAX 250 KT IAS; Within 15 NM of VOR/DME; Below 10,000 ft; Arrivals → MAX 220 KT IAS; 🛬</p></details></figure>
   <figcaption>Fig 11.1 — Speed control zones below 10,000 ft per AIP India</figcaption>
 </div>
 
@@ -1602,93 +1495,7 @@ p { margin-bottom: 12px; }
 </div>
 
 <div class="diagram-wrap no-break">
-  <svg viewBox="0 0 740 540" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', sans-serif">
-    <rect width="740" height="540" fill="#f7f9fc" rx="8"/>
-    <text x="370" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1b2a">ATS Surveillance Service — Identification Method Selection</text>
-
-    <!-- START -->
-    <ellipse cx="370" cy="60" rx="100" ry="26" fill="#0d1b2a"/>
-    <text x="370" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="white">ATS Service Required</text>
-
-    <!-- Arrow down -->
-    <line x1="370" y1="86" x2="370" y2="116" stroke="#0d1b2a" stroke-width="2" marker-end="url(#arr)"/>
-
-    <!-- Decision: ADS-B? -->
-    <polygon points="370,118 500,148 370,178 240,148" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
-    <text x="370" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#7a5800">ADS-B Available?</text>
-    <text x="370" y="161" text-anchor="middle" font-size="11" fill="#7a5800">Is ADS-B equipped?</text>
-
-    <!-- YES branch ADS-B -->
-    <line x1="500" y1="148" x2="620" y2="148" stroke="#38a169" stroke-width="1.5" marker-end="url(#arr2)"/>
-    <text x="555" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#38a169">YES</text>
-    <rect x="620" y="120" width="110" height="56" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
-    <text x="675" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">ADS-B ID</text>
-    <text x="675" y="158" text-anchor="middle" font-size="10" fill="#1a5c2a">a) ADS-B label</text>
-    <text x="675" y="170" text-anchor="middle" font-size="10" fill="#1a5c2a">b) Transfer c) IDENT</text>
-
-    <!-- NO branch -->
-    <line x1="370" y1="178" x2="370" y2="208" stroke="#e53e3e" stroke-width="1.5" marker-end="url(#arr3)"/>
-    <text x="380" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="#e53e3e">NO</text>
-
-    <!-- Decision: SSR/MLAT? -->
-    <polygon points="370,210 500,240 370,270 240,240" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
-    <text x="370" y="237" text-anchor="middle" font-size="12" font-weight="700" fill="#1a6fa8">SSR / MLAT?</text>
-    <text x="370" y="253" text-anchor="middle" font-size="11" fill="#1a6fa8">Transponder equipped?</text>
-
-    <!-- YES branch SSR -->
-    <line x1="500" y1="240" x2="620" y2="240" stroke="#38a169" stroke-width="1.5" marker-end="url(#arr2)"/>
-    <text x="555" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="#38a169">YES</text>
-    <rect x="620" y="210" width="110" height="60" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
-    <text x="675" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">SSR/MLAT ID</text>
-    <text x="675" y="242" text-anchor="middle" font-size="10" fill="#1a6fa8">a–f: Code, IDENT,</text>
-    <text x="675" y="254" text-anchor="middle" font-size="10" fill="#1a6fa8">Mode S, Transfer...</text>
-    <text x="675" y="266" text-anchor="middle" font-size="10" fill="#1a6fa8">(6 methods)</text>
-
-    <!-- NO — PSR -->
-    <line x1="370" y1="270" x2="370" y2="300" stroke="#e53e3e" stroke-width="1.5" marker-end="url(#arr3)"/>
-    <text x="380" y="290" text-anchor="middle" font-size="11" font-weight="700" fill="#e53e3e">NO</text>
-
-    <!-- PSR box -->
-    <rect x="270" y="302" width="200" height="36" rx="6" fill="#f8f0ff" stroke="#4a1a6b" stroke-width="2"/>
-    <text x="370" y="325" text-anchor="middle" font-size="12" font-weight="700" fill="#4a1a6b">PSR Identification Required</text>
-
-    <!-- PSR 3 methods -->
-    <line x1="370" y1="338" x2="370" y2="358" stroke="#4a1a6b" stroke-width="1.5" marker-end="url(#arr)"/>
-    <rect x="80" y="360" width="160" height="60" rx="6" fill="#e8f4fd" stroke="#1a6fa8" stroke-width="2"/>
-    <text x="160" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6fa8">① Position Report</text>
-    <text x="160" y="397" text-anchor="middle" font-size="10" fill="#1a6fa8">Report over/bearing</text>
-    <text x="160" y="411" text-anchor="middle" font-size="10" fill="#1a6fa8">from a known point</text>
-    <line x1="270" y1="360" x2="240" y2="360" stroke="#1a6fa8" stroke-width="1.5"/>
-
-    <rect x="285" y="360" width="170" height="60" rx="6" fill="#f0fff4" stroke="#1a5c2a" stroke-width="2"/>
-    <text x="370" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c2a">② Departing A/C</text>
-    <text x="370" y="397" text-anchor="middle" font-size="10" fill="#1a5c2a">Within 1 NM of</text>
-    <text x="370" y="411" text-anchor="middle" font-size="10" fill="#1a5c2a">runway end</text>
-
-    <rect x="470" y="360" width="190" height="60" rx="6" fill="#fff8e7" stroke="#c8961e" stroke-width="2"/>
-    <text x="565" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#7a5800">③ Turn Method</text>
-    <text x="565" y="397" text-anchor="middle" font-size="10" fill="#7a5800">30° or more heading</text>
-    <text x="565" y="411" text-anchor="middle" font-size="10" fill="#7a5800">change instruction</text>
-    <line x1="455" y1="360" x2="470" y2="360" stroke="#c8961e" stroke-width="1.5"/>
-
-    <!-- Pilot informed box -->
-    <line x1="370" y1="422" x2="370" y2="456" stroke="#0d1b2a" stroke-width="1.5" marker-end="url(#arr)"/>
-    <rect x="220" y="458" width="300" height="36" rx="6" fill="#0d1b2a"/>
-    <text x="370" y="481" text-anchor="middle" font-size="12" font-weight="700" fill="#c8961e">PILOT INFORMED → Service Provided</text>
-
-    <!-- Arrow markers -->
-    <defs>
-      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#0d1b2a"/>
-      </marker>
-      <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#38a169"/>
-      </marker>
-      <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#e53e3e"/>
-      </marker>
-    </defs>
-  </svg>
+  <figure class="ga-native-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;max-width:100%;min-width:0"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable study diagram" style="max-width:100%;overflow-x:auto"><img src="/content/air-regulations/ar-8/figs/inline-05.svg" alt="ATS Identification — Decision Flowchart" width="764" height="564" loading="lazy" decoding="async" style="display:block;width:1070px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">Scroll sideways if needed · <a href="/content/air-regulations/ar-8/figs/inline-05.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>ATS Surveillance Service — Identification Method Selection; ATS Service Required; ADS-B Available?; Is ADS-B equipped?; YES; ADS-B ID; a) ADS-B label; b) Transfer c) IDENT; NO; SSR / MLAT?; Transponder equipped?; YES; SSR/MLAT ID; a–f: Code, IDENT,; Mode S, Transfer...; (6 methods); NO; PSR Identification Required; ① Position Report; Report over/bearing; from a known point; ② Departing A/C; Within 1 NM of; runway end; ③ Turn Method; 30° or more heading; change instruction; PILOT INFORMED → Service Provided</p></details></figure>
   <figcaption>Fig — ATS Surveillance Identification Method Decision Flow</figcaption>
 </div>
 

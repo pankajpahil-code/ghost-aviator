@@ -1,0 +1,56 @@
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Axes -->
+  <line x1="70" y1="260" x2="660" y2="260" stroke="#0b2545" stroke-width="2"/>
+  <line x1="70" y1="30"  x2="70"  y2="260" stroke="#0b2545" stroke-width="2"/>
+  <text x="365" y="290" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" text-anchor="middle" fill="#0b2545">Altitude (×1000 ft)</text>
+  <text x="22" y="150" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0b2545" transform="rotate(-90 22 150)">O₂ available (% of SL)</text>
+
+  <!-- X labels -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="10" fill="#0b2545">
+    <text x="70"  y="275" text-anchor="middle">0</text>
+    <text x="186" y="275" text-anchor="middle">8</text>
+    <text x="244" y="275" text-anchor="middle">12</text>
+    <text x="330" y="275" text-anchor="middle">18</text>
+    <text x="430" y="275" text-anchor="middle">24</text>
+    <text x="600" y="275" text-anchor="middle">36</text>
+  </g>
+
+  <!-- Y labels (0..100) -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="10" fill="#0b2545">
+    <text x="65" y="263" text-anchor="end">0</text>
+    <text x="65" y="208" text-anchor="end">25</text>
+    <text x="65" y="150" text-anchor="end">50</text>
+    <text x="65" y="92"  text-anchor="end">75</text>
+    <text x="65" y="35"  text-anchor="end">100</text>
+  </g>
+
+  <!-- Curve: data points -->
+  <!-- (alt, % SL): (0,100) (8,76) (12,65) (18,52) (24,41) (36,25) -->
+  <!-- Mapping: x = 70 + alt*14.7  ;  y = 260 - (pct*2.3) -->
+  <path d="M70,30 Q120,40 186,85 Q220,108 244,110 Q290,128 330,141 Q380,160 430,165 Q500,180 600,202"
+        fill="none" stroke="#b91c1c" stroke-width="3"/>
+
+  <!-- Data points -->
+  <g fill="#d4a017" stroke="#0b2545" stroke-width="1.5">
+    <circle cx="70"  cy="30"  r="5"/>
+    <circle cx="186" cy="85"  r="5"/>
+    <circle cx="244" cy="110" r="5"/>
+    <circle cx="330" cy="141" r="5"/>
+    <circle cx="430" cy="166" r="5"/>
+    <circle cx="600" cy="202" r="5"/>
+  </g>
+
+  <!-- Labels at points -->
+  <g font-family="'Cascadia Code', 'Consolas', 'Courier New', monospace" font-size="10" fill="#0b2545">
+    <text x="78"  y="24">100%</text>
+    <text x="194" y="79">76%</text>
+    <text x="252" y="104">65%</text>
+    <text x="338" y="135">52%</text>
+    <text x="438" y="160">41%</text>
+    <text x="608" y="196">25%</text>
+  </g>
+
+  <!-- Half-O₂ line -->
+  <line x1="70" y1="150" x2="660" y2="150" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="490" y="146" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" fill="#1d4ed8" font-weight="700">Half of sea-level O₂ ≈ 18,000 ft</text>
+</svg>

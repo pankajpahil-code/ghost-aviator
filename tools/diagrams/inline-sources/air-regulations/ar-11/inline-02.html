@@ -1,0 +1,64 @@
+<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" style="max-height:220px;">
+        <!-- Background -->
+        <rect x="10" y="10" width="620" height="200" rx="6" fill="#f9fbfd" stroke="#c8d6e5" stroke-width="1.5"/>
+
+        <!-- DISPLACED THRESHOLD LABEL -->
+        <text x="20" y="30" font-size="9" fill="#555" font-family="monospace" font-weight="700">DISPLACED THRESHOLD</text>
+
+        <!-- Runway (grey) -->
+        <rect x="20" y="80" width="380" height="50" fill="#d5d5d5" stroke="#aaa" stroke-width="1"/>
+        <!-- Runway stripes (white centre line) -->
+        <line x1="20" y1="105" x2="400" y2="105" stroke="white" stroke-width="2" stroke-dasharray="20,10"/>
+        <!-- Runway centre line marking extended -->
+        <rect x="20" y="80" width="60" height="50" fill="#c0c0c0" stroke="none" opacity="0.5"/>
+        <!-- Arrow markings in displaced section -->
+        <text x="35" y="108" font-size="16" fill="#888" text-anchor="middle">→</text>
+
+        <!-- Stopway (SWY) -->
+        <rect x="400" y="80" width="80" height="50" fill="#ffcc99" stroke="#e8a060" stroke-width="1.5"/>
+        <text x="440" y="108" font-size="9" fill="#7a3500" text-anchor="middle" font-family="monospace" font-weight="700">SWY</text>
+
+        <!-- Clearway (CWY) -->
+        <rect x="480" y="70" width="130" height="70" fill="#d0f0ee" stroke="#17a2b8" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <text x="545" y="108" font-size="9" fill="#0c4a4a" text-anchor="middle" font-family="monospace" font-weight="700">CWY</text>
+
+        <!-- Displaced threshold marker -->
+        <line x1="80" y1="65" x2="80" y2="140" stroke="#dc3545" stroke-width="2"/>
+        <text x="82" y="62" font-size="8" fill="#dc3545" font-family="monospace">DISPLACED THR</text>
+
+        <!-- Runway end -->
+        <line x1="400" y1="65" x2="400" y2="140" stroke="#333" stroke-width="2"/>
+        <text x="402" y="62" font-size="8" fill="#333" font-family="monospace">RWY END</text>
+
+        <!-- LDA arrow -->
+        <line x1="80" y1="150" x2="400" y2="150" stroke="#28a745" stroke-width="2" marker-end="url(#arrowG)" marker-start="url(#arrowG)"/>
+        <text x="240" y="165" font-size="9" fill="#155724" text-anchor="middle" font-family="monospace" font-weight="700">LDA</text>
+
+        <!-- TORA arrow -->
+        <line x1="20" y1="170" x2="400" y2="170" stroke="#1a6fbf" stroke-width="2" marker-end="url(#arrowB)" marker-start="url(#arrowB)"/>
+        <text x="210" y="185" font-size="9" fill="#0b2d5e" text-anchor="middle" font-family="monospace" font-weight="700">TORA</text>
+
+        <!-- ASDA arrow -->
+        <line x1="20" y1="190" x2="480" y2="190" stroke="#dc3545" stroke-width="2" marker-end="url(#arrowR)" marker-start="url(#arrowR)"/>
+        <text x="250" y="205" font-size="9" fill="#7b1c1c" text-anchor="middle" font-family="monospace" font-weight="700">ASDA = TORA + SWY</text>
+
+        <!-- TODA arrow -->
+        <line x1="20" y1="55" x2="610" y2="55" stroke="#d4a017" stroke-width="2" marker-end="url(#arrowAm)" marker-start="url(#arrowAm)"/>
+        <text x="315" y="48" font-size="9" fill="#6b4700" text-anchor="middle" font-family="monospace" font-weight="700">TODA = TORA + CWY</text>
+
+        <!-- Arrowhead defs -->
+        <defs>
+          <marker id="arrowG" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#28a745"/>
+          </marker>
+          <marker id="arrowB" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#1a6fbf"/>
+          </marker>
+          <marker id="arrowR" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#dc3545"/>
+          </marker>
+          <marker id="arrowAm" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#d4a017"/>
+          </marker>
+        </defs>
+      </svg>
