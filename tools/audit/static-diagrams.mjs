@@ -6,7 +6,10 @@ import assert from "node:assert/strict";
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "tools/diagrams/manifest.json"), "utf8"));
-const hash = file => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+const hash = file => {
+  const data = file.endsWith(".mmd") ? fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n") : fs.readFileSync(file);
+  return crypto.createHash("sha256").update(data).digest("hex");
+};
 for (const diagram of manifest) {
   const source = path.join(root, diagram.source);
   const image = path.join(publicRoot, diagram.image);
