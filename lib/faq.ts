@@ -95,9 +95,9 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "How long is a CPL valid in India?",
-    a: "Ten years. The Aircraft (First Amendment) Rules, 2023 (G.S.R. 733(E), October 2023) changed Rule 39C of the Aircraft Rules, 1937 so that both the CPL and the ATPL are valid for ten years instead of five. Many older notes still teach five years, which is the pre-2023 rule. A Student Pilot's Licence is still valid for five years.",
+    a: "Ten years. The Aircraft (First Amendment) Rules, 2023 (G.S.R. 733(E), October 2023) changed Rule 39C of the Aircraft Rules, 1937 so that both the CPL and the ATPL are valid for ten years instead of five. Many older notes still teach five years, which is the pre-2023 rule. The Student Pilot's Licence is ten years too: G.S.R. 289(E) of 8 April 2022 changed it from five.",
     topic: "licence",
-    source: "Aircraft Rules 1937 r.39C table, as amended by G.S.R. 733(E) dated 10 Oct 2023 — Gazette read page by page 2026-09-05 (CLAUDE.md domain fact 5); re-corroborated 2026-10-31",
+    source: "Aircraft Rules 1937 r.39C table, as amended by G.S.R. 733(E) dated 10 Oct 2023 — Gazette read page by page 2026-09-05; re-corroborated 2026-10-31. SPL: G.S.R. 289(E) dated 8 Apr 2022, rule 2(F)(ii), substitutes 'Ten years' for 'Five years' in serial (iii), the Student Pilot's Licence — Gazette p.14 (civilaviation.gov.in, 'Aircraft Amendment Rules EoDB') read 2026-11-03; serial (iii) = SPL per the r.39C table in the 2011 consolidated Rules",
     href: "/guides/how-to-become-a-pilot-in-india",
     hrefLabel: "The full path to a CPL",
     guides: ["how-to-become-a-pilot-in-india"],
@@ -106,7 +106,7 @@ export const FAQS: FaqEntry[] = [
   // ---------------- cost ----------------
   {
     q: "How much does a CPL cost in India in 2026?",
-    a: "Around ₹60 lakh all in. The flying itself is roughly 84% of that bill, at hourly rates between ₹8,000 and ₹25,000 depending on the school and the aircraft. Budget separately for a type rating afterwards, which is a further ₹15–25 lakh and is not included in any CPL quote.",
+    a: "Around ₹60 lakh all in. The flying itself is roughly 84% of that bill, at hourly rates between ₹8,000 and ₹25,000 depending on the school and the aircraft. Budget separately for a type rating afterwards, which is a further ₹15–25 lakh and is not included in a standard CPL quote.",
     topic: "cost",
     source: "Capt. Pahil, confirmed 2026-07-27",
     href: "/cpl-cost-calculator",
@@ -115,7 +115,7 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Is a type rating included in the cost of a CPL?",
-    a: "No. A type rating is a separate cost that comes after the licence, and it runs to a further ₹15–25 lakh. School quotes for a CPL do not include it, which is the single most common reason a training budget turns out short.",
+    a: "No. A type rating is a separate cost that comes after the licence, and it runs to a further ₹15–25 lakh. A standard school quote for a CPL does not include it (airline cadet programmes, which cost more, can), which is the single most common reason a training budget turns out short.",
     topic: "cost",
     source: "Capt. Pahil, confirmed 2026-07-27",
     href: "/guides/pilot-training-cost-india",
