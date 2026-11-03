@@ -29,10 +29,9 @@ assert.match(home, /href="\/cpl\/meteorology\/met-1\/notes"/);
 assert.match(home, /href="\/free-dgca-mock-test"/);
 const lesson = html("/cpl/air-navigation/nav-16/notes");
 const quiz = html("/cpl/air-navigation/nav-16/chapter-quiz");
-if (quiz.includes("SUBJECT REVISION QUIZ")) {
-  assert.match(lesson, /Subject Revision/);
-  assert.match(lesson, /does not count toward chapter progress/);
-}
+assert.doesNotMatch(quiz, /SUBJECT REVISION QUIZ/);
+assert.match(quiz, /CH\.\d+ CHAPTER QUIZ/);
+assert.match(lesson, /Chapter Quiz/);
 assert.match(home, /href="\/study-notebook.html"/);
 assert.match(fs.readFileSync(path.join(out, "study-notebook.html"), "utf8"), /My seven-session study notebook/);
 assert.match(fs.readFileSync(path.join(out, "robots.txt"), "utf8"), /Sitemap: https:\/\/ghostaviator\.com\/sitemap\.xml/i);

@@ -1,3 +1,4 @@
+import { NAV_ONE_IN_SIXTY } from "./nav-one-in-sixty";
 import { ATPL_TO_CPL } from "./atpl-syllabus";
 import type { DemoQuestion } from "./demo-questions";
 import { DEMO_QUESTIONS } from "./demo-questions";
@@ -40,6 +41,7 @@ const dropVerifiedMet = (q: DemoQuestion) =>
 // Exported for tools/audit only (the duplicate and figure reports replay the steps below).
 // Pages read ALL_QUESTIONS.
 export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
+  ...NAV_ONE_IN_SIXTY,
   ...MET_VERIFIED,         // ✅ verified Meteorology chapters — highest priority
   ...DEMO_QUESTIONS,
   ...NAV_QUESTIONS,
