@@ -8,6 +8,11 @@ Changes:
 
 - Included the second integration stage (18.6) after the first (18.5).
 - Distinguished XTK displacement from TKE angular error.
+- Clarified that the INS status window is normally blank in NAV; the reference
+  describes status checks as generally available during alignment.
+- Included the air-data input needed for wind computation. The distinction
+  between inertial ground velocity and measured true airspeed is also described
+  by [NASA's measurement-system reference](https://www.nasa.gov/meteorological-measurement-system-instruments/).
 - Replaced a wrongly labelled Airbus example with a schematic of the lesson's Airbus-style colour change; put the Boeing presentation states in the Boeing section. Display examples are labelled as examples.
 - Included both states of 22.4: below 1000 ft and at decision height.
 - Corrected four existing flowchart captions that inherited unrelated headings.

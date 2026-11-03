@@ -54,8 +54,8 @@ def heading_dial(mode,expanded=False,weather=False):
     out+=f'<path d="M450 200 L435 270 L450 258 L465 270 Z" fill="{INK}"/>'
     out+=line(410,155,410,335,'#a12b79',5)+line(485,155,485,335,'#a12b79',3)
     out+=text(120,70,mode+' mode',29,anchor='start',weight=600)
-    out+=text(760,225,'Course',23)+text(760,258,'deviation',23)
-    out+=arrow(680,244,500,244)
+    out+=text(760,80,'Course',23)+text(760,113,'deviation',23)
+    out+=arrow(680,110,485,170)
     if mode=='ILS':
         out+=line(730,300,730,390)+f'<path d="M715 335 L730 321 L745 335 L730 349 Z" fill="#a12b79"/>'
         out+=text(735,425,'Glide slope',23)
@@ -80,7 +80,7 @@ def attitude(radio='RADIO 200',failure=False):
 
 art={}
 def put(number,caption,body,height=400):art[number]=(caption,body,height)
-put('18.1','Information available from an INS',nodes(['Accelerometers','Gyroscopes','Initial position'],['INS','computing'],['Position / velocity','Track / heading','Distance / time','Wind information']),410)
+put('18.1','Information available from an INS',nodes(['Accelerometers','Gyroscopes','Initial position','Air data (TAS)'],['INS','computing'],['Position / velocity','Track / heading','Distance / time','Wind information']),410)
 put('18.3','Accelerometer principle',rect(90,100,720,155,'#f4f8fc',INK)+line(110,180,250,180)+f'<path d="M250 180 l15 -28 l30 56 l30 -56 l30 56 l30 -56 l15 28" fill="none" stroke="{BLUE}" stroke-width="4"/>'+card(400,135,150,90,'Mass')+line(550,180,760,180)+text(260,300,'Spring / restoring force',25)+text(650,300,'Displacement sensing',25)+arrow(160,65,360,65)+text(590,73,'Aircraft acceleration',26)+text(450,365,'Measured specific force → electrical signal',26),410)
 put('18.5','First integration: acceleration to velocity',flow([['Acceleration','N/S and E/W'],['Integrate','over time'],['Velocity','N/S and E/W']],['The velocity components give ground speed and track.']),350)
 put('18.6','Second integration: velocity to position',flow([['Velocity','components'],['Integrate','over time'],['Distance','components']],['North/south distance → change of latitude','East/west departure + latitude → change of longitude','Add the changes to the initial position.']),420)
@@ -100,7 +100,7 @@ put('18.21','POS display: present latitude and longitude',panel_readout(['Presen
 put('18.22','WPT display: stored waypoint coordinates',panel_readout(['Waypoint latitude','N / S'],['Waypoint longitude','E / W'],'WPT refers to the selected stored waypoint, not present position.'),350)
 put('18.24','DIS/TIME display: distance and time',panel_readout(['DIS','Distance to waypoint'],['TIME','Time to waypoint'],'The selected leg / waypoint determines the displayed destination.'),350)
 put('18.25','WIND display: wind direction and speed',panel_readout(['Wind direction','Degrees true'],['Wind speed','Knots'],'Computed from the aircraft’s air and ground motion.'),350)
-put('18.26','DSR TK/STS display: desired track and status',panel_readout(['DSR TK','Desired track'],['STS','System status code'],'Read the desired track and system status in this selector position.'),350)
+put('18.26','DSR TK/STS display: desired track and status',panel_readout(['DSR TK','Desired track'],['STS','System status code'],'Status is normally blank in NAV.')+text(450,360,'Status checks are generally available in ALIGN.',25),405)
 put('18.27','TEST display: checking illuminated segments',rect(100,60,700,190,'#132334',INK)+text(450,185,'888888   888888',58,'#eae593')+text(450,320,'The test illuminates display segments to reveal failed elements.',25)+text(450,365,'A segment test does not establish navigation accuracy.',25),410)
 put('19.1','Inertial reference unit: strap-down sensors and computing',rect(70,45,760,285)+text(450,88,'Inertial reference unit',30,weight=600)+card(110,115,300,145,['Three gyroscopes','Three accelerometers'],fill='white',size=26)+arrow(415,185,475,185)+card(480,115,300,145,['Digital','computation'],fill='white',size=26)+text(450,390,'Sensors are fixed to the airframe; attitude is computed.',27),435)
 put('19.2','Ring laser gyro: counter-propagating light',f'<path d="M200 310 L450 65 L700 310 Z" fill="{LIGHT}" stroke="{BLUE}" stroke-width="4"/>'+f'<path d="M240 310 L450 105 L660 310" fill="none" stroke="{TEAL}" stroke-width="4" marker-end="url(#arrow)"/>'+f'<path d="M620 280 L450 145 L280 280" fill="none" stroke="#a12b79" stroke-width="4" marker-end="url(#arrow)"/>'+text(450,380,'Light travels around the same ring in opposite directions.',26)+text(450,430,'Rotation produces a measurable frequency difference.',26),480)

@@ -18,20 +18,22 @@
       ],
       "width": 900,
       "height": 410,
-      "sha256": "377583b62061e75929ea63fd270bb7f81d00d8201c99330b8230baf87a1e557a",
+      "sha256": "0f6eac5a79890b7126afa9ede9a3f58fb9e408da4bb5cd8fb616cdd447006188",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
         "Accelerometers",
         "Gyroscopes",
         "Initial position",
+        "Air data (TAS)",
         "INS",
         "computing",
         "Position / velocity",
         "Track / heading",
         "Distance / time",
         "Wind information"
-      ]
+      ],
+      "supportingReference": "https://www.nasa.gov/meteorological-measurement-system-instruments/"
     },
     {
       "figure": "18.3",
@@ -576,8 +578,8 @@
         699.1000366210938
       ],
       "width": 900,
-      "height": 350,
-      "sha256": "15c1ebbdad5b02b328a61becab8f01a44f5ac6f1b94cb1dc38f13db638e03992",
+      "height": 405,
+      "sha256": "5a3c3a480e455c3ed1f42fb8fee26f96881dcb92d236ab2f39cbfb36e14f9f18",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
@@ -585,7 +587,8 @@
         "Desired track",
         "STS",
         "System status code",
-        "Read the desired track and system status in this selector position."
+        "Status is normally blank in NAV.",
+        "Status checks are generally available in ALIGN."
       ]
     },
     {
@@ -1011,7 +1014,7 @@
       ],
       "width": 900,
       "height": 495,
-      "sha256": "bcd47fa170226fa1c2e27f991cb946bc98ab110e24c79ca88f6d9a6e2f88f653",
+      "sha256": "1caec0a612bd382676f3672165a690e9153dce786d1083e34d522059a23cffce",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
@@ -1043,7 +1046,7 @@
       ],
       "width": 900,
       "height": 505,
-      "sha256": "38ff2afe4d4fdc24b78a6bdbffcf77c60a2fd62ffab32fe3daf5d3ebefbb3a0b",
+      "sha256": "c2e3aa25bdddab74547693392d2aa5bee3b628a1a320240b8b957d1553d0895b",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
@@ -1075,7 +1078,7 @@
       ],
       "width": 900,
       "height": 495,
-      "sha256": "8716eb84939235aa83ea7e071ddda250b31ad74bc24bd8babd3ce33cc82e4699",
+      "sha256": "9a6994023bd9366f524bb0c49e73e0acfa2ce98557185e204ff066dfe158f492",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
@@ -1106,7 +1109,7 @@
       ],
       "width": 900,
       "height": 505,
-      "sha256": "9fb912ad444a5c13d43b7bfec795dca5f74998501d23ec68b94b7d7772d76b89",
+      "sha256": "cf32196622bca2de7bfc27dd03c709056657f20d9be25a9e9eb448bed307b42d",
       "reviewedOn": "2026-11-03",
       "sourceCropPublished": false,
       "labels": [
