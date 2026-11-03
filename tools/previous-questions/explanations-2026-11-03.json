@@ -1,0 +1,153 @@
+{
+  "_note": "37 explanations written 2026-11-03 for previous-year questions whose old explanation was found wrong (their corrections.json entry had only 'The correct answer is: ...'). Each was checked against the source named in 'src' before writing. 'src' is for the audit trail only and is never shown to students. Applied by tools/previous-questions/apply-explanations-2026-11-03.mjs. NOT independently audited: the writer does not certify their own work.",
+  "entries": {
+    "CPLMET-008": {
+      "src": "ATPL Met manual (CAE Book 9), Atmosphere: equator 16-18 km, -75 to -80 C; poles 8 km, -40 to -50 C; 50N 11 km, -56.5 C",
+      "exp": "Over the equator the tropopause sits at about 16-18 km, against about 8 km over the poles. The air keeps cooling with height all the way up to it, so the equatorial tropopause is the coldest on earth, about -75 to -80 °C, while the polar tropopause is only about -40 to -50 °C. 11 km at -56.5 °C is the ISA figure for the middle latitudes, not the equator's."
+    },
+    "CPLMET-046": {
+      "src": "ATPL Met manual, Pressure chapter definitions: ISALLOBAR = line joining places of the same pressure tendency; ISOBAR = same pressure",
+      "exp": "An isallobar joins places with the same pressure tendency, meaning the same change of pressure over the same period. A line joining places of equal pressure is an isobar, and temperature tendency has nothing to do with it. Isallobars show where pressure is falling or rising fastest, and so where a system is deepening or filling."
+    },
+    "CPLMET-258": {
+      "src": "Captain's Met notes, Tropical Systems chapter 3 (Peninsular Discontinuity / Dry Line: forms over peninsular India south of 23N in April and May)",
+      "exp": "The peninsular discontinuity, also called the dry line, forms over peninsular India south of about 23°N in April and May, which is the pre-monsoon (hot weather) season. It separates hot, dry continental air from the north from cooler, moist air off the sea, and thunderstorms build along it. It is not a feature of the SW monsoon or of the NE monsoon."
+    },
+    "CPLMET-296": {
+      "src": "Captain's Met notes, Thunderstorms Q11 (mature stage of a heat TS about 30-45 min, most violent stage). European ATPL Met manual gives 15-20 min for the mature stage: the explanation says which figure the DGCA paper uses.",
+      "exp": "A single heat-type (air-mass) thunderstorm is most violent in its mature stage, when updraughts and downdraughts run side by side and the heaviest rain, hail, lightning and turbulence come. In the DGCA syllabus that stage is taken as lasting about 30 to 45 minutes. 2 hours and 3 to 4 hours are far too long for the violent phase of one cell; storms that last that long are clusters in which new cells keep forming. Some European manuals give a shorter mature stage, but for the DGCA paper the answer is 30 to 45 minutes."
+    },
+    "CPLMET-330": {
+      "src": "Captain's Met notes, Icing: cloud-form table (Ci/Cs/Cc negligible; As, Ns light to moderate, supercooled drops + ice crystals; TCu/Cb light to severe). European ATPL Met cloud table gives Ns moderate to severe.",
+      "exp": "Altostratus and nimbostratus are layer clouds holding a mix of supercooled water drops and ice crystals, and the icing to expect in them is light to moderate. Maximum icing belongs to towering cumulus and cumulonimbus, where large supercooled drops are concentrated. Negligible icing belongs to cirrus, cirrostratus and cirrocumulus, which are almost all ice crystals. Do not treat a thick nimbostratus as harmless: near a warm front its icing can become heavier."
+    },
+    "CPLMET-357": {
+      "src": "ATPL Met manual: tropopause 16-18 km / -75 to -80 C at the equator, 8 km / -40 to -50 C at the poles; European ATPL Met, density by latitude: at high altitudes above the equator the temperature is relatively low",
+      "exp": "Over the poles the tropopause is only about 8 km up, and above it the temperature stops falling, staying around -40 to -50 °C. Over the equator the air keeps cooling right up to a tropopause at 16-18 km, where it reaches about -75 to -80 °C. So once you are above about 8 km, the coldest air is found over the equator, not over the poles."
+    },
+    "CPLMET-378": {
+      "src": "ATPL Met manual, Altimetry: flying high to low at constant indicated altitude the aircraft descends with the pressure surface, 'From High to Low, Look out Below'. Buys Ballot NH: back to the wind, low on the left.",
+      "exp": "Drifting to starboard means the wind is blowing from your left (port) side. In the northern hemisphere, with your back to the wind the low pressure is on your left, and with the wind from the north that puts the low ahead of you, towards Calcutta. So you are flying from high towards low pressure. At a constant indicated altitude the aircraft follows the lowering pressure surface down, and true altitude is lower than indicated: high to low, look out below."
+    },
+    "CPLMET-386": {
+      "src": "ATPL Met manual, Upper Winds: near the equator upper winds tend to be easterly; Tropical Easterly Jet 10-20N in NH summer, about 150 hPa (13-14 km), across southern India; with the SW monsoon the high-level winds over India become easterly",
+      "exp": "In the equatorial belt the winds of the upper troposphere are easterly. Over India in the SW monsoon this shows up strongly as the Tropical Easterly Jet, at about 150 hPa (13-14 km). The upper westerlies, including the subtropical jet stream, belong to higher latitudes."
+    },
+    "CPLMET-468": {
+      "src": "ATPL Met manual, Cloud table 13.1: Ci, Cs, Cc 16,500 to 45,000 ft (5-13 km), ice crystals, nil turbulence, nil icing; As/Ac 6,500 to 23,000 ft",
+      "exp": "The high-level clouds are cirrus, cirrostratus and cirrocumulus, found from about 16,500 ft (5 km) up to about 45,000 ft in temperate latitudes. They are made of ice crystals, so they carry no icing and no turbulence. Altostratus and altocumulus are medium-level clouds (nimbostratus is grouped with them although its base can be low), and stratus, stratocumulus and cumulus are low clouds."
+    },
+    "CPLMET-478": {
+      "src": "IMD Standard Operational Procedure for Aviation Meteorology, 2.4.1 Criteria for issuance of local special reports and SPECI: surface wind",
+      "exp": "A SPECI is issued when the mean surface wind speed has changed by 10 kt or more from the last report. The other wind triggers are a change in the mean direction of 60° or more, with the mean speed 10 kt or more before or after the change, and an increase in the gusts of 10 kt or more, with the mean speed 15 kt or more before or after the change. Any one of them is enough to issue the report."
+    },
+    "CPLMET-480": {
+      "src": "ATPL Met manual, Altimetry: for simple calculations below 5,000 ft assume 30 ft per millibar",
+      "exp": "Below about 5,000 ft, take 30 ft for every hPa. An aerodrome that sits 30 hPa above the QNH datum, meaning its QFE is 30 hPa lower than its QNH, is therefore about 30 x 30 = 900 ft above mean sea level."
+    },
+    "CPLMET-489": {
+      "src": "European ATPL Operational Procedures, Wake Turbulence: vortex characteristics set by gross weight, wingspan, airspeed and attitude; Q6 'strongest vortices' answer C = heavy, slow, clean",
+      "exp": "Wingtip vortices get their strength from the aircraft's weight, wingspan, speed and configuration. They are strongest when a heavy aeroplane is flying slowly in a clean configuration, because it is then making a great deal of lift at a high angle of attack. More speed and extended flaps both reduce the strength of the vortex, which is why the other two choices are wrong."
+    },
+    "CPLNAV-070": {
+      "src": "ATPL Instruments manual, Direct Indicating Compass: turning 135 to 225 through south (NH) the compass is lively and over-reads; stop the turn late (overshoot)",
+      "exp": "A rate one turn is 3° a second, so 30 seconds gives 90° and the real heading reaches 135 + 90 = 225. In the northern hemisphere, turning through south makes the direct-reading compass lively: it runs ahead of the turn and over-reads. So when the aircraft is actually on 225, the compass shows more than 225. That is why you roll out late, overshooting the reading, when turning onto a southerly heading."
+    },
+    "CPLNAV-178": {
+      "src": "ATPL General Navigation, Lambert's Conformal Chart: scale correct on the standard parallels, contracted between them (least on the parallel of origin), expanded outside; one-sixth rule",
+      "exp": "On a Lambert conformal chart the scale is correct on the two standard parallels. Between them it is slightly too small (contracted), and smallest of all on the parallel of origin; outside them it is slightly too large (expanded). Placing the standard parallels about one sixth of the way in from the top and bottom of the chart keeps that variation small."
+    },
+    "CPLNAV-209": {
+      "src": "ATPL General Navigation, Time (1): Sidereal Year = one orbit measured against a distant star, 365 days 6 hrs; Tropical Year = one cycle of the seasons, 365 days 5 hrs 48.75 min; calendar kept in step by leap years",
+      "exp": "This is the tropical year, the length of one full cycle of the seasons: 365 days 5 hours 48 minutes 45 seconds (365 d 5 h 48.75 min). It is the year the calendar is kept in step with, by adding a leap day every fourth year. Measured against the distant stars, one orbit (the sidereal year) is a little longer, about 365 days 6 hours, but the answer the paper wants here is the tropical year."
+    },
+    "CPLNAV-220": {
+      "src": "ATPL General Navigation, Time (3): civil twilight = Sun's centre between 0 deg 50 min and 6 deg below the sensible horizon",
+      "exp": "Civil twilight lasts while the sun's centre is between 0°50' and 6° below the horizon, a fall of just over 5°. At the equator at the equinox the sun goes straight down at 15° an hour, which is 1° every 4 minutes, so this takes only about 21 to 24 minutes, the shortest twilight anywhere. At higher latitudes the sun sets at a slant and twilight lasts longer. Of the choices given, 24 minutes is the one that fits."
+    },
+    "CPLNAV-259": {
+      "src": "Worked from the question's own figures (relative speed). Third figure: 5 min before the overtake B is 350 x 5/60 = 29.2 NM short, i.e. about 408.3 NM; the printed 408.7 is close but not exact.",
+      "exp": "At 0930, when B departs, A is already 250 x 0.5 = 125 NM out. B closes at 350 - 250 = 100 kt, so it needs 125 / 100 = 1 h 15 min: it overtakes at 1045, at 350 x 1.25 = 437.5 NM from the station. Five minutes before that, B is still 350 x 5/60 = about 29 NM short of the meeting point, roughly 408 NM out. Only the choice with 1045 and a meeting place of 437.5 NM fits."
+    },
+    "CPLNAV-331": {
+      "src": "ATPL Air Law, Flight plans: unless otherwise required by the ATS authority, a flight plan for a controlled flight is submitted at least 60 minutes before departure",
+      "exp": "Unless the ATS authority says otherwise, a flight plan for a controlled flight is filed at least 60 minutes before departure. That gives ATS time to process it and pass it to every unit along the route before the aircraft moves."
+    },
+    "CPLNAV-350": {
+      "src": "ICAO Annex 2 3.3.5.3 (no ATS unit at the arrival aerodrome: arrival report as soon as practicable after landing, by the quickest means, to the nearest ATS unit); AIP India ENR 1.10 (landing elsewhere: notify the filed destination and the departure aerodrome without delay, failure may start unnecessary SAR); ATPL Air Law (uncertainty phase when the aircraft fails to arrive within 30 minutes of its ETA)",
+      "exp": "Once a flight plan is filed, ATS expects you at the destination. If you divert and land where there is no ATS unit, tell ATS without delay, by the quickest means available, that you are down, and inform both the filed destination and the departure aerodrome. The 30-minute figure comes from search and rescue: if an aircraft has not arrived within 30 minutes of its ETA, ATS declares the uncertainty phase and starts alerting action. Report inside that window and you stop a search being started for an aircraft that is safely on the ground."
+    },
+    "CPLNAV-357": {
+      "src": "ATPL Flight Planning, ICAO flight plan Item 16: destination aerodrome and total estimated elapsed time (8 characters); ICAO Doc 4444 definition of total estimated elapsed time",
+      "exp": "Item 16 takes the destination's four-letter indicator followed by the total estimated elapsed time in hours and minutes, written as four figures. It is a duration, never a clock time. 1000 to 1215 is 2 hours 15 minutes, so it goes in as 0215 (for this flight, EIDW0215). Strictly the elapsed time runs from take-off rather than off-blocks, but with only these times given the answer is 0215."
+    },
+    "CPLNAV-365": {
+      "src": "ATPL Flight Planning, definitions: MEA = lowest published altitude between radio fixes that meets obstacle clearance and in many countries assures navigation signal coverage, applies to the entire width of the segment; MOCA = obstacle clearance only",
+      "exp": "5000 is the minimum en-route altitude (MEA): the lowest published altitude between the radio fixes that keeps you clear of obstacles across the whole width of the airway segment and, in many countries, also assures reception of the navigation aids that define it. It applies to the entire segment between those fixes. A maximum authorised altitude, a minimum holding altitude and a transition altitude are different figures with different purposes."
+    },
+    "CPLNAV-396": {
+      "src": "ATPL Flight Planning, fuel definitions: trip fuel covers take-off, climb, cruise, descent and approach to the destination; extra fuel is added at the commander's discretion",
+      "exp": "Trip fuel is the fuel planned to fly the route from take-off to landing at the destination, so it is set by the route, the flight time and the aircraft, not by how much is loaded. Raising the block fuel from 7,300 kg to 9,000 kg simply puts 1,700 kg of extra fuel on board. The trip fuel stays 4,300 kg, and the 30% contingency stays 1,290 kg."
+    },
+    "CPLNAV-423": {
+      "src": "ATPL Mass & Balance: Traffic Load = Zero Fuel Mass minus Dry Operating Mass. Note: as printed, statement 3 (LM = TOM - take-off fuel) is also false (LM = TOM - trip fuel); the paper's key is statement 1.",
+      "exp": "Zero fuel mass is the dry operating mass plus the traffic load (passengers, baggage and cargo): everything except usable fuel. So 'ZFM = DOM + take-off fuel' is false, and that is the answer. Take-off mass is ZFM plus take-off fuel, which is true. Watch the third line as well: landing mass is take-off mass minus the TRIP fuel burnt, not minus the take-off fuel, so as printed it is also wrong. The statement the paper is after is the first one."
+    },
+    "CPLNAV-481": {
+      "src": "ATPL Flight Performance: segment 2 starts when the gear is up; flap retraction not permitted below 400 ft, segment 2 ends at 400 ft; min gradient more severe (2.4% twin); take-off flight path to 1500 ft",
+      "exp": "The second segment starts when the landing gear is fully up and ends when the aeroplane reaches at least 400 ft above the field, the lowest height at which flap retraction may begin. It is flown at not less than V2 and carries the most demanding climb gradient requirement of the take-off path. 35 ft is the screen height at the end of the take-off distance, and 1,500 ft is where the take-off flight path ends."
+    },
+    "CPLNAV-504": {
+      "src": "ATPL Flight Performance, Class A take-off: obstacles cleared by 50 ft vertically or horizontally 90 m + 0.125D (60 m + half span + 0.125D for span < 60 m); not considered beyond 300 m (VMC) / 600 m (other) if track change <= 15 deg, 600 m (VMC) / 900 m (other) if > 15 deg",
+      "exp": "Obstacles count if they lie within 90 m plus 0.125 D either side of the take-off path, where D is the distance from the end of the TODA. For an aeroplane with a wingspan under 60 m the starting figure may be 60 m plus half the wingspan. The area stops widening at 600 m when the track changes by no more than 15° (300 m in VMC), and at 900 m when the track changes by more than 15° (600 m in VMC)."
+    },
+    "CPLNAV-509": {
+      "src": "Worked from the question's figures; ATPL Met altimetry 30 ft per hPa near the surface",
+      "exp": "B's QNH = QFE + elevation / 30 = 1000 + 240 / 30 = 1000 + 8 = 1008 hPa. A's QNH is 1000 hPa, so from A to B the sea-level pressure rises by 8 hPa. Flying that way with 1000 hPa set, you are going from low to high pressure, and by B your true altitude is about 8 x 30 = 240 ft higher than the altimeter shows."
+    },
+    "CPLNAV-620": {
+      "src": "ATPL Instruments manual, Machmeter: LSS = 38.95 x sqrt(T), knots, T absolute; FL380 ISA 216.5 K gives 573 kt; 288 K gives about 661 kt",
+      "exp": "The speed of sound depends only on the absolute temperature of the air: LSS = 38.95 x √T knots, with T in kelvin (°C + 273). At ISA sea level, 288 K, that gives about 661 kt; at -56.5 °C (216.5 K) it gives about 573 kt. A temperature in °C or °F cannot go under the root, because it must be absolute. The same law works in metres per second, but with a different constant, so the formula this question describes is the one in knots."
+    },
+    "CPLNAV-713": {
+      "src": "ATPL Radio Navigation, Propagation: as frequency increases the critical angle, skip distance and dead space increase; absorption except ionospheric increases with frequency; the MUF (highest usable frequency for a range) suffers less attenuation",
+      "exp": "Raising the frequency of a sky wave means the ionosphere bends it less, so the critical angle grows and both the skip distance and the dead space increase. Those two statements are true. The untrue one is 'absorption increases': in the ionosphere, which is what matters for sky waves, a higher-frequency wave passes through with less absorption. That is why the highest frequency that still returns for a given range gives the strongest signal."
+    },
+    "CPLNAV-737": {
+      "src": "ATPL Radio Navigation, Propagation: angle measured from the vertical; first returning sky wave occurs at the critical angle; distance to it = skip distance; gap after the surface wave = dead space",
+      "exp": "Sky-wave angles are measured from the vertical. Rays sent up steeply, close to the vertical, pass through the ionosphere and are lost to space. As the angle from the vertical increases, a point is reached where the wave is bent enough to come back to earth: that is the critical angle, and this first returning sky wave (the critical ray) lands at the skip distance. Between the end of the surface wave and that point there is no signal, the dead space."
+    },
+    "CPLNAV-869": {
+      "src": "Worked from the question's figures (300 ft per NM for 3 deg, threshold crossing height 50 ft)",
+      "exp": "A 3° glide path rises about 300 ft for every nautical mile. Five miles back from the threshold it is 5 x 300 = 1,500 ft higher than it is over the threshold, and over the threshold it is already 50 ft up. So at 5 NM the height above the threshold is about 1,500 + 50 = 1,550 ft."
+    },
+    "CPLREG-039": {
+      "src": "ICAO Annex 2, Table 3-1 VMC visibility and distance from cloud minima",
+      "exp": "Below 3,050 m (10,000 ft) AMSL and above 900 m (3,000 ft) AMSL, or 300 m above terrain, whichever is higher, VFR in classes B to G needs 5 km flight visibility and a distance from cloud of 1,500 m horizontally and 300 m (1,000 ft) vertically. At and above 10,000 ft the visibility rises to 8 km. At and below 3,000 ft in classes F and G, clear of cloud with the surface in sight is enough, and the authority may allow visibility down to 1,500 m for some flights."
+    },
+    "CPLREG-077": {
+      "src": "ICAO Doc 4444 (PANS-ATM) 5.6.2",
+      "exp": "Two minutes are required between take-offs when the preceding aircraft is 74 km/h (40 kt) or more faster than the following one and both will follow the same track. Because the leader keeps pulling away, the gap between them grows after departure, which is why so short an interval is enough."
+    },
+    "CPLREG-091": {
+      "src": "ICAO Annex 10 Vol II 5.2.2.1.1.1 (VHF emergency frequency 121.5 MHz; continuous guard on long over-water flights and where an ELT must be carried)",
+      "exp": "121.5 MHz is the aeronautical VHF emergency frequency. Aircraft on long over-water flights, or flying over areas where an emergency locator transmitter must be carried, are required to keep a continuous watch on it, except while they are working another VHF channel or cockpit duties do not allow it."
+    },
+    "CPLREG-153": {
+      "src": "ATPL Met manual, Cloud Formation & Precipitation Q1: hail falls from Cb; Captain's Met notes (Ns continuous rain/snow, St drizzle)",
+      "exp": "Hail needs strong updraughts that carry ice particles up and down through a deep layer of supercooled water, so they grow layer by layer until they are heavy enough to fall. Only a cumulonimbus has updraughts like that. Stratus gives drizzle, and nimbostratus gives continuous rain or snow, but neither can make hail."
+    },
+    "CPLREG-166": {
+      "src": "The Aircraft Rules, 1937: rule 38 (operating crew licensed as prescribed in Part V and Schedule II); private aircraft flown by a pilot holding a licence issued in accordance with Schedule II; ratings per Schedule II",
+      "exp": "Schedule II of the Aircraft Rules, 1937 deals with personnel licences: it sets out each licence and rating and what it takes to hold one. Rule 38 requires operating crew to be licensed as prescribed in Part V and Schedule II, and a pilot flying a private aircraft must hold a licence issued in accordance with Schedule II."
+    },
+    "CPLREG-336": {
+      "src": "ICAO Doc 4444 (PANS-ATM) 5.4.2.2.1.1 a)-d)",
+      "exp": "For aircraft at the same level on the same track, time separation is 15 minutes, or 10 minutes where navigation aids allow frequent fixing of position and speed. It can come down to 5 minutes if the leader is 20 kt or more faster, and to 3 minutes if it is 40 kt or more faster, but only in the listed cases: both departed from the same aerodrome, both reported over the same exact significant point, or a departing aircraft joining behind an en-route one that has reported over a suitable fix."
+    },
+    "CPLREG-338": {
+      "src": "ICAO Annex 10 Vol II 5.2.1.3 spelling alphabet (Q Quebec, F Foxtrot, E Echo)",
+      "exp": "Spelt out in the ICAO spelling alphabet, Q is QUEBEC, F is FOXTROT and E is ECHO, so QFE is QUEBEC FOXTROT ECHO. QUEEN and FOX are not ICAO spelling-alphabet words, and 'ELEVATION' is not a letter at all."
+    }
+  }
+}
