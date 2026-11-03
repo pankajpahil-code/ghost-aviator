@@ -207,6 +207,7 @@
   "CPLNAV-423": {
    "was": "ZFM = DOM + take-off fuel",
    "exp": "Zero fuel mass is the dry operating mass plus the traffic load (passengers, baggage and cargo): everything except usable fuel. So 'ZFM = DOM + take-off fuel' is false, and that is the answer. Take-off mass is ZFM plus take-off fuel, which is true. Watch the third line as well: landing mass is take-off mass minus the TRIP fuel burnt, not minus the take-off fuel, so as printed it is also wrong. The statement the paper is after is the first one.",
+   "note": "As worded in the recall, two of the three statements are false: the third should read LM = TOM - trip fuel. The key gives the first statement, which is the one the paper is testing.",
    "why": "Key right; old explanation found wrong by the independent check. New explanation written 2026-11-03 and checked against the source recorded in explanations-2026-11-03.json. Not yet independently audited."
   },
   "CPLNAV-481": {
