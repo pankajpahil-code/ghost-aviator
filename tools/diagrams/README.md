@@ -2,7 +2,7 @@
 
 Public diagrams are static SVG files. Lessons require no Mermaid runtime or JavaScript to show them.
 
-`inline-manifest.json` tracks the 110 isolated native teaching diagrams. Their editable SVG fragments and captured page styles are in `inline-sources/`. `manifest.json` tracks the 139 flowcharts; their Mermaid source is in `sources/`. Asset and source hashes use UTF-8 text with LF line endings.
+`inline-manifest.json` tracks the 111 isolated teaching diagrams (110 converted inline drawings and one replacement composition chart). Their editable SVG fragments and captured page styles are in `inline-sources/`. `manifest.json` tracks the 139 flowcharts; their Mermaid source is in `sources/`. Asset and source hashes use UTF-8 text with LF line endings.
 
 Render candidates into a separate review folder, from the repository root:
 

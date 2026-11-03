@@ -54,4 +54,7 @@ const bank=fs.readFileSync('lib/generated/icjoshi-notes-met.ts','utf8');
 const oldGuarantee=/maximum height clouds can reach|All weather, turbulence, cloud formations are below it|plan for weather-free cruising altitudes/;
 assert.doesNotMatch(met,oldGuarantee,'Restore the source-backed tropopause correction in notes.');
 assert.doesNotMatch(bank,oldGuarantee,'Restore the source-backed tropopause correction in quiz explanations.');
+assert.doesNotMatch(met,/src=["'][^"']*fig-9340e03143eccec7\.jpg/,'Restore the reviewed dry-air composition diagram.');
+assert.match(met,/0\.042%/,'Retain the source-backed composition clarification.');
+assert.match(bank,/historical rounded value of 0\.03%/,'Keep the legacy quiz option distinct from a modern measurement.');
 console.log(`Checked ${native.length} isolated native diagrams and ${flows.length} pure-text flowcharts, dimensions, transcripts and the linked weather clarification.`);

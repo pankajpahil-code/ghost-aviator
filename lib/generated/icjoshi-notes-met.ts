@@ -203,7 +203,7 @@ export const ICJOSHI_NOTES_MET: DemoQuestion[] = [
     q: `By volume, the proportion of CO₂ in the atmosphere is ………`,
     opts: [`3%`, `0.3%`, `0.03%`],
     ans: 2,
-    exp: `CO₂ constitutes approximately 0.035% by volume in the atmosphere. Instructor's Note CO₂ = 0.035% ≈ 0.03% — tiny amount but significant for greenhouse effect.`,
+    exp: `This legacy question uses the historical rounded value of 0.03% among its options. Contemporary near-surface dry air contains about 0.04% CO₂; NOAA’s reference table gives approximately 0.042%. CO₂ varies with time and location, so the legacy option is not a current measurement. Instructor's Note Distinguish historical examination values from contemporary atmospheric composition. A small concentration can still have a significant greenhouse effect.`,
   },
   {
     subjectIds: ["meteorology","atpl-meteorology"],
