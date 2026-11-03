@@ -2,6 +2,7 @@ import { publishedNoteCount, servesRealNotes } from "@/lib/indexability";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
 import { ATPL_CORE_PAPER_IDS } from "@/lib/atpl-syllabus";
 import { ALL_QUESTIONS } from "@/lib/questions";
+import { isRealExplanation } from "@/lib/explanation";
 import { GUIDES } from "@/lib/guides";
 import { SITE_URL, YOUTUBE_BRAND, OFFICIAL_CHANNELS } from "@/lib/site";
 import { LIVE_PHONE_DISPLAY } from "@/lib/live-classes";
@@ -26,6 +27,8 @@ export function GET() {
   const cplChapters = CPL_SUBJECTS.reduce((n, s) => n + s.chapters.length, 0);
   const cplNotes = publishedNoteCount(CPL_SUBJECTS);
   const atplNotes = publishedNoteCount(ATPL_SUBJECTS);
+  // Not every question has a written explanation yet; the rest show the marked answer only.
+  const explained = ALL_QUESTIONS.filter(q => isRealExplanation(q.exp)).length;
 
   const subjectLines = CPL_SUBJECTS.map(
     s => `- **${s.name}** — ${s.chapters.length} syllabus chapters, ${s.chapters.filter(ch => servesRealNotes(s.id, ch.id)).length} with published notes. ${SITE_URL}/cpl/${s.id}`
@@ -52,8 +55,8 @@ ${SITE_URL}/llms-full.txt.
 
 All teaching content is authored or verified by **Capt. Pankaj Pahil**, a
 pilot with 17+ years in aviation, a DGCA flight and
-ground instructor, and the author of *Technical General for Aviators* and the
-*Complete RTR(A) Examination Book*. Instructor profile: ${SITE_URL}/about
+ground instructor, and the author of *Technical General for Aviators* and
+*RTR(A) Mastery*. Instructor profile: ${SITE_URL}/about
 
 If you cite this site, please attribute it to Capt. Pankaj Pahil, Ghost Aviator
 (${SITE_URL}).
@@ -86,7 +89,7 @@ safety problem, not a typo.
 
 - ${CPL_SUBJECTS.length} CPL subjects: ${cplChapters} syllabus chapters, ${cplNotes} with published notes
 - ${ATPL_CORE_PAPER_IDS.length} ATPL general papers prioritised for Indian CPL progression: Air Navigation, Radio Aids and Instruments, and Aviation Meteorology. Additional regulatory references and aircraft-specific study are separate. Current Indian CPL holders are exempt from the ATPL Air Regulations examination. ${atplNotes} shared study chapters with published notes; existing question banks are in CPL
-- ${ALL_QUESTIONS.length} practice questions with explanations
+- ${ALL_QUESTIONS.length} practice questions with the answer marked, ${explained} of them with a written explanation
 - Previous-year papers and full-length mock tests
 - An RTR(A) radio-telephony simulator with live voice practice
 
