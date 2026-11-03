@@ -1,0 +1,1305 @@
+{
+  "source": "Oxford Instrumentation, owner-supplied source PDF; PDF page 1 is the first file page",
+  "method": "Original SVG teaching schematics authored for the site. The owner-supplied source PDF is a private factual and visual reference; its artwork is not published. Automated image integrity and browser checks do not constitute independent aviation-content certification.",
+  "figures": [
+    {
+      "figure": "18.1",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-1.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.1 — Information available from an INS. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p228_0.png",
+      "sourcePdfPage": 233,
+      "sourcePrintedPage": 227,
+      "cropPoints": [
+        53.94300079345703,
+        332.8789978027344,
+        507.3169860839844,
+        657.552978515625
+      ],
+      "width": 900,
+      "height": 410,
+      "sha256": "0f6eac5a79890b7126afa9ede9a3f58fb9e408da4bb5cd8fb616cdd447006188",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Accelerometers",
+        "Gyroscopes",
+        "Initial position",
+        "Air data (TAS)",
+        "INS",
+        "computing",
+        "Position / velocity",
+        "Track / heading",
+        "Distance / time",
+        "Wind information"
+      ],
+      "supportingReference": "https://www.nasa.gov/meteorological-measurement-system-instruments/"
+    },
+    {
+      "figure": "18.3",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-3.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.3 — Accelerometer principle. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p229_0.png",
+      "sourcePdfPage": 235,
+      "sourcePrintedPage": 229,
+      "cropPoints": [
+        111.09400177001953,
+        114.90899658203125,
+        450.1650085449219,
+        401.03900146484375
+      ],
+      "width": 900,
+      "height": 410,
+      "sha256": "6288d6553be582dfd8dcd1449c46c61e04296c96360b505206394ac68f756abc",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Mass",
+        "Spring / restoring force",
+        "Displacement sensing",
+        "Aircraft acceleration",
+        "Measured specific force → electrical signal"
+      ]
+    },
+    {
+      "figure": "18.5",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-5.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.5 — First integration: acceleration to velocity. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p230_0.png",
+      "sourcePdfPage": 236,
+      "sourcePrintedPage": 230,
+      "cropPoints": [
+        87.63571166992188,
+        87.73635864257812,
+        541.5093994140625,
+        354.7467041015625
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "223d7506eb1e7a627641b07a16be85b0d034ff113197d3f999bfb9759622e47c",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Acceleration",
+        "N/S and E/W",
+        "Integrate",
+        "over time",
+        "Velocity",
+        "N/S and E/W",
+        "The velocity components give ground speed and track."
+      ]
+    },
+    {
+      "figure": "18.6",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-6.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.6 — Second integration: velocity to position. Teaching schematic",
+      "replaces": null,
+      "sourcePdfPage": 236,
+      "sourcePrintedPage": 230,
+      "cropPoints": [
+        87.64,
+        417.72,
+        541.51,
+        685.56
+      ],
+      "width": 900,
+      "height": 420,
+      "sha256": "684ed2f294cd3fd64d0b11d59bb2a0196bc1b30d8b700bdbd9c0e0aac1fb7f1b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Velocity",
+        "components",
+        "Integrate",
+        "over time",
+        "Distance",
+        "components",
+        "North/south distance → change of latitude",
+        "East/west departure + latitude → change of longitude",
+        "Add the changes to the initial position."
+      ]
+    },
+    {
+      "figure": "18.7",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-7.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.7 — Stabilised INS platform and sensors. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p231_0.png",
+      "sourcePdfPage": 237,
+      "sourcePrintedPage": 231,
+      "cropPoints": [
+        53.707000732421875,
+        136.5059814453125,
+        507.08099365234375,
+        447.2030029296875
+      ],
+      "width": 900,
+      "height": 460,
+      "sha256": "5bae2cd2b362ab4adb5bf4c0b5e1f2e84e3b7655fba0ef4988bda20a84c4b48c",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Mechanically stabilised",
+        "platform",
+        "N/S accelerometer",
+        "E/W accelerometer",
+        "Pitch gyro",
+        "Roll gyro",
+        "Azimuth gyro"
+      ]
+    },
+    {
+      "figure": "18.8",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-8.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.8 — INS present-position information. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p232_0.png",
+      "sourcePdfPage": 237,
+      "sourcePrintedPage": 231,
+      "cropPoints": [
+        53.94300079345703,
+        530.1640014648438,
+        357.58099365234375,
+        761.0460205078125
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "f92de16adcf8615124bd21d9b81d471306dbed6e0f638d50df72f947165c9420",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Latitude",
+        "N / S",
+        "Longitude",
+        "E / W",
+        "Present position combines an initial fix with measured motion."
+      ]
+    },
+    {
+      "figure": "18.9",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-9.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.9 — Gravity contamination when a platform is tilted. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p233_0.png",
+      "sourcePdfPage": 238,
+      "sourcePrintedPage": 232,
+      "cropPoints": [
+        87.70899963378906,
+        256.30499267578125,
+        541.5830078125,
+        458.60400390625
+      ],
+      "width": 900,
+      "height": 530,
+      "sha256": "f12130525d19606a35ee1935b67c43f5ec42465cf751d73058b10b42c5dd9ace",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Gravity",
+        "Tilted accelerometer axis",
+        "A gravity component along the axis creates a false acceleration signal.",
+        "Levelling and feedback keep the platform horizontal."
+      ]
+    },
+    {
+      "figure": "18.10",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-10.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.10 — Rate-integrating gyroscope: sensing rotation. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p234_0.png",
+      "sourcePdfPage": 239,
+      "sourcePrintedPage": 233,
+      "cropPoints": [
+        53.69300079345703,
+        203.875,
+        507.5669860839844,
+        762.9080200195312
+      ],
+      "width": 900,
+      "height": 530,
+      "sha256": "e24467fd1c49f2863e187086f1c0eff87d374a9c7e7f714ba4f6ff8f39dc98e3",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Gyroscope",
+        "Input angular rate",
+        "Integrating response",
+        "Output angular displacement"
+      ]
+    },
+    {
+      "figure": "18.11",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-11.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.11 — INS platform: sensors and stabilisation loop. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p235_0.png",
+      "sourcePdfPage": 240,
+      "sourcePrintedPage": 234,
+      "cropPoints": [
+        87.70899963378906,
+        205.8070068359375,
+        541.5830078125,
+        510.47802734375
+      ],
+      "width": 900,
+      "height": 410,
+      "sha256": "b4174dafcd07b7a2b2bdd1325934960a91b0dfa260257303096f73fdbb75df5b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Gyroscopes",
+        "sense rotation",
+        "Servo",
+        "correction",
+        "Stabilised",
+        "platform",
+        "Accelerometers on the platform measure horizontal motion."
+      ]
+    },
+    {
+      "figure": "18.12",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-12.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.12 — Earth orientation: latitude and changing local vertical. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p236_0.png",
+      "sourcePdfPage": 241,
+      "sourcePrintedPage": 235,
+      "cropPoints": [
+        53.69300079345703,
+        192.5360107421875,
+        507.5669860839844,
+        480.46600341796875
+      ],
+      "width": 900,
+      "height": 475,
+      "sha256": "10c833f53d9faae4a7edf2cda839b008bd33a76ba0cf17bb161c975d03b5709b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Local vertical",
+        "Earth",
+        "Earth rotation",
+        "and aircraft motion",
+        "require compensation"
+      ]
+    },
+    {
+      "figure": "18.15",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-15.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.15 — Schuler tuning: the approximately 84.4-minute period. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p239_0.png",
+      "sourcePdfPage": 244,
+      "sourcePrintedPage": 238,
+      "cropPoints": [
+        162.75399780273438,
+        87.17303466796875,
+        466.3919982910156,
+        248.9200439453125
+      ],
+      "width": 900,
+      "height": 510,
+      "sha256": "1633884ba78aaa12fa6cf96f457b10aa34c7c96d6097904e397833fa7bd8a024",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Earth-radius pendulum model",
+        "Ideal Schuler period ≈ 84.4 minutes",
+        "INS levelling loop",
+        "tuned to this period"
+      ]
+    },
+    {
+      "figure": "18.16",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-16.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.16 — INS mode selector: functions. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p240_0.png",
+      "sourcePdfPage": 245,
+      "sourcePrintedPage": 239,
+      "cropPoints": [
+        128.81100463867188,
+        416.2230224609375,
+        432.4490051269531,
+        566.5810546875
+      ],
+      "width": 900,
+      "height": 555,
+      "sha256": "97095376d13b0392f6cf5337c0ba68f8bf532a8429ef1ab8c89898e7459c4c8e",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "OFF • power off",
+        "STBY • initial position entry",
+        "ALIGN • level and align",
+        "NAV • navigation computation",
+        "ATT REF • attitude reference",
+        "Annunciators include READY NAV and battery warning."
+      ]
+    },
+    {
+      "figure": "18.17",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-17.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.17 — INS control and display unit: controls. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p241_0.png",
+      "sourcePdfPage": 246,
+      "sourcePrintedPage": 240,
+      "cropPoints": [
+        88.28700256347656,
+        500.97802734375,
+        391.42498779296875,
+        753.3480224609375
+      ],
+      "width": 900,
+      "height": 520,
+      "sha256": "e6c79695bb221dc0e0e1f128976b7bab02234d42f876f7681b85376def719c4a",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Numerical displays",
+        "Position / navigation data",
+        "Display",
+        "selector",
+        "Waypoint",
+        "selector",
+        "Data-entry",
+        "keyboard",
+        "INSERT / HOLD",
+        "Track-change control"
+      ]
+    },
+    {
+      "figure": "18.18",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-18.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.18 — TK/GS display: track and ground speed. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p243_0.png",
+      "sourcePdfPage": 248,
+      "sourcePrintedPage": 242,
+      "cropPoints": [
+        316.14801025390625,
+        526.7540283203125,
+        541.3330078125,
+        698.3280029296875
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "28317d17228c895d9878f576807b874b54d870737b08fef8d03202118367cfde",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "TK",
+        "Track in degrees true",
+        "GS",
+        "Ground speed in knots",
+        "Track is the direction of motion over the ground."
+      ]
+    },
+    {
+      "figure": "18.19",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-19.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.19 — HDG/DA display: heading and drift angle. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p244_0.png",
+      "sourcePdfPage": 249,
+      "sourcePrintedPage": 243,
+      "cropPoints": [
+        282.1319885253906,
+        101.18798828125,
+        507.3169860839844,
+        272.76202392578125
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "c6ff6ed04fa1e9b98a87faf770d1d6358c42d3d36b7186133acefa0c555cdab6",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "HDG",
+        "Aircraft heading",
+        "DA",
+        "Left / right drift angle",
+        "Heading describes the nose direction; drift relates heading to track."
+      ]
+    },
+    {
+      "figure": "18.20",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-20.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.20 — XTK/TKE: displacement versus angular error. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p244_2.png",
+      "sourcePdfPage": 249,
+      "sourcePrintedPage": 243,
+      "cropPoints": [
+        53.69300079345703,
+        395.69000244140625,
+        507.5669860839844,
+        564.656005859375
+      ],
+      "width": 900,
+      "height": 465,
+      "sha256": "8ad411135e4dfe09ad9de86251306f9c0bb1abfb3062e5e0f9bf0de5efd4c999",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Desired track",
+        "XTK",
+        "Distance from the track",
+        "Desired direction",
+        "Actual track direction",
+        "TKE",
+        "Angle between directions"
+      ]
+    },
+    {
+      "figure": "18.21",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-21.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.21 — POS display: present latitude and longitude. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p245_0.png",
+      "sourcePdfPage": 250,
+      "sourcePrintedPage": 244,
+      "cropPoints": [
+        315.6289978027344,
+        101.6610107421875,
+        540.81396484375,
+        273.2349853515625
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "e56ea31e2c4d30ba98ea29e765555cbc7c61f3a9b5ae8cca27103c806f7aab97",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Present latitude",
+        "N / S",
+        "Present longitude",
+        "E / W",
+        "POS refers to the aircraft’s computed present position."
+      ]
+    },
+    {
+      "figure": "18.22",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-22.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.22 — WPT display: stored waypoint coordinates. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p245_2.png",
+      "sourcePdfPage": 250,
+      "sourcePrintedPage": 244,
+      "cropPoints": [
+        315.6289978027344,
+        291.2430419921875,
+        540.81396484375,
+        462.8170166015625
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "daf855c26b722e60a7e3b4b6a88d60b11ac8bdb2c142bf0862a5ea9862f4c2ea",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Waypoint latitude",
+        "N / S",
+        "Waypoint longitude",
+        "E / W",
+        "WPT refers to the selected stored waypoint, not present position."
+      ]
+    },
+    {
+      "figure": "18.24",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-24.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.24 — DIS/TIME display: distance and time. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p246_0.png",
+      "sourcePdfPage": 251,
+      "sourcePrintedPage": 245,
+      "cropPoints": [
+        282.1319885253906,
+        103.550048828125,
+        507.3169860839844,
+        275.1240234375
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "eff3ebc59b5fd949709dffef69764ec9d536e781af227bb6c34971d85d7abada",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "DIS",
+        "Distance to waypoint",
+        "TIME",
+        "Time to waypoint",
+        "The selected leg / waypoint determines the displayed destination."
+      ]
+    },
+    {
+      "figure": "18.25",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-25.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.25 — WIND display: wind direction and speed. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p246_2.png",
+      "sourcePdfPage": 251,
+      "sourcePrintedPage": 245,
+      "cropPoints": [
+        282.1319885253906,
+        316.593017578125,
+        507.3169860839844,
+        488.1670227050781
+      ],
+      "width": 900,
+      "height": 350,
+      "sha256": "b2a83751d112cbbb56405449b685355bedbc6484471456339576765ed6f5dc08",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Wind direction",
+        "Degrees true",
+        "Wind speed",
+        "Knots",
+        "Computed from the aircraft’s air and ground motion."
+      ]
+    },
+    {
+      "figure": "18.26",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-26.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.26 — DSR TK/STS display: desired track and status. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p246_4.png",
+      "sourcePdfPage": 251,
+      "sourcePrintedPage": 245,
+      "cropPoints": [
+        53.69300079345703,
+        524.5770263671875,
+        507.5669860839844,
+        699.1000366210938
+      ],
+      "width": 900,
+      "height": 405,
+      "sha256": "5a3c3a480e455c3ed1f42fb8fee26f96881dcb92d236ab2f39cbfb36e14f9f18",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "DSR TK",
+        "Desired track",
+        "STS",
+        "System status code",
+        "Status is normally blank in NAV.",
+        "Status checks are generally available in ALIGN."
+      ]
+    },
+    {
+      "figure": "18.27",
+      "image": "content/instrumentation/inst-18/figs/lesson-18-27.svg",
+      "notes": "public/content/instrumentation/inst-18/notes.html",
+      "caption": "Fig 18.27 — TEST display: checking illuminated segments. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-18/figs/fig_p247_0.png",
+      "sourcePdfPage": 252,
+      "sourcePrintedPage": 246,
+      "cropPoints": [
+        316.1990051269531,
+        181.4630126953125,
+        541.384033203125,
+        353.0370178222656
+      ],
+      "width": 900,
+      "height": 410,
+      "sha256": "b8d7c0e544f18436bfc72e8980e55f7c4ffb2c99ec2b0b974b1398dc45fe6b64",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "888888   888888",
+        "The test illuminates display segments to reveal failed elements.",
+        "A segment test does not establish navigation accuracy."
+      ]
+    },
+    {
+      "figure": "19.1",
+      "image": "content/instrumentation/inst-19/figs/lesson-19-1.svg",
+      "notes": "public/content/instrumentation/inst-19/notes.html",
+      "caption": "Fig 19.1 — Inertial reference unit: strap-down sensors and computing. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-19/figs/fig_p254_0.png",
+      "sourcePdfPage": 259,
+      "sourcePrintedPage": 253,
+      "cropPoints": [
+        83.45668029785156,
+        190.71484375,
+        491.1724853515625,
+        466.9933166503906
+      ],
+      "width": 900,
+      "height": 435,
+      "sha256": "7a2fd366a6e8c753d9befc7e83d719f463d15c03e27df04f631b0b5f565012bc",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Inertial reference unit",
+        "Three gyroscopes",
+        "Three accelerometers",
+        "Digital",
+        "computation",
+        "Sensors are fixed to the airframe; attitude is computed."
+      ]
+    },
+    {
+      "figure": "19.2",
+      "image": "content/instrumentation/inst-19/figs/lesson-19-2.svg",
+      "notes": "public/content/instrumentation/inst-19/notes.html",
+      "caption": "Fig 19.2 — Ring laser gyro: counter-propagating light. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-19/figs/fig_p257_0.png",
+      "sourcePdfPage": 262,
+      "sourcePrintedPage": 256,
+      "cropPoints": [
+        145.3699951171875,
+        86.91204833984375,
+        484.4410095214844,
+        314.35302734375
+      ],
+      "width": 900,
+      "height": 480,
+      "sha256": "4508254403906c4efe293c710b4a388135267811e418ab23a69f53b2e7f0cef6",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Light travels around the same ring in opposite directions.",
+        "Rotation produces a measurable frequency difference."
+      ]
+    },
+    {
+      "figure": "20.1",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-1.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.1 — FMCW radio altimeter: delay and beat frequency. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-20/figs/fig_p264_0.png",
+      "sourcePdfPage": 269,
+      "sourcePrintedPage": 263,
+      "cropPoints": [
+        128.81100463867188,
+        411.4219970703125,
+        432.4490051269531,
+        622.552978515625
+      ],
+      "width": 900,
+      "height": 515,
+      "sha256": "dd5b4dbbb2f29607d239dc11580dc90c76fc7087ef6efd8a1805b4a6de41bd0d",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Frequency",
+        "Time",
+        "Blue: transmitted sweep • Teal: delayed received sweep",
+        "For a fixed sweep rate, beat frequency increases with height."
+      ]
+    },
+    {
+      "figure": "20.2",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-2.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.2 — Radio-altimeter indicator: principal controls. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-20/figs/fig_p265_0.png",
+      "sourcePdfPage": 270,
+      "sourcePrintedPage": 264,
+      "cropPoints": [
+        161.96099853515625,
+        405.43603515625,
+        465.5989990234375,
+        708.1290283203125
+      ],
+      "width": 900,
+      "height": 450,
+      "sha256": "20dfba6075b5a383bfb2d333ea9a242eca76eba1c454ac449a247d649d92443a",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "RAD ALT",
+        "500 ft",
+        "DH selector",
+        "Height above",
+        "terrain",
+        "Failure / low-height",
+        "warning",
+        "Press to test /",
+        "height selection"
+      ]
+    },
+    {
+      "figure": "20.3",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-3.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.3 — EFIS radio altitude: Boeing-style teaching example. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-20/figs/fig_p266_0.png",
+      "sourcePdfPage": 271,
+      "sourcePrintedPage": 265,
+      "cropPoints": [
+        154.593994140625,
+        475.6360168457031,
+        493.6650085449219,
+        751.8720092773438
+      ],
+      "width": 900,
+      "height": 535,
+      "sha256": "1d47db228e403cfd4d6fc872fab3c394f69962aea18e7b24588576618a6f3d07",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "20",
+        "10",
+        "10",
+        "20",
+        "ATTITUDE",
+        "RADIO 200",
+        "Airspeed",
+        "kt",
+        "Altitude",
+        "ft",
+        "Radio altitude is distinct from the barometric altitude scale."
+      ]
+    },
+    {
+      "figure": "20.6",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-6.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.6 — Airbus-style radio-altitude colour change. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-20/figs/fig_p267_0.png",
+      "sourcePdfPage": 272,
+      "sourcePrintedPage": 266,
+      "cropPoints": [
+        163,
+        362,
+        467,
+        691
+      ],
+      "width": 900,
+      "height": 450,
+      "sha256": "5c75dc11728a2f1d7a1c2dbe253b3596e650ed3e52f688b99ac650c74a8f94ec",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Above decision height",
+        "Radio altitude at PFD base",
+        "200",
+        "Below decision height",
+        "Larger amber numerals",
+        "80",
+        "Example: selected decision height 100 ft.",
+        "The illustrated system provides configured height callouts."
+      ]
+    },
+    {
+      "figure": "20.7",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-7.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.7 — Radio-altimeter installation: residual height at touchdown. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-20/figs/fig_p268_0.png",
+      "sourcePdfPage": 273,
+      "sourcePrintedPage": 267,
+      "cropPoints": [
+        111.0,
+        588.0,
+        451.0,
+        740.0
+      ],
+      "width": 900,
+      "height": 500,
+      "sha256": "f60ed096038a1642496fbf718653faad445851e52fb8b99698bcdf18dbb3b58e",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Ground",
+        "Antenna height",
+        "with wheels on ground",
+        "Installation compensation allows a zero indication at touchdown."
+      ]
+    },
+    {
+      "figure": "21.1",
+      "image": "content/instrumentation/inst-21/figs/lesson-21-1.svg",
+      "notes": "public/content/instrumentation/inst-21/notes.html",
+      "caption": "Fig 21.1 — FMS: inputs, computing and guidance. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-21/figs/fig_p272_0.png",
+      "sourcePdfPage": 277,
+      "sourcePrintedPage": 271,
+      "cropPoints": [
+        53.69300079345703,
+        253.67901611328125,
+        507.5669860839844,
+        476.1360168457031
+      ],
+      "width": 900,
+      "height": 450,
+      "sha256": "a0a41f9d0a4e90db86441f21a197ab8b906da6316b514f904db36c6fafac6ef8",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Air data",
+        "Inertial / GPS data",
+        "Navigation database",
+        "FMC",
+        "Computing",
+        "Control/display unit",
+        "Flight guidance",
+        "Autothrottle",
+        "The CDU provides the pilot’s data-entry and display interface."
+      ]
+    },
+    {
+      "figure": "21.2",
+      "image": "content/instrumentation/inst-21/figs/lesson-21-2.svg",
+      "notes": "public/content/instrumentation/inst-21/notes.html",
+      "caption": "Fig 21.2 — FMS CDU: display, line-select keys and keypad. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-21/figs/fig_p273_0.png",
+      "sourcePdfPage": 278,
+      "sourcePrintedPage": 272,
+      "cropPoints": [
+        87.19000244140625,
+        99.35205078125,
+        541.06396484375,
+        531.1240234375
+      ],
+      "width": 900,
+      "height": 520,
+      "sha256": "84de742410fddce9b55e30071a86ae1caa4a3c1a634be49ef24bc33157e09f59",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "ROUTE / PERFORMANCE",
+        "Data fields and prompts",
+        "Scratchpad",
+        "Function / page keys",
+        "Alphanumeric keypad",
+        "Data entry",
+        "Line-select",
+        "keys",
+        "Keyboard"
+      ]
+    },
+    {
+      "figure": "22.1",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-1.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.1 — Multi-crew EFIS: signal generation and displays. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p283_0.png",
+      "sourcePdfPage": 288,
+      "sourcePrintedPage": 282,
+      "cropPoints": [
+        87.70899963378906,
+        88.70404052734375,
+        541.5830078125,
+        434.11602783203125
+      ],
+      "width": 900,
+      "height": 490,
+      "sha256": "359aa6a3252f6e16cb71f39cfd6545ef87d72847e702c86a2c8bec50fa52123b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Aircraft / navigation",
+        "sensor inputs",
+        "Captain’s",
+        "symbol generator",
+        "First officer’s",
+        "symbol generator",
+        "EADI + EHSI",
+        "Flight and navigation displays",
+        "EADI + EHSI",
+        "Flight and navigation displays"
+      ]
+    },
+    {
+      "figure": "22.2",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-2.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.2 — EFIS control panel: typical selections. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p283_2.png",
+      "sourcePdfPage": 289,
+      "sourcePrintedPage": 283,
+      "cropPoints": [
+        111.3444595336914,
+        346.06695556640625,
+        449.9153137207031,
+        516.9085083007812
+      ],
+      "width": 900,
+      "height": 530,
+      "sha256": "279bb0f83c0ede8546e1c10fe23a4e39b188d77823c387cb0603066b708be5d1",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "RANGE • navigation display range",
+        "MODE • VOR / ILS / MAP / PLAN",
+        "BRT • display brightness",
+        "MAP • navigation aids / airports / route data / waypoints",
+        "WXR • weather-radar display",
+        "EXP ARC • expanded VOR / ILS presentation"
+      ]
+    },
+    {
+      "figure": "22.3",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-3.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.3 — EFIS attitude-display elements: illustrative layout. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p286_0.png",
+      "sourcePdfPage": 291,
+      "sourcePrintedPage": 285,
+      "cropPoints": [
+        127.97515869140625,
+        88.53948974609375,
+        433.2846984863281,
+        381.2973327636719
+      ],
+      "width": 900,
+      "height": 535,
+      "sha256": "df1f042f5f120bea09854b85179af34cc965f9f0fc334fc0359b67c25d71b11a",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "20",
+        "10",
+        "10",
+        "20",
+        "ATTITUDE",
+        "RADIO 200",
+        "Airspeed",
+        "kt",
+        "Altitude",
+        "ft",
+        "Attitude, airspeed, altitude and radio-height information"
+      ]
+    },
+    {
+      "figure": "22.4",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-4.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.4 — Radio altitude below 1000 ft and at decision height. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p286_1.png",
+      "sourcePdfPage": 291,
+      "sourcePrintedPage": 285,
+      "cropPoints": [
+        54,
+        444,
+        507,
+        620
+      ],
+      "width": 900,
+      "height": 420,
+      "sha256": "b83a6bfa85286b56a0fde7502df936151f6670f5a53e11c586a14fd4d769b9cb",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Below 1000 ft",
+        "White circular scale",
+        "Magenta DH reference",
+        "At decision height",
+        "Amber / yellow alert",
+        "Flashing DH reference",
+        "Both states refer to radio height above the surface."
+      ]
+    },
+    {
+      "figure": "22.6",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-6.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.6 — EHSI full VOR mode. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p289_0.png",
+      "sourcePdfPage": 295,
+      "sourcePrintedPage": 289,
+      "cropPoints": [
+        53.69300079345703,
+        152.93603515625,
+        507.5669860839844,
+        393.5270080566406
+      ],
+      "width": 900,
+      "height": 495,
+      "sha256": "1caec0a612bd382676f3672165a690e9153dce786d1083e34d522059a23cffce",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "N",
+        "E",
+        "S",
+        "W",
+        "Full compass rose",
+        "VOR mode",
+        "Course",
+        "deviation",
+        "TO / FROM",
+        "indication"
+      ]
+    },
+    {
+      "figure": "22.7",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-7.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.7 — EHSI expanded VOR mode. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p290_0.png",
+      "sourcePdfPage": 296,
+      "sourcePrintedPage": 290,
+      "cropPoints": [
+        87.53700256347656,
+        114.5889892578125,
+        541.4110107421875,
+        358.2550048828125
+      ],
+      "width": 900,
+      "height": 505,
+      "sha256": "c2e3aa25bdddab74547693392d2aa5bee3b628a1a320240b8b957d1553d0895b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "120",
+        "150",
+        "180",
+        "Expanded arc • heading up",
+        "VOR mode",
+        "Course",
+        "deviation",
+        "TO / FROM",
+        "indication",
+        "Weather overlay available"
+      ]
+    },
+    {
+      "figure": "22.8",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-8.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.8 — EHSI full ILS mode. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p291_0.png",
+      "sourcePdfPage": 297,
+      "sourcePrintedPage": 291,
+      "cropPoints": [
+        53.69300079345703,
+        114.5889892578125,
+        507.5669860839844,
+        364.3690185546875
+      ],
+      "width": 900,
+      "height": 495,
+      "sha256": "9a6994023bd9366f524bb0c49e73e0acfa2ce98557185e204ff066dfe158f492",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "N",
+        "E",
+        "S",
+        "W",
+        "Full compass rose",
+        "ILS mode",
+        "Course",
+        "deviation",
+        "Glide slope"
+      ]
+    },
+    {
+      "figure": "22.9",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-9.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.9 — EHSI expanded ILS mode. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p292_0.png",
+      "sourcePdfPage": 298,
+      "sourcePrintedPage": 292,
+      "cropPoints": [
+        87.19000244140625,
+        114.67498779296875,
+        541.06396484375,
+        357.3290100097656
+      ],
+      "width": 900,
+      "height": 505,
+      "sha256": "cf32196622bca2de7bfc27dd03c709056657f20d9be25a9e9eb448bed307b42d",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "120",
+        "150",
+        "180",
+        "Expanded arc • heading up",
+        "ILS mode",
+        "Course",
+        "deviation",
+        "Glide slope",
+        "Weather overlay available"
+      ]
+    },
+    {
+      "figure": "22.10",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-10.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.10 — EHSI MAP mode: route and selected map data. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p293_0.png",
+      "sourcePdfPage": 299,
+      "sourcePrintedPage": 293,
+      "cropPoints": [
+        53.69300079345703,
+        114.675048828125,
+        507.5669860839844,
+        358.0630187988281
+      ],
+      "width": 900,
+      "height": 520,
+      "sha256": "33e60a8cb5f92e2ec2cc09aa4566cf3f259fb8949218293c031afeb39f961b58",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "Route / waypoints",
+        "Selected map data",
+        "Weather overlay",
+        "Moving-map navigation presentation"
+      ]
+    },
+    {
+      "figure": "22.11",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-11.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.11 — EHSI PLAN mode: north-up route review. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p294_0.png",
+      "sourcePdfPage": 300,
+      "sourcePrintedPage": 294,
+      "cropPoints": [
+        87.19000244140625,
+        114.760986328125,
+        541.06396484375,
+        351.6440124511719
+      ],
+      "width": 900,
+      "height": 520,
+      "sha256": "2a5c7a4a5d3c65cf7248f50b5c62b99354f9430d22a4e7eb7edbbdf5e9513aa3",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "N",
+        "North-up route review • weather radar not displayed"
+      ]
+    },
+    {
+      "figure": "22.12",
+      "image": "content/instrumentation/inst-22/figs/lesson-22-12.svg",
+      "notes": "public/content/instrumentation/inst-22/notes.html",
+      "caption": "Fig 22.12 — EFIS failure indications: example flags. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-22/figs/fig_p295_0.png",
+      "sourcePdfPage": 301,
+      "sourcePrintedPage": 295,
+      "cropPoints": [
+        111.34400177001953,
+        87.958984375,
+        449.9150085449219,
+        343.3800048828125
+      ],
+      "width": 900,
+      "height": 645,
+      "sha256": "b375c5a00aa35b3deb8c8dc07496e5b6220f306c9981c3aa6d9b716648db847b",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "20",
+        "10",
+        "10",
+        "20",
+        "ATTITUDE",
+        "Airspeed",
+        "kt",
+        "Altitude",
+        "ft",
+        "SPD",
+        "RA",
+        "GS",
+        "LOC",
+        "SPD: speed computer • RA: radio altimeter",
+        "GS: glide-slope signal • LOC: localizer signal"
+      ]
+    },
+    {
+      "figure": "23.1",
+      "image": "content/instrumentation/inst-23/figs/lesson-23-1.svg",
+      "notes": "public/content/instrumentation/inst-23/notes.html",
+      "caption": "Fig 23.1 — Digital computer: processing, memory and buses. Teaching schematic",
+      "replaces": "/content/instrumentation/inst-23/figs/fig_p309_0.png",
+      "sourcePdfPage": 314,
+      "sourcePrintedPage": 308,
+      "cropPoints": [
+        87.7086181640625,
+        191.11802673339844,
+        541.5826416015625,
+        407.3739929199219
+      ],
+      "width": 900,
+      "height": 420,
+      "sha256": "3b7d66fa3fbf5ae37088cd9ed684c72f667a0d63837f54fed1381fb2863dc1ee",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Input",
+        "devices",
+        "CPU",
+        "ALU / registers",
+        "Control unit",
+        "Output",
+        "devices",
+        "Memory",
+        "Data bus: values • Address bus: location • Control bus: commands"
+      ]
+    },
+    {
+      "figure": "20.4-20.5",
+      "image": "content/instrumentation/inst-20/figs/lesson-20-4-20-5.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "caption": "Fig 20.4-20.5 — Boeing-style radio altitude: approach to decision height. Teaching schematic",
+      "replaces": null,
+      "sourcePdfPage": 272,
+      "sourcePrintedPage": 266,
+      "cropPoints": [
+        130,
+        186,
+        501,
+        300
+      ],
+      "width": 900,
+      "height": 420,
+      "sha256": "12e2023163d209d169d50e35176d5a60ac099b98e05f69aa5a6545b3a21c7496",
+      "reviewedOn": "2026-11-03",
+      "sourceCropPublished": false,
+      "labels": [
+        "Below 1000 ft",
+        "White radio-altitude scale",
+        "Magenta DH marker",
+        "At selected DH",
+        "Amber / yellow alert",
+        "Scale and marker flash",
+        "Illustrative presentation states; details vary by installation."
+      ]
+    }
+  ],
+  "staticDiagramTitles": [
+    {
+      "image": "content/instrumentation/inst-19/figs/diagram-01.svg",
+      "notes": "public/content/instrumentation/inst-19/notes.html",
+      "title": "Platform INS and strap-down IRS comparison"
+    },
+    {
+      "image": "content/instrumentation/inst-20/figs/diagram-01.svg",
+      "notes": "public/content/instrumentation/inst-20/notes.html",
+      "title": "FMCW radio-altimeter signal path"
+    },
+    {
+      "image": "content/instrumentation/inst-23/figs/diagram-01.svg",
+      "notes": "public/content/instrumentation/inst-23/notes.html",
+      "title": "CPU, memory, input and output connections"
+    },
+    {
+      "image": "content/instrumentation/inst-23/figs/diagram-02.svg",
+      "notes": "public/content/instrumentation/inst-23/notes.html",
+      "title": "Analogue-to-digital and digital-to-analogue conversion"
+    }
+  ]
+}
