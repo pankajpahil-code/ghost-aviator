@@ -110,24 +110,20 @@ Where:
   Tropopause and above (−56.5°C = 216.5K): LSS = 38.95 × √216.5 ≈ <strong>573 knots</strong>
 </div>
 
-<div class="amber-box"><strong>Key Rule:</strong> Higher temperature → higher LSS. Temperature normally falls with altitude → LSS normally falls with altitude. Above the tropopause (ISA) temperature is constant → LSS is constant at ~573 kt.</div>
+<div class="amber-box"><strong>Key Rule:</strong> Higher temperature → higher LSS. Temperature normally falls with altitude → LSS normally falls with altitude. In the first ISA isothermal layer, from 11 to 20 km, temperature and the local speed of sound stay nearly constant.</div>
 
 <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img width="825" height="207" decoding="async" src="/content/instrumentation/inst-7/figs/diagram-01.svg" alt="2. Speed of Sound" loading="lazy" style="display:block;width:825px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">2. Speed of Sound · Scroll sideways if needed · <a href="/content/instrumentation/inst-7/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Temperature Increases; LSS Increases; Altitude Increases (below tropopause); Temperature Decreases; LSS Decreases; Above Tropopause (ISA); Temperature Constant −56.5°C; LSS Constant ~573 kt</p></details></figure>
 
 <h2 id="sec-3">3. Machmeter Principle of Operation</h2>
 <div class="blue-box"><strong>What this section covers:</strong> How the Machmeter derives Mach number from pitot and static pressures.</div>
-<div class="formula-box">Mach Number (MN) = TAS / LSS
-
-Since MN ∝ √(Dynamic Pressure / Static Pressure)
-         = √((Pitot Pressure − Static Pressure) / Static Pressure)
-
-Density (ρ) cancels → MN is proportional to √(Dp / Ps)
-where Dp = dynamic pressure, Ps = static pressure</div>
+<div class="formula-box">Mach = true airspeed / local speed of sound
+For subsonic isentropic flow in air (γ = 1.4):
+Mach = √{5 × [(total pressure / static pressure)^(2/7) − 1]}</div>
 
 <p>The Machmeter uses <strong>two capsules</strong>:</p>
 <ol>
-  <li><strong>Airspeed Capsule</strong> — expands/contracts with dynamic pressure (pitot − static). Senses TAS component.</li>
-  <li><strong>Altitude (Aneroid) Capsule</strong> — expands/contracts with changes in static pressure in the instrument case. Compensates for the effect of altitude on the speed of sound.</li>
+  <li><strong>Airspeed Capsule</strong> — responds to impact pressure (total minus static).</li>
+  <li><strong>Altitude (Aneroid) Capsule</strong> — expands/contracts with changes in static pressure in the instrument case. Supplies the static-pressure reference for the ratio.</li>
 </ol>
 <p>Their combined mechanical output via the <strong>ratio arm</strong> and <strong>ranging arm</strong> drives the pointer to display Mach number directly.</p>
 
@@ -181,7 +177,7 @@ where Dp = dynamic pressure, Ps = static pressure</div>
   <tr><td>Pitot</td><td>Climb at constant IAS</td><td>Airspeed capsule expands in error (capsule static > case static) → <strong>Over-reads</strong></td></tr>
   <tr><td>Pitot</td><td>Descent at constant IAS</td><td>Airspeed capsule contracts (capsule static < case static) → <strong>Under-reads</strong></td></tr>
 </table>
-<div class="amber-box"><strong>Exam Tip:</strong> Machmeter blockage errors are identical to ASI blockage errors. Static blocked in climb → under-reads; static blocked in descent → over-reads. Pitot blocked is the opposite.</div>
+<div class="amber-box"><strong>Exam Tip:</strong> These pitot-blockage rows assume both the inlet and drain are blocked, trapping total pressure. If only the inlet is blocked and the drain is open, the pressure can bleed away and the indication can fall toward zero. Static blocked in climb → under-reads; static blocked in descent → over-reads. Pitot blocked is the opposite.</div>
 
 <h2 id="sec-7">7. Abbreviations</h2>
 <table>
@@ -196,29 +192,24 @@ where Dp = dynamic pressure, Ps = static pressure</div>
 <div class="blue-box"><strong>What this section covers:</strong> How TAS and Mach number change during a constant-CAS climb.</div>
 <p>Example: Climbing at <span class="reg-value">330 kt CAS</span> from sea level to <span class="reg-value">FL360</span> in ISA:</p>
 <ul>
-  <li>TAS increases from <span class="reg-value">330 kt</span> to <span class="reg-value">593 kt</span></li>
-  <li>Mach number increases from <span class="reg-value">M 0.5</span> to <span class="reg-value">M 1.05</span></li>
+  <li>TAS increases from <span class="reg-value">330 kt</span> to <span class="reg-value">556 kt</span></li>
+  <li>Mach number increases from <span class="reg-value">M 0.5</span> to <span class="reg-value">M 0.97</span></li>
 </ul>
-<p>This rapid rise in Mach number is why high-performance aircraft are flown at <strong>constant CAS (or IAS)</strong> in the lower part of the climb, then transition to a <strong>constant Mach number</strong> for the remainder — to avoid inadvertently exceeding M<sub>MO</sub>.</p>
+<p>These rounded values use the subsonic total-to-static pressure relation and ISA temperature and pressure at each level. <a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html">NASA Glenn pressure relation</a>.</p>
+<p>This rise in Mach number is why high-performance aircraft are flown at <strong>constant CAS (or IAS)</strong> in the lower part of the climb, then transition to a <strong>constant Mach number</strong> for the remainder — to avoid inadvertently exceeding M<sub>MO</sub>.</p>
 
-<figure>
-  <img src="figs/fig_p87_0.png" alt="Constant CAS climb diagram – CAS, TAS, Mach vs altitude">
-  <figcaption>Fig. 7.2 – Constant CAS climb: CAS (blue) constant, TAS (green) increases, Mach (red) increases faster — source p.87</figcaption>
-</figure>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="Climbing at 330 kt calibrated airspeed" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-7-2.svg" width="800" height="388" decoding="async" loading="lazy" alt="CAS stays at 330 knots while true airspeed and Mach increase through FL360." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Fig 7.2 — Constant CAS climb in the standard atmosphere. · Scroll sideways if needed · <a href="figs/study-7-2.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>Climbing at 330 kt calibrated airspeed · ISA altitude · CAS (kt) · TAS (kt) · Mach · Sea level · 330 · 330 · 0.50 · FL180 · 330 · 425 · 0.69 · FL360 · 330 · 556 · 0.97 · Subsonic pressure calculation. Values rounded for study.</p></details></figure>
 
 <h2 id="sec-9">9. Descent at Constant Mach Number – Standard Conditions</h2>
 <div class="blue-box"><strong>What this section covers:</strong> How TAS and CAS change during a constant Mach descent.</div>
-<p>During a descent in ISA, temperature <em>increases</em> → LSS increases. To maintain constant Mach number, TAS must also increase (MN = TAS/LSS). As density also increases during descent, CAS increases even more rapidly (Dynamic Pressure = ½ρV²). Example: M 0.8 descent from FL400 to MSL:</p>
+<p>In an ISA descent from FL400, temperature and the local speed of sound initially stay nearly constant. Below the tropopause the air warms and TAS increases at constant Mach. CAS increases as static pressure rises. The following example uses Mach 0.80.</p>
 <ul>
-  <li>At <span class="reg-value">FL400</span>: TAS = <span class="reg-value">450 kt</span>, CAS = <span class="reg-value">242 kt</span></li>
-  <li>At <span class="reg-value">MSL</span>: TAS = <span class="reg-value">528 kt</span>, CAS = <span class="reg-value">528 kt</span> (would exceed V<sub>MO</sub>)</li>
+  <li>At <span class="reg-value">FL400</span>: TAS = <span class="reg-value">459 kt</span>, CAS = <span class="reg-value">242 kt</span></li>
+  <li>At <span class="reg-value">MSL</span>: TAS = <span class="reg-value">529 kt</span>, CAS = <span class="reg-value">529 kt</span> (aircraft operating limits are type-specific)</li>
 </ul>
 <p>This is why CAS is used in the descent rather than constant Mach number below a certain altitude.</p>
 
-<figure>
-  <img src="figs/fig_p87_1.png" alt="Constant Mach descent diagram">
-  <figcaption>Fig. 7.3 – Constant Mach descent: as altitude decreases, TAS and CAS both increase — source p.87</figcaption>
-</figure>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="Descending at Mach 0.80" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-7-3.svg" width="800" height="388" decoding="async" loading="lazy" alt="At constant Mach, TAS follows the local speed of sound. CAS increases as static pressure increases in descent." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Fig 7.3 — Constant Mach descent in the standard atmosphere. · Scroll sideways if needed · <a href="figs/study-7-3.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>Descending at Mach 0.80 · ISA altitude · Mach · TAS (kt) · CAS (kt) · FL400 · 0.80 · 459 · 242 · FL180 · 0.80 · 495 · 388 · Sea level · 0.80 · 529 · 529 · The stratospheric part of this example is isothermal.</p></details></figure>
 
 <h2 id="sec-10">10. Climb/Descent through Isothermal Layer and Inversion</h2>
 <div class="blue-box"><strong>What this section covers:</strong> How temperature anomalies affect the CAS/TAS/Mach relationship.</div>
@@ -249,12 +240,12 @@ where Dp = dynamic pressure, Ps = static pressure</div>
 
 <h2 id="sec-11">11. Climb/Descent Summary</h2>
 <div class="green-box">
-  <strong>Universal Rules (apply in all conditions):</strong>
+  <strong>Trends for the standard-atmosphere examples above:</strong>
   <ul>
-    <li>TAS <strong>always increases</strong> when climbing at a constant CAS.</li>
-    <li>Climbing at constant TAS → CAS <strong>always decreases</strong>.</li>
-    <li>Climbing at constant CAS → Mach number <strong>always increases</strong>.</li>
-    <li>Climbing at constant Mach → CAS <strong>always decreases</strong>.</li>
+    <li>TAS <strong>increases</strong> when climbing at a constant CAS.</li>
+    <li>Climbing at constant TAS → CAS <strong>decreases</strong>.</li>
+    <li>Climbing at constant CAS → Mach number <strong>increases</strong>.</li>
+    <li>Climbing at constant Mach → CAS <strong>decreases</strong>.</li>
   </ul>
   <em>Reason: Pressure effect on air density dominates over temperature variation in LSS.</em>
 </div>
@@ -320,10 +311,7 @@ where Dp = dynamic pressure, Ps = static pressure</div>
   <li>A striped VMO needle may mark the maximum operating airspeed.</li>
 </ul>
 
-<figure>
-  <img src="figs/fig_p91_0.png" alt="Combined Mach/Airspeed Indicator fed from ADC">
-  <figcaption>Fig. 7.6/7.7 – Combined Mach/Airspeed Indicator (ADC-fed type) — source p.91</figcaption>
-</figure>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="Combined airspeed and Mach indications" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-7-6.svg" width="800" height="388" decoding="async" loading="lazy" alt="The air-data computer uses pitot and static pressure to provide airspeed and Mach. In the ideal ISA example at FL180, 330 knots CAS corresponds to Mach 0.69." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Figs 7.6–7.7 — An air-data computer can supply both indications. · Scroll sideways if needed · <a href="figs/study-7-6.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>Combined airspeed and Mach indications · Pitot pressure · Static pressure · Air-data · computer · 330 kt · Mach 0.69 · Illustrative ideal readings at FL180 in ISA.</p></details></figure>
 
 <div class="green-box"><strong>ADC-fed combined instrument advantages:</strong>
   <ul>
@@ -427,13 +415,13 @@ where Dp = dynamic pressure, Ps = static pressure</div>
 </div>
 
 <div class="qa-block">
-  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">The Machmeter gives an indication of Mach number by measuring the ratio:</span>
-    <ol class="q-options" type="a"><li>pitot pressure / static pressure</li><li>static pressure / dynamic pressure</li><li>dynamic pressure / pitot pressure</li><li>dynamic pressure / static pressure</li></ol></div>
+  <div class="qa-question"><span class="q-number">Q8.</span><span class="q-text">Which pressure ratio has the differential sensed by the mechanical Machmeter’s airspeed capsule as its numerator?</span>
+    <ol class="q-options" type="a"><li>pitot pressure / static pressure</li><li>static pressure / dynamic pressure</li><li>dynamic pressure / pitot pressure</li><li>impact pressure / static pressure</li></ol></div>
   <div class="qa-answer">
-    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> dynamic pressure / static pressure</div>
-    <div class="answer-explanation"><strong>Explanation:</strong> Mach number ∝ √(Dynamic Pressure / Static Pressure) where Dynamic Pressure = Pitot − Static. The altitude capsule measures static pressure (denominator), the airspeed capsule measures dynamic pressure (numerator). See <a href="#sec-3">Section 3</a>.</div>
-    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Pitot/static gives the ratio used in ASI calculations (total pressure ratio), not pure Mach.</li><li><strong>(b)</strong> Inverted ratio — would decrease as Mach increases.</li><li><strong>(c)</strong> Dynamic/pitot is not a meaningful aerodynamic ratio.</li></ul></div>
-    <div class="instructor-note"><strong>Instructor's Note:</strong> Dynamic pressure = pitot − static. Mach ∝ √(Dp/Ps). The altitude capsule compensates for changing Ps at different altitudes.</div>
+    <div class="answer-reveal">Correct Answer: <strong>(d)</strong> impact pressure / static pressure</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The mechanical Machmeter uses impact pressure and static pressure. Their ratio determines Mach through the subsonic compressible-flow relation. The altitude capsule supplies the static-pressure reference. See <a href="#sec-3">Section 3</a>.</div>
+    <div class="distractor-analysis"><strong>Why the others are wrong:</strong><ul><li><strong>(a)</strong> Total-to-static pressure ratio also determines subsonic Mach, but its numerator is total pressure. The pressure difference across the airspeed capsule is total minus static.</li><li><strong>(b)</strong> Inverted ratio — would decrease as Mach increases.</li><li><strong>(c)</strong> Dynamic/pitot is not a meaningful aerodynamic ratio.</li></ul></div>
+    <div class="instructor-note"><strong>Instructor's Note:</strong> Impact pressure approximates dynamic pressure at low Mach number. At higher subsonic speeds the distinction matters.</div>
   </div>
 </div>
 

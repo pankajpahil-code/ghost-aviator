@@ -1,6 +1,6 @@
 {
   "source": "Oxford Instrumentation, owner-supplied source PDF; PDF page 1 is the first file page",
-  "method": "Original SVG teaching schematics authored for the site. The owner-supplied source PDF is a private factual and visual reference; its artwork is not published. Automated image integrity and browser checks do not constitute independent aviation-content certification.",
+  "method": "Original SVG teaching schematics authored for the site. The owner-supplied source PDF is a private factual and visual reference; its artwork is not published. Automated image integrity and browser checks do not constitute independent aviation-content certification. Additional original drawings carry individual reference entries. The still-water example follows the stated lesson arithmetic.",
   "figures": [
     {
       "figure": "18.1",
@@ -1277,6 +1277,466 @@
         "Amber / yellow alert",
         "Scale and marker flash",
         "Illustrative presentation states; details vary by installation."
+      ]
+    },
+    {
+      "figure": "1-3",
+      "image": "content/instrumentation/inst-1/figs/study-1-3.svg",
+      "notes": "public/content/instrumentation/inst-1/notes.html",
+      "caption": "Fig 1.3 — Reading a single-pointer airspeed indicator.",
+      "replaces": "/content/instrumentation/inst-1/figs/fig_p4_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "f4434b35fe5987fcc68c49fcb5766f6fa0dde69ff6c9332f5437f4cc57142a59",
+      "labels": [
+        "Reading a single-pointer airspeed indicator",
+        "0",
+        "30",
+        "60",
+        "90",
+        "120",
+        "150",
+        "180",
+        "Pointer reads 120 kt",
+        "Indicated airspeed",
+        "Illustrative scale"
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "1-7",
+      "image": "content/instrumentation/inst-1/figs/study-1-7.svg",
+      "notes": "public/content/instrumentation/inst-1/notes.html",
+      "caption": "Fig 1.7 — A common arrangement of six flight instruments.",
+      "replaces": "/content/instrumentation/inst-1/figs/fig_p5_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "a8282fecef09fee0fcf936350e8104b3d868295587cebd7022ee16ffc648e4e2",
+      "labels": [
+        "The conventional six-instrument panel",
+        "Airspeed",
+        "Attitude",
+        "Altimeter",
+        "Turn coordinator",
+        "Heading",
+        "Vertical speed",
+        "The top row and centre column form the basic T."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "1-10",
+      "image": "content/instrumentation/inst-1/figs/study-1-10.svg",
+      "notes": "public/content/instrumentation/inst-1/notes.html",
+      "caption": "Figs 1.10–1.11 — The same altitude shown by three pointers and by digits.",
+      "replaces": "/content/instrumentation/inst-1/figs/fig_p7_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "4b8a2b0d847c25df96bc99af4a49f898ecf3ad2fff6538bd179f9b5f4d103c40",
+      "labels": [
+        "Two ways to read altitude",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "24,020 ft",
+        "Three-pointer dial",
+        "Numerical readout"
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "2-3",
+      "image": "content/instrumentation/inst-2/figs/study-2-3.svg",
+      "notes": "public/content/instrumentation/inst-2/notes.html",
+      "caption": "Fig 2.3 — Disturbed local airflow can change the pressure sampled at the port.",
+      "replaces": "/content/instrumentation/inst-2/figs/fig_p15_2.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "58f29bc5aab638d25e26b6e5bd18b3404354ec5e4b451cf17d468e755633c129",
+      "labels": [
+        "How a static source can acquire position error",
+        "Free stream",
+        "Flush port samples local pressure",
+        "Error depends on port location, flight condition and configuration."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "2-4",
+      "image": "content/instrumentation/inst-2/figs/study-2-4.svg",
+      "notes": "public/content/instrumentation/inst-2/notes.html",
+      "caption": "Fig 2.4 — Opposite-side ports connected to one static line.",
+      "replaces": "/content/instrumentation/inst-2/figs/fig_p16_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "345aff7839218ffc9afc988500a52051abe56c906b5eeee19aad5a9710d26861",
+      "labels": [
+        "Paired fuselage static ports",
+        "Left port",
+        "Right port",
+        "Static line",
+        "Example installation. The aircraft flight manual describes the actual system."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "4-capsule",
+      "image": "content/instrumentation/inst-4/figs/study-4-capsule.svg",
+      "notes": "public/content/instrumentation/inst-4/notes.html",
+      "caption": "ASI capsule — Total pressure inside the capsule and static pressure in the case.",
+      "replaces": "/content/instrumentation/inst-4/figs/fig_p42_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "36e629055cbacdba9c29f60354c261441ede68f95025f77d41146bf0c4025c98",
+      "labels": [
+        "Inside a mechanical airspeed indicator",
+        "Case at static pressure",
+        "Capsule",
+        "Pitot line",
+        "Diaphragm movement drives the pointer",
+        "The measured difference is impact pressure."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "5-readouts",
+      "image": "content/instrumentation/inst-5/figs/study-5-readouts.svg",
+      "notes": "public/content/instrumentation/inst-5/notes.html",
+      "caption": "Altimeter displays — Two example readings and equivalent units.",
+      "replaces": "/content/instrumentation/inst-5/figs/fig_p59_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "4217a373a42856a86b62879ae92b6df6ca4d85821778a047c0a62c1aabb8c83f",
+      "labels": [
+        "Altimeter readout examples",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "265 ft",
+        "12,850 ft",
+        "≈ 3,917 m",
+        "The two examples represent different altitudes."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "5-cold",
+      "image": "content/instrumentation/inst-5/figs/study-5-cold.svg",
+      "notes": "public/content/instrumentation/inst-5/notes.html",
+      "caption": "Cold-temperature example — The FAA worked example uses height above the reporting airport.",
+      "replaces": "/content/instrumentation/inst-5/figs/fig_p60_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "2c19d832008a78e59ea6512ae27f7e511b88031ea67af2eefbd231ff7babf59d",
+      "labels": [
+        "A cold-temperature correction example",
+        "Input",
+        "Worked example",
+        "Altitude − airport elevation",
+        "6,200 − 3,206 = 2,994 ft",
+        "Airport temperature",
+        "−12 °C",
+        "Corrected segment altitude",
+        "6,200 + 300 = 6,500 ft",
+        "Training example from FAA AIM §7-3. Use the applicable published procedure."
+      ],
+      "references": [
+        "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_3.html"
+      ]
+    },
+    {
+      "figure": "6-4",
+      "image": "content/instrumentation/inst-6/figs/study-6-4.svg",
+      "notes": "public/content/instrumentation/inst-6/notes.html",
+      "caption": "Fig 6.4 — Illustrative vertical speed indication.",
+      "replaces": "/content/instrumentation/inst-6/figs/fig_p74_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "e5d22744da8018dbe9427aea388c59ed86cf9c31f7ee82bc06881bced4c1a8a1",
+      "labels": [
+        "Reading vertical speed",
+        "2",
+        "1",
+        "0",
+        "1",
+        "2",
+        "Upper half = climb",
+        "Lower half = descent",
+        "Scale × 1,000 ft/min",
+        "Pointer shown at +1,000 ft/min."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "6-6",
+      "image": "content/instrumentation/inst-6/figs/study-6-6.svg",
+      "notes": "public/content/instrumentation/inst-6/notes.html",
+      "caption": "Figs 6.6–6.7 — Linear graduations and graduations expanded at low rates.",
+      "replaces": "/content/instrumentation/inst-6/figs/fig_p76_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "1109d9709618eac377f0570bc7f7e1b937cce375b996f956685c8c4f21c01432",
+      "labels": [
+        "Comparing vertical speed scales",
+        "2",
+        "1",
+        "0",
+        "1",
+        "2",
+        "2",
+        "1",
+        "0",
+        "1",
+        "2",
+        "Linear",
+        "Expanded low rates",
+        "Both illustrative scales read in thousands of feet per minute."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "7-2",
+      "image": "content/instrumentation/inst-7/figs/study-7-2.svg",
+      "notes": "public/content/instrumentation/inst-7/notes.html",
+      "caption": "Fig 7.2 — Constant CAS climb in the standard atmosphere.",
+      "replaces": "/content/instrumentation/inst-7/figs/fig_p87_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "eae4653bd6266474e462982bf1e8d2b19406bf4aba63467c731c055a329c6772",
+      "labels": [
+        "Climbing at 330 kt calibrated airspeed",
+        "ISA altitude",
+        "CAS (kt)",
+        "TAS (kt)",
+        "Mach",
+        "Sea level",
+        "330",
+        "330",
+        "0.50",
+        "FL180",
+        "330",
+        "425",
+        "0.69",
+        "FL360",
+        "330",
+        "556",
+        "0.97",
+        "Subsonic pressure calculation. Values rounded for study."
+      ],
+      "references": [
+        "https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html",
+        "https://ntrs.nasa.gov/api/citations/20060053240/downloads/20060053240.pdf"
+      ]
+    },
+    {
+      "figure": "7-3",
+      "image": "content/instrumentation/inst-7/figs/study-7-3.svg",
+      "notes": "public/content/instrumentation/inst-7/notes.html",
+      "caption": "Fig 7.3 — Constant Mach descent in the standard atmosphere.",
+      "replaces": "/content/instrumentation/inst-7/figs/fig_p87_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "4f3f9a36d6250b66bd3d98b50849c59096e07a8e69ff0e24f193343914b544e2",
+      "labels": [
+        "Descending at Mach 0.80",
+        "ISA altitude",
+        "Mach",
+        "TAS (kt)",
+        "CAS (kt)",
+        "FL400",
+        "0.80",
+        "459",
+        "242",
+        "FL180",
+        "0.80",
+        "495",
+        "388",
+        "Sea level",
+        "0.80",
+        "529",
+        "529",
+        "The stratospheric part of this example is isothermal."
+      ],
+      "references": [
+        "https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html",
+        "https://ntrs.nasa.gov/api/citations/20060053240/downloads/20060053240.pdf"
+      ]
+    },
+    {
+      "figure": "7-6",
+      "image": "content/instrumentation/inst-7/figs/study-7-6.svg",
+      "notes": "public/content/instrumentation/inst-7/notes.html",
+      "caption": "Figs 7.6–7.7 — An air-data computer can supply both indications.",
+      "replaces": "/content/instrumentation/inst-7/figs/fig_p91_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "2bc0da8121b0a359fbe603b60708ca832448961ff0167cf9d3f26ae078c4d0d8",
+      "labels": [
+        "Combined airspeed and Mach indications",
+        "Pitot pressure",
+        "Static pressure",
+        "Air-data",
+        "computer",
+        "330 kt",
+        "Mach 0.69",
+        "Illustrative ideal readings at FL180 in ISA."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments",
+        "https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html",
+        "https://ntrs.nasa.gov/api/citations/20060053240/downloads/20060053240.pdf"
+      ]
+    },
+    {
+      "figure": "13-1",
+      "image": "content/instrumentation/inst-13/figs/study-13-1.svg",
+      "notes": "public/content/instrumentation/inst-13/notes.html",
+      "caption": "Fig 13.1 — Reference axes for the conventional vertical gyro.",
+      "replaces": "/content/instrumentation/inst-13/figs/fig_p170_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "36691a3197ccc0e804042ec6de22ea1813dc4ba2e16f679920b8a21cb707f7b5",
+      "labels": [
+        "Reference axes of an attitude indicator",
+        "Vertical spin axis",
+        "Reference axes",
+        "Lateral",
+        "Longitudinal",
+        "Pitch → lateral axis",
+        "Roll → longitudinal axis",
+        "Axes shown schematically in level flight."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "13-2",
+      "image": "content/instrumentation/inst-13/figs/study-13-2.svg",
+      "notes": "public/content/instrumentation/inst-13/notes.html",
+      "caption": "Fig 13.2 — Nose-up attitude on a conventional attitude indicator.",
+      "replaces": "/content/instrumentation/inst-13/figs/fig_p171_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "34f1cb021a008917b0c5ba90713222f4f028f2174736bab15fb4d8899382dd5d",
+      "labels": [
+        "Nose-up attitude",
+        "Wings level",
+        "Horizon below symbol",
+        "Illustrated pitch: 10° nose up."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "13-3",
+      "image": "content/instrumentation/inst-13/figs/study-13-3.svg",
+      "notes": "public/content/instrumentation/inst-13/notes.html",
+      "caption": "Fig 13.3 — Nose-down attitude on a conventional attitude indicator.",
+      "replaces": "/content/instrumentation/inst-13/figs/fig_p172_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "fba370981d93ad9734fbb49c534a1e8e55d41a058654b55105ceb09c3da6eefd",
+      "labels": [
+        "Nose-down attitude",
+        "Wings level",
+        "Horizon above symbol",
+        "Illustrated pitch: 10° nose down."
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "13-4",
+      "image": "content/instrumentation/inst-13/figs/study-13-4.svg",
+      "notes": "public/content/instrumentation/inst-13/notes.html",
+      "caption": "Fig 13.4 — Bank changes the slope of the displayed horizon.",
+      "replaces": "/content/instrumentation/inst-13/figs/fig_p172_1.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "74ebf080bb2dc69779400a25d259fb0936ddd0a4be269b29ce272aa45a79970a",
+      "labels": [
+        "Recognising bank on the attitude indicator",
+        "Left bank",
+        "Wings level",
+        "Right bank"
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "14-ball",
+      "image": "content/instrumentation/inst-14/figs/study-14-ball.svg",
+      "notes": "public/content/instrumentation/inst-14/notes.html",
+      "caption": "Figs 14.3–14.4 — A centred ball can occur in straight flight or in a coordinated turn.",
+      "replaces": "/content/instrumentation/inst-14/figs/fig_p188_0.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "ecd96500d35c4b4d4377fc59b092e2be0b8b8dbda27723c9e901afd5c035457c",
+      "labels": [
+        "The centred inclinometer ball",
+        "Straight and level",
+        "Coordinated turn"
+      ],
+      "references": [
+        "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/phak/chapter-8-flight-instruments"
+      ]
+    },
+    {
+      "figure": "nav-7-2",
+      "image": "content/air-navigation/nav-cx3-7/figs/study-nav-7-2.svg",
+      "notes": "public/content/air-navigation/nav-cx3-7/notes.html",
+      "caption": "Figure 7.2 — In still water, a perpendicular crossing at ten knots takes one hour.",
+      "replaces": "/content/air-navigation/nav-cx3-7/assets/ch07_fig02_still-water-crossing.png",
+      "width": 800,
+      "height": 388,
+      "sha256": "7e893e5f8fc357bd7b7d21147d1109ff440050b44022356590d933b706961668",
+      "labels": [
+        "Crossing in still water",
+        "Distance: 10 NM",
+        "Speed: 10 kt",
+        "Time: 1 h",
+        "Departure",
+        "Opposite bank",
+        "Current = 0 kt. Heading and track coincide."
+      ],
+      "references": [
+        "Lesson worked example: 10 NM / 10 kt = 1 h"
       ]
     }
   ],

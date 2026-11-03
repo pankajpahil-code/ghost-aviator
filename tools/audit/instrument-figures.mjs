@@ -38,7 +38,7 @@ for (const figure of review.figures) {
     assert.ok(!html.includes(path.basename(figure.replaces)), "Stale missing-image reference: " + figure.replaces);
   }
 }
-assert.equal(review.figures.length, 44, "Update the review record when adding or removing reviewed figures.");
+assert.equal(review.figures.length, 63, "Update the review record when adding or removing reviewed figures.");
 for (const diagram of review.staticDiagramTitles) {
   const html = fs.readFileSync(path.join(root, diagram.notes), "utf8");
   const pair = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi)]
@@ -47,4 +47,4 @@ for (const diagram of review.staticDiagramTitles) {
   assert.ok(pair[0].includes(`alt="${escapeHtml(diagram.title)}"`), "Incorrect flowchart alternative text: " + diagram.image);
   assert.ok(pair[0].includes(`>${escapeHtml(diagram.title)} · `), "Incorrect flowchart caption: " + diagram.image);
 }
-console.log(`Checked ${review.figures.length} instrument artwork/caption pairs, readable labels and full-size links.`);
+console.log(`Checked ${review.figures.length} reviewed artwork/caption pairs, readable labels and full-size links.`);

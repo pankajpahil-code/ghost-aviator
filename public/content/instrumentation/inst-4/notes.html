@@ -85,17 +85,9 @@ li{margin:3px 0;}
 <h2 id="sec-1">1. Principle of Operation</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The physical principle behind the ASI &mdash; measurement of dynamic pressure to indicate airspeed.</div>
 
-<p>An aircraft on the ground in still air experiences only <strong>static (atmospheric) pressure</strong>. In flight, the leading edges of the aircraft are subject to an additional <strong>dynamic pressure</strong> due to relative motion through the air. The pitot head senses the total (pitot) pressure; the static vent senses static pressure only.</p>
-
-<div class="formula-block">Pitot Pressure = Dynamic Pressure + Static Pressure</div>
-<div class="formula-block">Dynamic Pressure = Pitot &minus; Static = &frac12; &rho; V&sup2;</div>
-
-<p>Where: &rho; = air density; V = True Airspeed (TAS).</p>
-
-<p>The ASI is a <strong>differential pressure gauge</strong> that measures the difference between pitot and static pressures (i.e. dynamic pressure), displaying the result in knots on a calibrated scale. (1 knot = 1 nautical mile per hour.)</p>
-
-<div class="amber-box"><strong>Exam Tip:</strong> The ASI measures <em>dynamic pressure</em>, not speed directly. Dynamic pressure = &frac12;&rho;V&sup2;. Because density &rho; varies with altitude and temperature, the ASI does not directly indicate True Airspeed except at ISA MSL conditions.</div>
-
+<p>The pitot head senses total pressure and the static source senses static pressure. A conventional airspeed indicator measures the difference across a diaphragm.</p>
+<div class="formula-block">Impact pressure = total pressure − static pressure</div>
+<p>Dynamic pressure is ½ρV², where ρ is density and V is true airspeed. Impact pressure approximates this value in low-speed flight. At higher Mach numbers, the compressible pressure relation is needed.</p>
 <h2 id="sec-2">2. Construction</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The mechanical layout of the ASI and how it isolates dynamic pressure.</div>
 
@@ -106,14 +98,8 @@ li{margin:3px 0;}
   <figcaption>Functional ASI &mdash; pitot pressure to capsule, static pressure fills the case. Source p.42.</figcaption>
 </figure>
 
-<p>Static pressure acts on both the <em>inside</em> of the case and the <em>outside</em> of the capsule walls, so it cancels. The pressure differential across the capsule wall is therefore:</p>
-<div class="formula-block">(Dynamic + Static) &minus; Static = Dynamic only</div>
-<p>Capsule expansion/contraction is proportional to changes in dynamic pressure (= changes in airspeed). The movements are transmitted via a <strong>temperature-compensated magnifying linkage</strong> to the pointer on the ASI face.</p>
-
-<figure>
-  <img src="figs/fig_p42_1.png" alt="ASI capsule detail">
-  <figcaption>ASI capsule detail. Source p.42.</figcaption>
-</figure>
+<p>Total pressure acts inside the capsule and static pressure acts on its exterior. The pressure difference deflects the capsule. A linkage transmits its movement to the pointer.</p>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="Inside a mechanical airspeed indicator" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-4-capsule.svg" width="800" height="388" decoding="async" loading="lazy" alt="The diaphragm responds to total pressure minus static pressure. The linkage moves the airspeed pointer." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>ASI capsule — Total pressure inside the capsule and static pressure in the case. · Scroll sideways if needed · <a href="figs/study-4-capsule.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>Inside a mechanical airspeed indicator · Case at static pressure · Capsule · Pitot line · Diaphragm movement drives the pointer · The measured difference is impact pressure.</p></details></figure>
 
 <h2 id="sec-3">3. Calibration</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The calibration standard for the ASI and why this creates errors at all other conditions.</div>
@@ -277,7 +263,7 @@ li{margin:3px 0;}
 <div class="amber-box">
   <strong>Quick Revision Summary &mdash; Chapter 4:</strong>
   <ul>
-    <li>ASI measures dynamic pressure = &frac12;&rho;V&sup2; = pitot &minus; static. Calibrated for ISA MSL: <span class="reg-value">1225 g/m&sup3;</span>, <span class="reg-value">1013.25 hPa</span>, <span class="reg-value">+15&deg;C</span>.</li>
+    <li>ASI measures impact pressure (total − static), approximately ½ρV² at low speeds. Calibrated for ISA MSL: <span class="reg-value">1225 g/m&sup3;</span>, <span class="reg-value">1013.25 hPa</span>, <span class="reg-value">+15&deg;C</span>.</li>
     <li>ASI accuracy tolerance (CS-25): <span class="reg-value">&plusmn;3% or 5 kt, whichever is greater</span>.</li>
     <li>Correction chain: IAS &rarr; (instrument + position error) &rarr; CAS &rarr; (compressibility) &rarr; EAS &rarr; (density) &rarr; TAS.</li>
     <li>If TAS &le; <span class="reg-value">300 kt</span>: compressibility correction not needed.</li>

@@ -81,16 +81,8 @@ mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'b
 
 <h2 id="sec-1">1. Introduction — Static, Dynamic &amp; Pitot Pressure</h2>
 <div class="box blue"><strong>What this section covers:</strong> the three pressures an aircraft experiences and the fundamental relationship the air-data instruments exploit.</div>
-<p>An aircraft at rest in still air is subject to <strong>static pressure</strong> — ambient atmospheric pressure bearing equally on all parts. In flight it remains subject to static pressure but the leading edges also encounter an <strong>additional pressure</strong> due to the air resisting the aircraft's motion. This is <strong>dynamic pressure</strong>, whose value depends on the aircraft's speed through the air and on air density. The leading edges therefore feel a <strong>total (pitot) pressure</strong> = static + dynamic.</p>
-
-<blockquote>Dynamic pressure cannot be measured directly because it cannot be separated from the associated static pressure. Instruments therefore measure total (pitot) and static pressure, and subtract static from pitot internally to derive dynamic pressure.</blockquote>
-
-<div class="box green">
-<strong>The key relationship:</strong>
-<p class="formula">PITOT = STATIC + DYNAMIC</p>
-<p class="formula">DYNAMIC = PITOT &minus; STATIC</p>
-Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static pressure. Worked example: if pitot = 1080 hPa and static = 1013 hPa, then dynamic = 1080 &minus; 1013 = <span class="reg-value">67 hPa</span>, which the ASI converts to an airspeed.</div>
-
+<p>The pitot opening faces the oncoming air and senses total pressure. The static port samples ambient static pressure. Their difference is <strong>impact pressure</strong>. At low speeds it approximates dynamic pressure, ½ρV². As Mach number increases, compressibility matters.</p>
+<div class="box green"><strong>Pressure example</strong><p class="formula">Impact pressure = total pressure − static pressure</p>For total pressure of 1080 hPa and static pressure of 1013 hPa, the measured difference is 67 hPa. The ASI scale converts this difference to an indicated speed.</div>
 <h3>Which instrument needs which pressure</h3>
 <table>
   <thead><tr><th>Static only</th><th>Pitot <em>and</em> Static</th></tr></thead>
@@ -105,7 +97,7 @@ Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static
 <h2 id="sec-2">2. Pitot / Static Heads</h2>
 <div class="box blue"><strong>What this section covers:</strong> how total and static pressures are physically sensed outside the aircraft.</div>
 <p>Because internal pressure/temperature differ from outside, pitot and static pressures must be sensed by devices mounted on the <strong>outside</strong> of the aircraft. An open-ended tube parallel to the longitudinal axis senses total pressure — a <strong>pitot tube</strong> in a <strong>pitot head</strong>. The open end faces the airstream; the moving air is brought to rest in the tube, generating the dynamic pressure which, with the static pressure already present, gives total (pitot) pressure.</p>
-<p>A <strong>static head</strong> is a tube with its forward end sealed but with holes or slots in the sides. The slots do not face the airflow, so in theory they sense only static pressure (in practice a slight suction makes the sensed value a little low when moving). The static and pitot sources may be combined in one <strong>pressure head</strong>, the static tube surrounding the pitot tube.</p>
+<p>A <strong>static head</strong> is a tube with its forward end sealed but with holes or slots in the sides. The slots do not face the airflow, so in theory they sense only static pressure (in practice local airflow can bias the pressure in either direction). The static and pitot sources may be combined in one <strong>pressure head</strong>, the static tube surrounding the pitot tube.</p>
 <figure><img src="figs/fig_p14_1.png" alt="Static head"><figcaption>Fig 2.1 — Separate pitot and static heads — source p.14</figcaption></figure>
 <figure><img src="figs/fig_p15_1.png" alt="Combined pitot static head"><figcaption>Fig 2.2 — Combined pitot/static pressure head — source p.15</figcaption></figure>
 
@@ -124,13 +116,12 @@ Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static
 
 <h2 id="sec-5">5. Position Error &amp; the Static Vent</h2>
 <div class="box blue"><strong>What this section covers:</strong> the origin of position (pressure) error and how the static vent reduces it.</div>
-<p>With forward motion the sensed static pressure is slightly low due to suction; as speed increases, turbulent airflow near the heads makes the error grow. This is <strong>Position Error</strong> (also called <em>pressure error</em>). At large angles of attack (lower airspeeds) the head sits at an angle to the airstream, so position error is usually greater. Flight manuals may list different position-error values for different flap settings.</p>
-<p>Turbulence from the head itself affects the <strong>static</strong> reading more than the pitot reading, because the turbulence is downstream of the pitot opening.</p>
-<figure><img src="figs/fig_p15_2.png" alt="Turbulence affecting static pressure"><figcaption>Fig 2.3 — How turbulence affects the value of static pressure — source p.15</figcaption></figure>
+<p><strong>Position error</strong> occurs when the static source samples a pressure different from undisturbed ambient pressure. The sign and size depend on the installation, airspeed, angle of attack and configuration. Use the aircraft flight manual for its calibration data.</p>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="How a static source can acquire position error" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-2-3.svg" width="800" height="388" decoding="async" loading="lazy" alt="A flush port samples local pressure near the airframe. Its reading can differ from undisturbed ambient pressure." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Fig 2.3 — Disturbed local airflow can change the pressure sampled at the port. · Scroll sideways if needed · <a href="figs/study-2-3.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>How a static source can acquire position error · Free stream · Flush port samples local pressure · Error depends on port location, flight condition and configuration.</p></details></figure>
 
 <h3>The static vent</h3>
-<p>To reduce this, the <strong>static vent</strong> was introduced as the static source (pitot pressure then sensed by a simple pitot head). A flat metal plate with a small circular hole is fitted where true (or nearly true) static pressure exists across the whole speed range. A matching vent on the opposite side is <strong>interconnected</strong> so errors from yawing are largely eliminated.</p>
-<figure><img src="figs/fig_p16_1.png" alt="Static vent"><figcaption>Fig 2.4 — A static vent — source p.16</figcaption></figure>
+<p>To reduce this, the <strong>static vent</strong> was introduced as the static source (pitot pressure then sensed by a simple pitot head). A flat metal plate with a small circular hole is fitted where true (or nearly true) static pressure exists across the whole speed range. A matching vent on the opposite side is <strong>interconnected</strong> in some installations to reduce sideslip error.</p>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="Paired fuselage static ports" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-2-4.svg" width="800" height="388" decoding="async" loading="lazy" alt="Pressure from the left and right ports feeds a common static line. Pairing can reduce sideslip error." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Fig 2.4 — Opposite-side ports connected to one static line. · Scroll sideways if needed · <a href="figs/study-2-4.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>Paired fuselage static ports · Left port · Right port · Static line · Example installation. The aircraft flight manual describes the actual system.</p></details></figure>
 <div class="box green"><strong>Advantages of the static vent:</strong> airflow at the vents is less turbulent so static pressure is more accurate; errors when side-slipping or yawing are reduced; and duplicating vents on each side (<strong>cross-balancing</strong>) further reduces side-slip/yaw errors.</div>
 
 <h2 id="sec-6">6. High Speed Probes</h2>
@@ -168,10 +159,10 @@ Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static
 <h2 id="sec-9">9. Covers, Heaters &amp; Preflight Checks</h2>
 <div class="box blue"><strong>What this section covers:</strong> ground protection of the sensitive openings and the heater/preflight discipline.</div>
 <p>Pitot/static openings are highly sensitive — dirt, dust, sand or insects can drastically distort readings, so they are covered when the aircraft is not in use. <strong>Pitot covers</strong> are canvas/rubber tubes over the probe; <strong>static plugs</strong> are rubber, cork-shaped. Both carry a conspicuous streamer up to <span class="reg-value">a metre</span> long so they are not overlooked.</p>
-<div class="box red"><strong>Heater caution:</strong> always remove pitot covers and static plugs <strong>before</strong> switching heaters on, or you may burn/melt them. Test the pitot heater by switching it on ~<span class="reg-value">30 seconds</span> and feeling the probe for warmth (or watch for an ammeter rise / compass deflection), then switch off so it doesn't burn out.</div>
-<div class="box green"><strong>Preflight checks of the pitot/static system:</strong> all covers and plugs removed and stowed; all tubes, holes and slots free of obstructions; pitot-head heater operating. Heaters on again in pre-take-off checks; off in after-landing checks.</div>
+<div class="box red"><strong>Pitot heat on the ground.</strong> Remove the covers before the approved functional check. An energised probe can cause burns. Keep hands clear during the check and allow the probe to cool before fitting a cover. Use the aircraft checklist for indications and ground operating limits.</div>
+<div class="box green"><strong>Preflight checks of the pitot/static system:</strong> all covers and plugs removed and stowed; all tubes, holes and slots free of obstructions; pitot-head heater operating. Use the aircraft checklist for heater selection.</div>
 
-<div class="box amber"><strong>Quick Revision Summary:</strong> Pitot = static + dynamic; dynamic = pitot &minus; static. Static only → altimeter &amp; VSI; pitot+static → ASI &amp; Machmeter. Pitot opening parallel to airflow &amp; outside boundary layer; static opening at right angles. Position error ↑ with speed &amp; AoA; static vents reduce it &amp; are cross-coupled; pitot is not cross-coupled (warn &gt;5 kt). Manoeuvre-induced error = lag, worst in pitch changes, 3 s low / 10 s at 30 000 ft, worst on VSI → use gyros. Alternate static reads low → instruments over-read. Remove covers before heating.</div>
+<div class="box amber"><strong>Quick Revision Summary:</strong> Impact pressure = total − static. At low speed it approximates dynamic pressure. Static only → altimeter &amp; VSI; pitot+static → ASI &amp; Machmeter. Pitot opening parallel to airflow &amp; outside boundary layer; static opening at right angles. Position error varies with flight condition; static vents reduce it &amp; are cross-coupled; pitot is not cross-coupled (warn &gt;5 kt). Manoeuvre-induced error = lag, worst in pitch changes, 3 s low / 10 s at 30 000 ft, worst on VSI → use gyros. Alternate static reads low → instruments over-read. Remove covers before heating.</div>
 
 <h2 id="qa-section">Practice Questions &amp; Detailed Answers</h2>
 <div class="box blue">These are the <strong>8 questions from the source chapter</strong> (verbatim), with the source answers shown inline and instructor explanations added.</div>
@@ -210,11 +201,11 @@ Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static
 </div>
 
 <div class="qa-block">
-  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">Given P<sub>t</sub> = total pressure, P<sub>s</sub> = static pressure, dynamic pressure is:</span>
+  <div class="qa-question"><span class="q-number">Q4.</span><span class="q-text">In the low-speed approximation, which expression gives dynamic pressure from total pressure Pt and static pressure Ps?</span>
     <ol class="q-options" type="a"><li>Pt &ndash; Ps</li><li>(Pt &ndash; Ps) / Pt</li><li>(Pt &ndash; Ps) / Ps</li><li>Pt / Ps</li></ol></div>
   <div class="qa-answer">
     <div class="answer-reveal">Correct Answer: <strong>(a)</strong> Pt &ndash; Ps</div>
-    <div class="answer-explanation"><strong>Explanation:</strong> Dynamic = pitot &minus; static = P<sub>t</sub> &minus; P<sub>s</sub>. See Section 1.</div>
+    <div class="answer-explanation"><strong>Explanation:</strong> The question uses the low-speed approximation. The measured difference is impact pressure, which approaches dynamic pressure at low Mach number. See Section 1.</div>
     <div class="distractor-analysis"><strong>Why the other options are wrong:</strong><ul><li><strong>(b)</strong> &amp; <strong>(c)</strong> — ratios are used for Mach number, not dynamic pressure.</li><li><strong>(d)</strong> — a pressure ratio, not a difference.</li></ul></div>
     <div class="instructor-note"><strong>Instructor's Note:</strong> Contrast with the Machmeter, which works on the <em>ratio</em> (Pt &minus; Ps)/Ps.</div>
   </div>
@@ -270,11 +261,11 @@ Where PITOT (P<sub>t</sub>) = total pressure and STATIC (P<sub>s</sub>) = static
 <table>
   <thead><tr><th>Value</th><th>Meaning</th><th>Section</th></tr></thead>
   <tbody>
-    <tr><td>Pitot = Static + Dynamic</td><td>Fundamental pressure relationship</td><td>1</td></tr>
-    <tr><td>Dynamic = Pitot &minus; Static (Pt &minus; Ps)</td><td>Derived dynamic pressure</td><td>1</td></tr>
+    <tr><td>Total = static + impact</td><td>Fundamental pressure relationship</td><td>1</td></tr>
+    <tr><td>Impact = total − static</td><td>Approximately dynamic pressure at low speed</td><td>1</td></tr>
     <tr><td>&gt; 5 knots</td><td>Pitot discrepancy that triggers a comparator warning</td><td>8</td></tr>
     <tr><td>3 s (low) → 10 s (30 000 ft)</td><td>Manoeuvre-induced error persistence (longer for VSI)</td><td>7</td></tr>
-    <tr><td>~30 seconds</td><td>Pitot-heater functional test duration</td><td>9</td></tr>
+    <tr><td>Aircraft checklist</td><td>Pitot-heat indications and ground operating limits</td><td>9</td></tr>
     <tr><td>up to 1 metre</td><td>Length of cover/plug warning streamer</td><td>9</td></tr>
   </tbody>
 </table>
