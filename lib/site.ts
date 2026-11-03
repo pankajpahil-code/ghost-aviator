@@ -45,6 +45,8 @@ export const GRAVATAR = "https://gravatar.com/affable6a06dd6657";
 export const PEERLIST = "https://peerlist.io/pankajpahil";
 export const INDIEHACKERS = "https://www.indiehackers.com/product/ghost-aviator";
 export const GITHUB = "https://github.com/pankajpahil-code";
+/** Capt. Pahil's article blog (GitHub Pages, published 2026-11-04). Articles only; it never takes payments. */
+export const BLOG = "https://pankajpahil-code.github.io";
 
 /** The hub page that lists every official account. Link-in-bio target. */
 export const OFFICIAL_PATH = "/official";
@@ -57,7 +59,7 @@ export const ORG_SAME_AS = [
   BLUESKY, INDIEHACKERS,
 ];
 export const PERSON_SAME_AS = [
-  YOUTUBE_PERSONAL, QUORA, REDDIT, ABOUT_ME, GRAVATAR, PEERLIST, GITHUB,
+  YOUTUBE_PERSONAL, QUORA, REDDIT, ABOUT_ME, GRAVATAR, PEERLIST, GITHUB, BLOG,
 ];
 
 /**
@@ -80,6 +82,7 @@ export const OFFICIAL_CHANNELS: { label: string; handle: string; href: string; n
   { label: "Peerlist", handle: "pankajpahil", href: PEERLIST, note: "Capt. Pankaj Pahil's builder profile." },
   { label: "Indie Hackers", handle: "Ghost Aviator", href: INDIEHACKERS, note: "The Ghost Aviator product page." },
   { label: "GitHub", handle: "pankajpahil-code", href: GITHUB, note: "Capt. Pankaj Pahil's code profile." },
+  { label: "Blog", handle: "pankajpahil-code.github.io", href: BLOG, note: "Articles by Capt. Pankaj Pahil on the DGCA exams. It never takes payments." },
 ];
 
 // The Captain's public per-subject study groups on Telegram (created 2026-09-24; the
