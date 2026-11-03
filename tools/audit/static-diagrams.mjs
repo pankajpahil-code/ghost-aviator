@@ -7,7 +7,7 @@ const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "tools/diagrams/manifest.json"), "utf8"));
 const hash = file => {
-  const data = file.endsWith(".mmd") ? fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n") : fs.readFileSync(file);
+  const data = fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n");
   return crypto.createHash("sha256").update(data).digest("hex");
 };
 for (const diagram of manifest) {
