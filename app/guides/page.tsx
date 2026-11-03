@@ -6,7 +6,7 @@ import { HubBannerCta } from "@/app/components/LiveCta";
 
 export const metadata = {
   title: "DGCA Exam Guides — CPL, RTR(A) & Pilot Training in India | Ghost Aviator",
-  description: "DGCA exam guides by Capt. Pankaj Pahil — computer number, RTR(A) after the DGCA takeover, free vs paid question banks, ATPL theory timing, CPL pattern and pilot training cost.",
+  description: "DGCA exam guides by Capt. Pankaj Pahil: computer number, CPL exam pattern, RTR(A) after the DGCA takeover, ATPL theory timing and pilot training cost.",
   alternates: { canonical: "/guides" },
 };
 

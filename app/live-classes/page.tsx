@@ -35,7 +35,7 @@ import { DEFAULT_OG_IMAGES } from "@/lib/og";
 export const metadata: Metadata = {
   title: "DGCA CPL Online Ground Classes India — Met, Air Regs & Nav",
   description:
-    `Live online DGCA CPL ground classes taught personally by Capt. Pankaj Pahil — pilot, flight & ground instructor and author. Meteorology, Air Regulations, Gen Navigation, Radio Navigation & Instrumentation. ${PRICE} per subject (list ${LIST_PRICE}), or ${COMBO_PRICE} for the full Navigation combo. Only 10 seats each. ${LIVE_BATCH_META.statusLabel}. Book your free demo class first.`,
+    `Live online DGCA CPL ground classes with Capt. Pankaj Pahil: Meteorology, Air Regulations and Navigation. ${PRICE} per subject, batches of 10, a free demo first.`,
   keywords: [
     "DGCA ground classes online", "DGCA pilot course", "CPL coaching online", "DGCA Air Regulations classes",
     "DGCA Meteorology classes", "DGCA Navigation classes", "DGCA Radio Navigation classes",
