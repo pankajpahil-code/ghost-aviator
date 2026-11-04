@@ -16,3 +16,7 @@ For the ISA calculation use sea-level pressure 101325 Pa, temperature 288.15 K, 
 - [FAA, Aviation Maintenance Technician Handbook, Airframe Volume 2](https://www.faa.gov/sites/faa.gov/files/2022-06/amt_airframe_hb_vol_2.pdf)
 - [FAA AIM, cold-temperature procedures and worked example](https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_3.html)
 - [NOAA JetStream, dry-air composition](https://www.noaa.gov/jetstream/atmosphere)
+
+## Search and Rescue correction, 4 November
+
+Browser review found two stray closing div tags in ar-10. Removing them restores the notes container and prevents hydration failure. The same review found Q8 incorrectly marking option C while the question bank already correctly keyed A. The notes now mark A, and the notes and bank explanations correctly distinguish red medical supplies, blue food/water, yellow blankets/clothing and black miscellaneous equipment. The bank answer remains unchanged. Source: [International Convention on Maritime Search and Rescue, Annex 2.5.4](https://treaties.fcdo.gov.uk/data/Library2/pdf/1986-TS0059.pdf), consistent with the ICAO colour-code source located in the audit.
