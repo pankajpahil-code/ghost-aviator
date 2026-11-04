@@ -151,6 +151,11 @@ fs.writeFileSync(path.join(OUT, ".assetsignore"), [
   "content/**/notes.html",
   "content/**/slides.pdf",
   "content/**/audio.m4a",
+  // tools/prepare-notes-downloads.ts writes every chapter as a standalone page into
+  // public/_notes-export/ so the PDF renderer can load it. It is git-ignored, but a
+  // build run after it copied all 483 pages into out/ and the 4 Nov 2026 deploy served
+  // them (Iron Rule 3). Never upload that folder, whether or not it is on disk.
+  "_notes-export/**",
   ...shadowed,
   "",
 ].join("\n"));
