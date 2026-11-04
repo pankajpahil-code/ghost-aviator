@@ -101,7 +101,7 @@ export const LASTMOD: Readonly<Record<string, string>> = {
   "/cpl/air-regulations/ar-1/notes": "2026-10-23T00:06:00+05:30",
   "/cpl/air-regulations/ar-1/questions": "2026-10-25T08:12:28+05:30",
   "/cpl/air-regulations/ar-1/video": "2026-08-13T02:33:42.000Z",
-  "/cpl/air-regulations/ar-10/notes": "2026-11-03T21:37:59+05:30",
+  "/cpl/air-regulations/ar-10/notes": "2026-11-04T13:17:28+05:30",
   "/cpl/air-regulations/ar-10/questions": "2026-10-25T08:12:28+05:30",
   "/cpl/air-regulations/ar-10/video": "2026-10-08T08:57:52+05:30",
   "/cpl/air-regulations/ar-11/notes": "2026-11-03T21:37:59+05:30",
