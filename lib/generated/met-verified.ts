@@ -7195,8 +7195,8 @@ export const MET_VERIFIED: DemoQuestion[] = [
       "During",
       "After"
     ],
-    "ans": 2,
-    "exp": "Fog is expected after the passage of a cold front, in the moist cold air behind it."
+    "ans": 0,
+    "exp": "Ahead of a cold front lies the warm sector, where warm moist air gives low stratus, drizzle and poor visibility, and advection fog is possible in winter. Behind the cold front visibility is very good outside the showers."
   },
   {
     "subjectIds": [
