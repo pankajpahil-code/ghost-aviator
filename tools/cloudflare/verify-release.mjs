@@ -36,4 +36,10 @@ assert.match(home, /href="\/study-notebook.html"/);
 assert.match(fs.readFileSync(path.join(out, "study-notebook.html"), "utf8"), /My seven-session study notebook/);
 assert.match(fs.readFileSync(path.join(out, "robots.txt"), "utf8"), /Sitemap: https:\/\/ghostaviator\.com\/sitemap\.xml/i);
 assert.ok(fs.existsSync(path.join(out, "404.html")));
+// The PDF-export pages (public/_notes-export/, one standalone page per chapter) must never be
+// uploaded: on 4 Nov 2026 a build copied them into out/ and the deploy served all 483 (Iron Rule 3).
+if (fs.existsSync(path.join(out, "_notes-export"))) {
+  const ignore = fs.readFileSync(path.join(out, ".assetsignore"), "utf8").split(/\r?\n/);
+  assert.ok(ignore.includes("_notes-export/**"), "out/_notes-export exists and .assetsignore does not exclude it");
+}
 console.log(`Release check passed for ${urls.length} sitemap pages and the study entry points.`);
