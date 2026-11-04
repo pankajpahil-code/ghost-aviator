@@ -197,7 +197,7 @@ export const SAR_QUESTIONS: DemoQuestion[] = [
       "Blue for blankets and protective clothing",
     ],
     ans: 0,
-    exp: "Red streamers identify medical supplies and first aid equipment. Blue identifies food and water (and blankets/clothing in the full code). Black is not used.",
+    exp: "Red marks medical and first-aid supplies. Blue marks food and water, yellow marks blankets and protective clothing, and black marks miscellaneous equipment. The red option is correct; blue does not identify blankets and black is a valid colour in the code.",
   },
   {
     subjectIds: ["air-regulations", "atpl-air-regulations"],

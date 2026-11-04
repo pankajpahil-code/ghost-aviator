@@ -170,3 +170,17 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   50% { opacity: 0.4; }
 }
 .timer-urgent { color: #ff4444; animation: pulse-timer 1s infinite; }
+/* Figure controls in legacy study notes and attributed source figures. */
+.ga-notes .ga-image-actions { display: block; margin-top: .5rem; }
+.ga-notes .ga-image-actions a, .ga-notes .ga-source-figure figcaption a {
+  color: #174f83; text-decoration: underline; text-underline-offset: .18em;
+}
+.ga-notes figure:has(.ga-image-actions), .ga-notes .ga-source-figure {
+  box-sizing: border-box; max-width: 100%; min-width: 0; padding: .85rem;
+  background: #fff; border: 1px solid #cbd5e1; border-radius: .55rem;
+}
+.ga-notes figure:has(.ga-image-actions) figcaption, .ga-notes .ga-source-figure figcaption {
+  background: #f1f6fb; color: #20354c; border-left: .22rem solid #37799a;
+  padding: .65rem .85rem; text-align: left; margin: .65rem 0 0;
+}
+.ga-notes .ga-source-figure details { margin-top: .65rem; color: #20354c; }

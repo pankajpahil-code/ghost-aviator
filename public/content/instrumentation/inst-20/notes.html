@@ -93,11 +93,7 @@
 
 <figure class="ga-static-diagram" style="margin:1.5rem auto;padding:1rem;background:#fff;border:1px solid #cbd5e1;border-radius:12px;overflow-x:auto"><div class="ga-diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram" style="max-width:100%;overflow-x:auto"><img width="949" height="106" decoding="async" src="/content/instrumentation/inst-20/figs/diagram-01.svg" alt="FMCW radio-altimeter signal path" loading="lazy" style="display:block;width:949px;height:auto;max-width:none!important;margin:auto"></div><figcaption style="margin-top:.75rem;color:#334155;text-align:center">FMCW radio-altimeter signal path · Scroll sideways if needed · <a href="/content/instrumentation/inst-20/figs/diagram-01.svg" target="_blank" rel="noopener">Open full-size diagram</a></figcaption><details style="margin-top:.75rem;color:#334155"><summary>Read diagram labels</summary><p>Tx frequency continuously swept ±50 MHz / 300 Hz; Wave travels to ground and back; Rx frequency (older, reflected signal); Beat frequency = Tx − Rx; = Time of flight = Height AGL</p></details></figure>
 
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-1.svg" alt="FMCW radio altimeter: delay and beat frequency" width="900" height="515" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.1 — FMCW radio altimeter: delay and beat frequency. Teaching schematic · <a href="figs/lesson-20-1.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>Frequency; Time; Blue: transmitted sweep • Teal: delayed received sweep; For a fixed sweep rate, beat frequency increases with height.</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-1.webp" alt="Fig 20.1 — FMCW radio altimeter: delay and beat frequency. Oxford Aviation Academy, Instrumentation, figure 20.1." width="912" height="634" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.1 — FMCW radio altimeter: delay and beat frequency<span class="ga-image-actions"><a href="figs/lesson-20-1.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.1</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.1 — FMCW radio altimeter: delay and beat frequency. Oxford Aviation Academy, Instrumentation, figure 20.1.</p></details></figure>
 
 <div class="box-amber">
 <strong>Handling the frequency reversal problem:</strong> When the transmitter reverses its sweep direction, a frequency breakdown occurs. This is overcome by averaging the <strong>beat frequency over a short sampling period</strong> — the changeover points are ignored.
@@ -126,11 +122,7 @@
 <!-- SECTION 4 -->
 <h1 id="sec-4">4. Basic Indicator</h1>
 
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-2.svg" alt="Radio-altimeter indicator: principal controls" width="900" height="450" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.2 — Radio-altimeter indicator: principal controls. Teaching schematic · <a href="figs/lesson-20-2.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>RAD ALT; 500 ft; DH selector; Height above; terrain; Failure / low-height; warning; Press to test /; height selection</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-2.webp" alt="Fig 20.2 — Radio-altimeter indicator: principal controls. Oxford Aviation Academy, Instrumentation, figure 20.2." width="912" height="909" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.2 — Radio-altimeter indicator: principal controls<span class="ga-image-actions"><a href="figs/lesson-20-2.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.2</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.2 — Radio-altimeter indicator: principal controls. Oxford Aviation Academy, Instrumentation, figure 20.2.</p></details></figure>
 
 <h3>Height Scale</h3>
 <p>The scale is <strong>logarithmic</strong>: expanded from <strong>0–500 ft</strong>, then non-linear from <strong>500–2500 ft</strong>.</p>
@@ -164,11 +156,7 @@
 <h1 id="sec-5">5. EFIS Indicators</h1>
 
 <h3>Boeing Style — EFIS Display</h3>
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-3.svg" alt="EFIS radio altitude: Boeing-style teaching example" width="900" height="535" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.3 — EFIS radio altitude: Boeing-style teaching example. Teaching schematic · <a href="figs/lesson-20-3.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>20; 10; 10; 20; ATTITUDE; RADIO 200; Airspeed; kt; Altitude; ft; Radio altitude is distinct from the barometric altitude scale.</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-3.webp" alt="Fig 20.3 — EFIS radio altitude: Boeing-style display example. Oxford Aviation Academy, Instrumentation, figure 20.3." width="1018" height="830" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.3 — EFIS radio altitude: Boeing-style display example<span class="ga-image-actions"><a href="figs/lesson-20-3.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.3</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.3 — EFIS radio altitude: Boeing-style display example. Oxford Aviation Academy, Instrumentation, figure 20.3.</p></details></figure>
 
 <div class="box-blue">
 <strong>Boeing digital/analogue display behaviour:</strong>
@@ -180,18 +168,10 @@
 Additionally, the Radio Altimeter <strong>desensitises the autopilot and flight director response to the ILS glidepath</strong> in the latter stages of an approach.
 </div>
 
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-4-20-5.svg" alt="Boeing-style radio altitude: approach to decision height" width="900" height="420" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.4-20.5 — Boeing-style radio altitude: approach to decision height. Teaching schematic · <a href="figs/lesson-20-4-20-5.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>Below 1000 ft; White radio-altitude scale; Magenta DH marker; At selected DH; Amber / yellow alert; Scale and marker flash; Illustrative presentation states; details vary by installation.</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-4-20-5.webp" alt="Fig 20.4-20.5 — Boeing-style radio altitude: approach to decision height. Oxford Aviation Academy, Instrumentation, figure 20.4-20.5." width="1113" height="342" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.4-20.5 — Boeing-style radio altitude: approach to decision height<span class="ga-image-actions"><a href="figs/lesson-20-4-20-5.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.4-20.5</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.4-20.5 — Boeing-style radio altitude: approach to decision height. Oxford Aviation Academy, Instrumentation, figure 20.4-20.5.</p></details></figure>
 
 <h3>Airbus Style — EFIS Display</h3>
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-6.svg" alt="Airbus-style radio-altitude colour change" width="900" height="450" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.6 — Airbus-style radio-altitude colour change. Teaching schematic · <a href="figs/lesson-20-6.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>Above decision height; Radio altitude at PFD base; 200; Below decision height; Larger amber numerals; 80; Example: selected decision height 100 ft.; The illustrated system provides configured height callouts.</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-6.webp" alt="Fig 20.6 — Airbus-style radio-altitude colour change. Oxford Aviation Academy, Instrumentation, figure 20.6." width="912" height="987" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.6 — Airbus-style radio-altitude colour change<span class="ga-image-actions"><a href="figs/lesson-20-6.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.6</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.6 — Airbus-style radio-altitude colour change. Oxford Aviation Academy, Instrumentation, figure 20.6.</p></details></figure>
 
 <div class="box-blue">
 <strong>Airbus (A300 style):</strong>
@@ -228,11 +208,7 @@ Additionally, the Radio Altimeter <strong>desensitises the autopilot and flight 
 </ol>
 </div>
 
-<figure class="ga-reviewed-figure">
-  <img src="figs/lesson-20-7.svg" alt="Radio-altimeter installation: residual height at touchdown" width="900" height="500" loading="lazy" decoding="async" style="height:auto;max-width:100%">
-  <figcaption>Fig 20.7 — Radio-altimeter installation: residual height at touchdown. Teaching schematic · <a href="figs/lesson-20-7.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption>
-  <details><summary>Read figure labels</summary><p>Ground; Antenna height; with wheels on ground; Installation compensation allows a zero indication at touchdown.</p></details>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/lesson-20-7.webp" alt="Fig 20.7 — Radio-altimeter installation: residual height at touchdown. Oxford Aviation Academy, Instrumentation, figure 20.7." width="1020" height="456" loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>Fig 20.7 — Radio-altimeter installation: residual height at touchdown<span class="ga-image-actions"><a href="figs/lesson-20-7.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation · Figure 20.7</small></figcaption><details><summary>Read figure labels</summary><p>Fig 20.7 — Radio-altimeter installation: residual height at touchdown. Oxford Aviation Academy, Instrumentation, figure 20.7.</p></details></figure>
 
 <div class="box-red">
 <strong>Why the RA may read negative on the ground:</strong> The equipment is calibrated to read zero when the main wheels first <em>touch</em> the runway (trailing wheel attitude). When parked level on the ground, the antenna is <strong>below</strong> its calibrated position relative to the landing attitude — so the RA may show a small negative altitude. The B747, with its multi-wheel trailing assembly, typically reads <strong>−8 ft</strong> on the ground.

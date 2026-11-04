@@ -210,10 +210,7 @@ li{margin:3px 0;}
 <h2 id="sec-7">7. Examples of Altimeters</h2>
 <div class="blue-box"><strong>What this section covers:</strong> Real-world examples of altimeter types in use.</div>
 
-<figure>
-  <img src="figs/fig_p59_0.png" alt="Altimeter types including Boeing 737 electronic display">
-  <figcaption>Altimeter types &mdash; sensitive altimeter reading 265 ft; altimeter reading 12 850 ft / 3917 m; Boeing 737 electronic display. Source p.59.</figcaption>
-</figure>
+<figure class="ga-source-figure ga-reviewed-figure"><img src="figs/study-5-readouts.webp" width="888" height="766" alt="A sensitive altimeter reading 265 ft. Read the three pointers together." loading="lazy" decoding="async" style="display:block;max-width:100%;width:auto;height:auto;margin:auto"><figcaption>A sensitive altimeter reading 265 ft. Read the three pointers together.<span class="ga-image-actions"><a href="figs/study-5-readouts.webp" target="_blank" rel="noopener">Open full-size figure</a></span><small>Oxford Aviation Academy — Instrumentation</small></figcaption><details><summary>Read figure labels</summary><p>A sensitive altimeter reading 265 ft. Read the three pointers together.</p></details></figure>
 
 <h2 id="sec-8">8. Servo-Assisted Altimeters</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The operating principle of the servo altimeter, its advantages at high altitude, and its improved accuracy and reduced lag.</div>
@@ -320,8 +317,8 @@ li{margin:3px 0;}
   <strong>Cold air rule: Flying in COLDER air than ISA &rarr; altimeter OVER-READS (true altitude is LOWER than indicated).</strong><br>
   Pressure decreases more rapidly in cold air. At a given true altitude in cold air, pressure is lower than in standard air. The altimeter interprets this lower pressure as a higher altitude.<br><br>
   <strong>HIGH to LOW temperature &rarr; altimeter reads HIGH.</strong><br>
-  Approximation: <span class="reg-value">4 ft per 1&deg;C deviation from ISA per 1000 ft above sea level</span>.<br>
-  The correction is considered too inaccurate to apply above <span class="reg-value">25 000 ft</span>.
+  Approximation: <span class="reg-value">4 ft per 1&deg;C deviation from ISA per 1000 ft above the altimeter-setting source</span>.<br>
+  This rough estimate is for study. Use the published correction method and its stated limits for operational calculations.
 </div>
 
 <div class="worked-example">
@@ -338,20 +335,11 @@ li{margin:3px 0;}
 <h2 id="sec-11">11. Temperature Error Correction</h2>
 <div class="blue-box"><strong>What this section covers:</strong> The correction table for temperature error and how to apply it to decision heights and minimum altitudes.</div>
 
-<p>ICAO provides a table of altitude corrections to be added by the pilot to published altitudes when flying in colder-than-standard conditions. The table is based on aerodrome elevation of <span class="reg-value">2000 ft</span> but can be used operationally at any aerodrome.</p>
+<p>Above the reporting station, colder-than-standard air can put the aircraft lower than its indicated barometric altitude. For a correction lookup, use the reported temperature and the height above the altimeter-setting source. The affected segments and method depend on the applicable procedure and the aircraft’s approved compensation system.</p>
 
-<figure>
-  <img src="figs/fig_p60_1.png" alt="Temperature error correction table">
-  <figcaption>Temperature Error Correction Table &mdash; values to be ADDED to published altitudes. Source p.60.</figcaption>
-</figure>
+<figure class="ga-reviewed-figure" style="margin:1.25rem auto;max-width:100%;min-width:0"><div role="region" tabindex="0" aria-label="A cold-temperature correction example" style="overflow-x:auto;max-width:100%;background:#fff"><img src="figs/study-5-cold.svg" width="800" height="388" decoding="async" loading="lazy" alt="An altitude of 6,200 feet minus airport elevation of 3,206 feet gives 2,994 feet of height. At minus 12 Celsius the example correction is about 300 feet." style="display:block;width:640px;max-width:none!important;height:auto;margin:auto"></div><figcaption>Cold-temperature example — The FAA worked example uses height above the reporting airport. · Scroll sideways if needed · <a href="figs/study-5-cold.svg" target="_blank" rel="noopener">Open full-size figure</a></figcaption><details><summary>Read figure labels</summary><p>A cold-temperature correction example · Input · Worked example · Altitude − airport elevation · 6,200 − 3,206 = 2,994 ft · Airport temperature · −12 °C · Corrected segment altitude · 6,200 + 300 = 6,500 ft · Training example from FAA AIM §7-3. Use the applicable published procedure.</p></details></figure>
 
-<div class="worked-example">
-  <h4>Source Example &mdash; Temperature Error Correction</h4>
-  <p>Decision height: <span class="reg-value">400 ft</span>. Aerodrome temperature: <span class="reg-value">&minus;40&deg;C</span>.</p>
-  <p>From table (aerodrome temp &minus;40&deg;C, height above elevation source 400 ft): Correction = <span class="reg-value">80 ft</span>.</p>
-  <p>Revised decision height = 400 + 80 = <span class="reg-value">480 ft</span>.</p>
-  <p>The higher revised DH ensures the aircraft is not dangerously close to terrain despite the altimeter over-reading in cold conditions.</p>
-</div>
+<div class="worked-example"><h4>Worked example from the FAA Aeronautical Information Manual</h4><p>The example final approach fix altitude is 6,200 ft. Subtract airport elevation of 3,206 ft to get 2,994 ft above the airport. At a reported −12 °C, the example gives an interpolated correction of 300 ft. The corrected altitude for that fix is 6,500 ft. The correction applies to the altitude flown with the reported altimeter setting.</p><p><a href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_3.html">FAA AIM §7-3, cold-temperature examples and table</a>. For flight, use the current State procedure, approach chart and aircraft instructions.</p></div>
 
 <h2 id="sec-12">12. Standard Datum Settings</h2>
 <div class="blue-box"><strong>What this section covers:</strong> QNE (standard setting), QFE, QNH and Regional QNH &mdash; definitions, when to use each, and how they affect altimeter indication.</div>
@@ -453,7 +441,7 @@ li{margin:3px 0;}
     <li>British altimeter subscale: <span class="reg-value">800&ndash;1050 hPa</span>.</li>
     <li>Sensitive altimeter lab lag limit: <span class="reg-value">150 ft</span>.</li>
     <li>Barometric error: <span class="reg-value">~30 ft per hPa</span>. HIGH to LOW pressure &rarr; reads HIGH.</li>
-    <li>Temperature error: HIGH to LOW temperature &rarr; reads HIGH. Correction not reliable above <span class="reg-value">25 000 ft</span>. Rule of thumb: <span class="reg-value">4 ft per 1&deg;C per 1000 ft</span>.</li>
+    <li>Temperature error: HIGH to LOW temperature &rarr; reads HIGH. Apply the limits of the published correction method. Rule of thumb: <span class="reg-value">4 ft per 1&deg;C per 1000 ft</span>.</li>
     <li>QFE &rarr; height above aerodrome (zero on ground). QNH &rarr; altitude AMSL. QNE/1013 &rarr; pressure altitude (Flight Levels). Regional QNH &rarr; under-reads (safe).</li>
     <li>Blocked static: no height change registered. Climbing from blockage &rarr; under-reads. Descending &rarr; over-reads.</li>
     <li>Fractured static (pressurised): under-reads. Fractured static (unpressurised): over-reads.</li>
@@ -658,7 +646,7 @@ li{margin:3px 0;}
   <tr><td><span class="reg-value">10 000 ft/min</span></td><td>Servo altimeter lag threshold</td><td>8</td></tr>
   <tr><td><span class="reg-value">150 ft</span></td><td>Max lab lag for sensitive altimeter (calibration)</td><td>10</td></tr>
   <tr><td><span class="reg-value">~30 ft per hPa</span></td><td>Barometric error magnitude</td><td>10</td></tr>
-  <tr><td><span class="reg-value">25 000 ft</span></td><td>Maximum altitude for temperature error correction</td><td>10</td></tr>
+  <tr><td>Height above the reporting station</td><td>Height input for the cold-temperature table</td><td>10</td></tr>
   <tr><td><span class="reg-value">4 ft per 1&deg;C per 1000 ft</span></td><td>Temperature error rule of thumb</td><td>10</td></tr>
   <tr><td><span class="reg-value">500 ft intervals</span></td><td>Flight Level spacing</td><td>12</td></tr>
 </table>
