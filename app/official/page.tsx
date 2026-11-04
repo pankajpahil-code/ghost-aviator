@@ -59,7 +59,7 @@ const REPORT_STEPS = [
 const FAQ = [
   {
     q: "What is the official Ghost Aviator website?",
-    a: "The only official website is https://ghostaviator.com. The www version redirects to it. We do not use a .in, .co, .net or lookalike domain for payments or classes.",
+    a: "The official website is https://ghostaviator.com. The www version redirects to it. The only other site we run is the article blog at https://pankajpahil-code.github.io, which never takes payments. We do not use a .in, .co, .net or lookalike domain for payments or classes.",
   },
   {
     q: "Which social accounts are official?",
@@ -164,15 +164,15 @@ export default function OfficialPage() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <div className="text-xs font-black tracking-widest uppercase mb-2" style={{ color: ACCENT }}>
-                The only official website
+                The official website
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
                 <Globe className="w-6 h-6" style={{ color: ACCENT }} /> ghostaviator.com
               </div>
               <p className="text-sm mt-2 max-w-2xl" style={{ color: "#94a3b8" }}>
-                One domain. The <strong className="text-white">www</strong> version redirects here. We do not use a
+                One domain for study and payments. The <strong className="text-white">www</strong> version redirects here. We do not use a
                 lookalike domain, a shortened link or a &quot;backup&quot; site for payments. A page can copy our design; it cannot copy the
-                address bar.
+                address bar. The only other site we run is the article blog listed below, and it never takes payments.
               </p>
             </div>
             <a
