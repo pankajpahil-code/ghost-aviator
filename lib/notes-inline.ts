@@ -630,6 +630,18 @@ export function getInlineNotes(subjectId: string, chapterId: string): InlineNote
     // handlers whose functions lived in the stripped scripts -> data-ga-act.
     html = transformTags(html, basePath);
 
+    // Legacy photos can contain fine instrument markings. Link the single
+    // local image from its own caption, after relative paths are resolved.
+    html = html.replace(FIGURE_RE, figure => {
+      if (/<a\b/i.test(figure)) return figure;
+      const images = [...figure.matchAll(IMG_SRC_RE)];
+      if (images.length !== 1) return figure;
+      const src = images[0][1] ?? images[0][2];
+      if (!/^\/content\/[^"'<>?#]+\.(?:jpe?g|png|webp|gif|avif)$/i.test(src)) return figure;
+      return figure.replace(/<\/figcaption>/i, () =>
+        `<span class="ga-image-actions"><a href="${src}" target="_blank" rel="noopener">Open full-size image</a></span></figcaption>`);
+    });
+
     // Figures are real files since tools/extract-notes-images.mjs; lazy-load
     // everything below the fold rather than blocking first paint on 26 PNGs.
     html = html.replace(/<img\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi, (whole, attrs: string) => {

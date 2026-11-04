@@ -17,10 +17,17 @@ for (const figure of review.figures) {
   seen.add(figure.image);
   const data = fs.readFileSync(path.join(root, "public", figure.image));
   const svg = data.toString("utf8");
-  assert.ok(figure.image.endsWith(".svg"), "Publish the original SVG, not the reference crop.");
-  assert.equal(XMLValidator.validate(svg), true, "Invalid SVG: " + figure.image);
-  assert.ok(svg.includes(`width="${figure.width}" height="${figure.height}"`), "Changed image dimensions: " + figure.image);
-  assert.doesNotMatch(svg, /<(?:script|foreignObject)\b|(?:href|src)=["'](?:https?:|data:)/i, "SVG must be self-contained: " + figure.image);
+  if (figure.image.endsWith(".svg")) {
+    assert.equal(XMLValidator.validate(svg), true, "Invalid SVG: " + figure.image);
+    assert.ok(svg.includes(`width="${figure.width}" height="${figure.height}"`), "Changed image dimensions: " + figure.image);
+    assert.doesNotMatch(svg, /<(?:script|foreignObject)\b|(?:href|src)=["'](?:https?:|data:)/i, "SVG must be self-contained: " + figure.image);
+  } else {
+    assert.ok(figure.image.endsWith(".webp"), "Unsupported reviewed image format");
+    assert.equal(data.toString("ascii", 0, 4), "RIFF");
+    assert.equal(data.toString("ascii", 8, 12), "WEBP");
+    assert.ok(figure.sourceCredit && figure.publicationRights && figure.cropPoints,
+      "Record source, permission and crop boundaries for " + figure.image);
+  }
   assert.equal(crypto.createHash("sha256").update(data).digest("hex"), figure.sha256, "Re-review changed artwork: " + figure.image);
   const html = fs.readFileSync(path.join(root, figure.notes), "utf8");
   const imageSrc = "figs/" + path.basename(figure.image);
@@ -38,7 +45,7 @@ for (const figure of review.figures) {
     assert.ok(!html.includes(path.basename(figure.replaces)), "Stale missing-image reference: " + figure.replaces);
   }
 }
-assert.equal(review.figures.length, 63, "Update the review record when adding or removing reviewed figures.");
+assert.equal(review.figures.length, 80, "Update the review record when adding or removing reviewed figures.");
 for (const diagram of review.staticDiagramTitles) {
   const html = fs.readFileSync(path.join(root, diagram.notes), "utf8");
   const pair = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi)]
