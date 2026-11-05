@@ -45,7 +45,7 @@ for (const figure of review.figures) {
     assert.ok(!html.includes(path.basename(figure.replaces)), "Stale missing-image reference: " + figure.replaces);
   }
 }
-assert.equal(review.figures.length, 80, "Update the review record when adding or removing reviewed figures.");
+assert.equal(review.figures.length, 107, "Update the review record when adding or removing reviewed figures.");
 for (const diagram of review.staticDiagramTitles) {
   const html = fs.readFileSync(path.join(root, diagram.notes), "utf8");
   const pair = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi)]
