@@ -1,0 +1,315 @@
+import type { VideoStudyMap } from "./types";
+
+// Chapter summaries written from the site's own notes for each chapter.
+// Shown on the matching /cpl/<subject>/<chapter>/video page.
+export const AIR_REGULATIONS: VideoStudyMap = {
+  "ar-2": {
+    summary: [
+      "Every civil aircraft carries a national identity that has to be readable from the ground, from another aircraft and on the radio. This chapter covers ICAO Annex 7, which sets how States choose nationality marks from the radio call-sign blocks the ITU gives them, how the registration mark that follows is formed, and how big the letters must be. It also covers the identification plate: a fireproof plate fixed in a prominent place near the main entrance, showing at least the aircraft's nationality and registration marks.",
+      "The Indian part of the chapter is where most marks are lost. The ITU blocks allotted to India are AT to AW, but Indian civil aircraft actually wear VT followed by a hyphen and three letters (VT-EPC is the notes' example), Air Force aircraft wear VU, and unmanned aircraft registered in India use U followed by six alpha-numeric characters. The Central Government grants the Certificate of Registration, the Director-General keeps the public register of aircraft, and the certificate stays valid until it is cancelled.",
+      "The chapter ends with the rules on what else may appear on the outside of an aircraft, and with leasing: who the lessor and lessee are, why the lessee must hold operational control, and the role of IFSCA at GIFT City in Gandhinagar, India's first International Financial Services Centre under the SEZ Act, 2005.",
+    ],
+    keyPoints: [
+      "Minimum mark heights on heavier-than-air aircraft: 50 cm on the wings, 30 cm on the fuselage and vertical tail surfaces. Lighter-than-air aircraft other than unmanned free balloons use 50 cm.",
+      "All characters within one group of marks must be the same height.",
+      "The registration mark is 1 to 5 characters and is assigned by the State of Registry (or the common-mark registering authority).",
+      "Common marks for aircraft operated jointly by two or more States come from the series 4YA to 4YZ.",
+      "Letter combinations that could be confused with distress or urgency signals, such as SOS, XXX, PAN and TTT, must not be used.",
+      "A Certificate of Registration is not time-limited. It remains valid until the DGCA cancels it, and an expired C of A for five years or more is one ground for cancellation.",
+      "For a leased aircraft, the certificate also records the lease validity and the names, nationalities and addresses of the lessor and lessee.",
+      "Aircraft leasing companies in India must be approved by IFSCA, not by the DGCA or the Ministry of Civil Aviation.",
+    ],
+    traps: [
+      "‘Which nationality marks has the ITU allotted to India?’ The answer is AT to AW, not VT. VT is what is painted on Indian civil aircraft.",
+      "50 cm and 30 cm get swapped in the options: fifty is the wing figure, thirty the fuselage and fin figure.",
+      "RCC, LLL or DDD offered as an example of a forbidden combination is a distractor. The examples Annex 7 gives are SOS, XXX, PAN and TTT.",
+      "Destruction of the aircraft is only one of several reasons registration can end. A certificate does not lapse after a fixed number of years.",
+    ],
+  },
+  "ar-3": {
+    summary: [
+      "The Rules of the Air are the traffic code every pilot carries in their head. This chapter works through ICAO Annex 2 together with India's own provisions: where the rules apply (including Indian-registered aircraft abroad, where they do not conflict with local rules), the pilot-in-command's final authority over the aircraft, the pre-flight actions required, and the ban on safety-sensitive staff working under the influence of psychoactive substances.",
+      "Most of the chapter is about keeping aircraft apart without ATC: minimum heights, right-of-way, lights, flight plans and what to do when the radio fails. The notes also cover areas where Indian rules are stricter than the ICAO baseline. Civil formation flying is not permitted in India, towing of aircraft is not permitted, and parachute descents need Central Government permission except in an emergency.",
+      "The later sections cover VFR and IFR rules, interception and visual signals, ADIZ and air defence clearance, marshalling signals, and the table of cruising levels for RVSM and non-RVSM airspace, which ties this chapter to the separation chapters that follow.",
+    ],
+    keyPoints: [
+      "Minimum heights, except for take-off and landing or with DG permission: 300 m (1,000 ft) above the highest obstacle within 600 m over congested areas, and 150 m (500 ft) above ground or water elsewhere.",
+      "Head-on: both aircraft alter heading to the right. Converging: the aircraft that has the other on its right gives way. The aircraft with right of way keeps its heading and speed.",
+      "An overtaking aircraft approaches from behind within 70° of the other aircraft's plane of symmetry, so at night it would see neither navigation light. It keeps clear by passing to the right.",
+      "Aerobatics must be planned to finish at least 600 m (2,000 ft) above the ground, and are prohibited within 2 NM of an aerodrome unless above 1,800 m (6,000 ft).",
+      "File a flight plan at least 3 hours before EOBT and not more than 120 hours before. A delay of 15 minutes or more must be notified to ATC.",
+      "A controlled flight needs an ATC clearance. Inform ATS if the TAS varies by 10 kt or more, or Mach by 0.02 or more.",
+      "ATS clocks must be within ±30 seconds of UTC, and data-link time within 1 second.",
+    ],
+    traps: [
+      "ICAO's formation-flying limits (within 1 km and 30 m of the leader) are reference material only. For a civil aircraft in India, the answer is that formation flight is not permitted.",
+      "‘Who has final authority over the disposition of the aircraft?’ The PIC, whether or not they are at the controls, not the operator or ATC.",
+      "The minimum-height figures do not apply during take-off and landing. Options that apply them on final approach are wrong.",
+      "An aircraft that knows another is compelled to land must give way, even if it would otherwise have right of way.",
+    ],
+  },
+  "ar-5": {
+    summary: [
+      "Separation is the minimum spacing ATC keeps between controlled aircraft, and this chapter sets out the methods and the numbers. Spacing can be vertical, horizontal (lateral or longitudinal), or composite. Composite separation combines both, each at no less than half its normal value, and only under a regional air navigation agreement.",
+      "Vertically, the basic minimum is 1,000 ft below FL 290 and 2,000 ft at or above it, while inside designated RVSM airspace two RVSM-approved aircraft may be separated by 1,000 ft above FL 290 as well. Laterally, aircraft are separated by reporting over different geographic positions, by tracking radials or tracks that diverge from a navaid, or by keeping the protected airspace of different navigation methods from overlapping. The notes include the GNSS distance tables, and the checks a controller must make before using GNSS-based separation.",
+      "Longitudinally, separation is measured in time or distance along the track. Same-direction, reciprocal and crossing tracks are defined by angle, and the minimum shrinks as the preceding aircraft gets faster than the one behind: from a standard 15 minutes down to 5 or 3 minutes when the speed difference is large enough.",
+    ],
+    keyPoints: [
+      "Vertical separation: nominally 1,000 ft below FL 290 and 2,000 ft at or above FL 290 outside RVSM. Cruise climb is not permitted in Indian FIRs.",
+      "VOR or NDB lateral separation: radials or tracks diverging by at least 15°, with at least one aircraft 15 NM or more from the facility.",
+      "Track definitions: same direction is within 45° (less than 45° or more than 315°), reciprocal is between 135° and 225°, and crossing is anything in between.",
+      "Same cruising level, same direction, when navaids do not permit frequent position fixing: 15 minutes.",
+      "5 minutes if the preceding aircraft is at least 20 kt faster, and 3 minutes if it is at least 40 kt faster, in the qualifying cases listed in the notes (for example, departing from the same aerodrome).",
+      "VMC climbs and descents may be cleared for a portion of flight at or below 10,000 ft, with essential traffic information passed.",
+      "GNSS-based track separation must not be used when a pilot reports a RAIM outage, or where a strategic lateral offset is being flown.",
+    ],
+    traps: [
+      "Composite separation uses at least half of each minimum, not ‘any lower value’. It also needs a regional agreement, not just controller discretion.",
+      "The speed advantage belongs to the PRECEDING aircraft. If the aircraft behind is faster, the reduced minima do not apply.",
+      "A 140° track difference counts as reciprocal (opposite), not crossing. Learn the 45/135/225/315 boundaries exactly.",
+      "The 15 NM in the VOR rule applies to at least one aircraft, not both.",
+    ],
+  },
+  "ar-6": {
+    summary: [
+      "Near an aerodrome, aircraft climb, descend and turn close together, so the separation rules there are tighter and more specific than en route. This chapter covers what a departure clearance has to specify, how far apart successive departures must be, how a departure is timed around an arriving aircraft, and when an IFR flight may be cleared for a visual approach.",
+      "Departure separation depends on geometry and speed. Aircraft on tracks that diverge immediately after take-off need the least spacing. Aircraft on the same track need more, unless the leader is clearly faster. The longest interval applies when the following aircraft must climb through the level of the one ahead. For a departure ahead of an arrival, the rules use the arriving aircraft's position on its approach as the reference.",
+      "The final sections cover what the approach unit must pass to departing and arriving aircraft without delay (significant changes in weather and in navaid status), and the visual approach: an IFR flight completing all or part of its approach by visual reference to terrain, with the pilot responsible for terrain clearance once cleared.",
+    ],
+    keyPoints: [
+      "1 minute between take-offs when the tracks diverge by at least 45° immediately after take-off.",
+      "2 minutes when both follow the same track and the preceding aircraft is 40 kt or more faster.",
+      "5 minutes when, on the same track, a departing aircraft will climb through the level of a preceding departure. The 5 minutes must be kept or increased while there is no vertical separation.",
+      "A departure clearance may specify the take-off direction and turn, the heading or track before joining the cleared track, the level to maintain, and the time, point or rate of level change.",
+      "Take-off in any direction is allowed until 5 minutes before an arriving aircraft is estimated over the instrument runway.",
+      "In a direction at least 45° from the reciprocal of the approach, take-off is allowed until 3 minutes before the arrival is over the start of the instrument runway (or before it crosses a designated fix).",
+      "The controller must not start a visual approach if there is reason to believe the crew does not know the aerodrome and its terrain.",
+    ],
+    traps: [
+      "The 2-minute rule needs both the same track AND a 40 kt speed advantage for the leader. Diverging tracks are a 1-minute case, not 2.",
+      "In the departing-versus-arriving rules, the reference is the instrument runway (or its beginning), not the touchdown zone or the outer marker.",
+      "Once a visual approach is cleared, terrain clearance is the pilot's responsibility, not the controller's.",
+    ],
+  },
+  "ar-7": {
+    summary: [
+      "The aerodrome control tower is responsible for everything on the runway, the taxiways and in the circuit, and this chapter follows an aircraft through its service. It covers start-up and push-back, the taxi clearance, holding short, line-up, take-off, the circuit, and landing and vacating. Along the way it covers what the tower must tell the pilot and when. The tower also gives the alerting service, calling out rescue and fire-fighting when an aircraft is in trouble on or near the aerodrome.",
+      "The notes include Indian procedure as well as the ICAO standard. Before asking for start-up, the pilot must make sure the steps or aerobridge are clear and the doors closed, and must report the total persons on board and that the security check is complete. Cruise climb and transonic or supersonic flight are not permitted over India.",
+      "The later sections cover the priority order for aircraft operations, the conditions under which VFR operations can be suspended, low-visibility operations, aeronautical ground lights, wind-shear advisories and runway friction reporting, which tie the tower's work to the weather and aerodrome-design chapters.",
+    ],
+    keyPoints: [
+      "No take-off or landing without ATC clearance, and no run-up on the runway in use without the tower's authority.",
+      "A pilot who accepts a take-off clearance must be able to start the take-off run immediately. A pilot who can't, or who needs to back-track, must say so before taxiing.",
+      "A taxi clearance whose limit is beyond a runway must include an explicit clearance to cross, or an instruction to hold short of, that runway.",
+      "Aircraft are not held closer to the runway in use than the runway-holding position: 50 m from the runway edge if the runway is 900 m or longer, 30 m if shorter.",
+      "An aircraft landing or in the final stages of approach normally has priority over one departing from the same or an intersecting runway.",
+      "In the operations priority list, an aircraft in an emergency that compels it to land without delay comes first. The notes list military fighters, live scrambles, medical flights, VVIP flights and SAR flights after it.",
+      "Aircraft must not line up on the approach end of the runway while another is landing, until the landing aircraft has passed the point of intended holding.",
+    ],
+    traps: [
+      "A scheduled flight has no special priority of its own. Options that rank it ahead of medical or SAR flights are wrong.",
+      "The 50 m and 30 m figures are measured from the runway edge to the holding position, and depend on runway LENGTH (900 m), not width.",
+      "‘Report vacated’ means the whole aircraft is beyond the relevant runway-holding position, not just clear of the centreline.",
+    ],
+  },
+  "ar-8": {
+    summary: [
+      "ATS surveillance means any system that shows the controller where an aircraft is: primary radar, secondary surveillance radar, ADS-B, ADS-C and multilateration. This chapter sets out how they differ and how the controller uses them. Primary radar sees a reflection and needs nothing from the aircraft. SSR and ADS-B rely on equipment on board. ADS-C sends data only to the units that hold a contract with the aircraft. MLAT fixes position from the difference in a signal's arrival time at several ground stations.",
+      "Before giving a surveillance service, the controller must identify the aircraft and tell the pilot. The notes set out the identification methods for ADS-B, for SSR and MLAT, and for primary radar: matching a position report, picking up a departure within 1 NM of the runway end, or asking for a heading change of 30° or more and watching which return turns. If identification is lost, the pilot is told and non-surveillance separation is restored.",
+      "The second half of the chapter covers vectoring, the surveillance separation minima and their reductions near the runway, the SSR emergency codes, and ACAS resolution advisories.",
+    ],
+    keyPoints: [
+      "Radar vectors are always given as magnetic headings.",
+      "ADS-C is point-to-point and contract-based: it reports only what the ground system's contract asks for. ADS-B is broadcast to anyone receiving.",
+      "PSR identification by the turn method uses heading changes of 30° or more, and the controller must make sure only one return matches.",
+      "The departing-aircraft method requires identification within 1 NM of the end of the runway used.",
+      "The ICAO standard surveillance separation is 5 NM (9.3 km) unless the ATS authority prescribes otherwise. It can be reduced, as far as 2.5 NM (4.6 km) between aircraft on the same final approach track within 10 NM of the threshold, where local factors permit.",
+      "SSR codes: 7500 unlawful interference, 7600 radio failure, 7700 emergency.",
+      "Surveillance separation is applied only between identified aircraft, when there is reasonable assurance that identification will be kept.",
+    ],
+    traps: [
+      "‘Which system is broadcast?’ The answer is ADS-B. ADS-C is the one that is NOT broadcast, even though it uses the same on-board data.",
+      "Vectors in true headings is a distractor. Vectors are always magnetic.",
+      "Radar separation can be applied between two identified aircraft even when only one of them is talking to the radar unit. Students often assume both must be.",
+      "Primary radar is the supplementary backstop in modern ATC, not the main tool.",
+    ],
+  },
+  "ar-9": {
+    summary: [
+      "Aeronautical Information Services make sure pilots get safety-critical changes on time and in a standard format. This chapter covers ICAO Annex 15 and India's own arrangements. It explains the three-part AIP (GEN, ENR and AD), how the AIP is amended, the AIP Supplements that carry long temporary changes, NOTAMs and their series, the AIRAC system for planned changes, Aeronautical Information Circulars, charts, and the pre-flight information bulletin.",
+      "The distinction the paper tests most is which product carries which kind of change. Permanent changes go out as AIP Amendments. Temporary changes lasting three months or more, or short ones with a lot of text and graphics, go out as AIP Supplements, printed on coloured (preferably yellow) paper. Operationally significant changes planned in advance follow the AIRAC cycle, so everyone switches over on the same common effective date. Short-notice items go out by NOTAM.",
+      "The India section covers the AAI's role, the NOTAM offices, and the NOTAM series A, B, C, D and G, whose numbering restarts at 0001 at 0000 UTC on 1 January each year. The notes finish with the Integrated Aeronautical Information Package and its parts.",
+    ],
+    keyPoints: [
+      "The AIP has three parts: GEN (general), ENR (en route) and AD (aerodromes).",
+      "AIRAC information must be distributed at least 42 days before the effective date and reach recipients at least 28 days before it. Major changes go out 56 days in advance.",
+      "AIP Supplements carry temporary changes of three months or longer, are numbered by calendar year, and are kept at the front of the AIP parts.",
+      "Each AIP Amendment has a consecutive serial number, and amendment is normally by replacement sheets, with hand amendments kept to a minimum.",
+      "A NIL notification is issued, through the monthly plain-language list of valid NOTAM, when no AIP Amendment is published at the regular interval.",
+      "NOTAM types: N (new), R (replacing) and C (cancelling). India uses series A, B, C, D and G.",
+      "ASHTAM is the special-series NOTAM for volcanic activity, eruptions and ash clouds. SNOWTAM covers runway surface contamination.",
+    ],
+    traps: [
+      "AIRAC is for planned changes that need advance notice. Permanent information lives in the AIP. Do not answer ‘AIRAC’ for every permanent change.",
+      "The 28-day and 42-day figures are swapped in the options: 42 is when AIS distributes, 28 is when recipients must have it.",
+      "An AIP Supplement that replaces a NOTAM must quote that NOTAM's serial number. It does not cancel the NOTAM system for that item.",
+      "NOTAM numbering restarts on 1 January at 0000 UTC, not at the start of the Indian financial year.",
+    ],
+  },
+  "ar-10": {
+    summary: [
+      "Search and rescue is the service a pilot hopes never to need, and ICAO Annex 12 requires every Contracting State to provide it within its territory, 24 hours a day. This chapter shows how that is organised. States draw search and rescue regions that must be contiguous and must not overlap. Rescue coordination centres run the response, with sub-centres where needed. Regional air navigation agreements decide who covers the high seas.",
+      "India's set-up, from the AIP, has four aeronautical RCCs (Delhi, Mumbai, Kolkata and Chennai) and three maritime RCCs (Mumbai, Chennai and Port Blair). India takes part in the satellite-aided COSPAS-SARSAT system through its mission control centre and local user terminals at Bangalore and Lucknow, which pick up 406 MHz beacons.",
+      "Much of the chapter is about what an ordinary pilot must do: on seeing an aircraft or vessel in distress, on intercepting a distress call, and when guiding a surface craft to a scene. The notes also cover the ground-to-air codes used by survivors and by rescue teams, the reply an aircraft gives to a ground signal, and the colour code for supplies dropped to survivors.",
+    ],
+    keyPoints: [
+      "SAR services are provided 24 hours a day. SAR regions must not overlap and must leave no gaps between them.",
+      "If the first aircraft at an accident scene is not a SAR aircraft, it takes charge of all aircraft arriving after it until the first SAR aircraft gets there.",
+      "On intercepting a distress transmission, the PIC should, if feasible: acknowledge, record the distressed craft's position, take a bearing, inform the RCC or ATS unit, and proceed to the position at their discretion.",
+      "To direct a surface craft to a scene, the aircraft rocks its wings. Opening and closing the throttle or changing propeller pitch are alternative sound signals.",
+      "Ground symbols laid out by survivors must be at least 2.5 m (8 ft) long and as conspicuous as possible.",
+      "An aircraft shows that it has understood a ground signal by flashing its landing lights twice, or its navigation lights twice if it has no landing lights. No signal means not understood.",
+      "Dropped containers of food and water are marked with blue streamers.",
+    ],
+    traps: [
+      "In the rescue-unit code, LLL means operation completed, LL means all personnel found, and NN means nothing found and the search continues. Don't mix them up with the survivor code, where N means no or negative.",
+      "Survivors' V means require assistance, and X means require medical assistance.",
+      "Ships do not routinely monitor 121.5 MHz, so options that rely on vessels hearing it are wrong. 2430 kHz is not an internationally designated distress frequency.",
+      "The PIC's duties on intercepting a distress call apply ‘if feasible’. Recording the position AND taking a bearing are both required, not one or the other.",
+    ],
+  },
+  "ar-15": {
+    summary: [
+      "An aircraft may fly only if it was designed, built and maintained to recognised airworthiness requirements, and the Certificate of Airworthiness is the formal statement that it is fit to fly. This chapter covers ICAO Annex 8 and the Indian Aircraft Rules that apply it. Annex 8 looks at airworthiness from the engineering side and Annex 6 Part I from the operational side, and the two are meant to work together.",
+      "The chain of certificates starts with the State of Design, which issues the Type Certificate once a type (or a separately certificated engine or propeller) has been shown to meet the design requirements. Each individual aircraft then needs its own C of A from its State of Registry, which also governs the C of A's renewal and continued validity. Another State recognises a foreign C of A only if the standards it was issued under meet or exceed the ICAO minimum. Annex 8's broad standards, backed by the Airworthiness Technical Manual (Doc 9760), set that floor. National codes provide the detail.",
+      "The Indian provisions cover who does what. The owner or operator applies for the certificate. The Director-General issues, endorses, suspends and cancels it. When an aircraft stops being airworthy, its C of A is deemed suspended automatically. The chapter also covers continued airworthiness, maintenance release, modifications and repairs, and the MEL and CDL.",
+    ],
+    keyPoints: [
+      "Type Certificate: issued by the State of Design, for the type. C of A: for the individual aircraft, by the State of Registry.",
+      "A C of A's renewal and continued validity are governed by the laws of the State of Registry, not the State where the aircraft happens to be operating.",
+      "A foreign C of A is recognised only if the standards it was issued under are equal to or above the ICAO minimum.",
+      "Annex 8 is Airworthiness of Aircraft. Doc 9760 is the Airworthiness Technical Manual.",
+      "A C of A is deemed suspended if the aircraft stops conforming to the rules on operation, maintenance or inspection, is modified or repaired outside the rules, suffers major damage, or develops a major defect affecting safety.",
+      "An aircraft must not fly while its C of A is suspended. On the owner's or operator's application, the DG may issue a special flight permit.",
+      "If the DG has reasonable doubt about the safety of an aircraft or its type, the DG can act on the certificate even before a defect is proven.",
+    ],
+    traps: [
+      "‘Who issues the Type Certificate?’ The State of Design, not the State of Registry or the State of Manufacture.",
+      "A special flight permit is discretionary (‘may’) and is issued only on application. It is never automatic.",
+      "Deemed suspension happens by itself when one of the four conditions arises. No DGCA order is needed for it to take effect.",
+      "Visiting aircraft should be judged by their State of Registry's operational rules, provided those meet Annex 6. Answers saying the host State imposes its own full set are wrong.",
+    ],
+  },
+  "ar-11": {
+    summary: [
+      "Aerodrome markings, lights and signs are a visual language that tells a pilot where to land, where to stop and where not to go, and the exam tests that language in detail. This chapter follows ICAO Annex 14 as applied in India. It starts with the basic rule on colour: runway markings are white, while taxiway, turn-pad and aircraft stand markings are yellow. Where runways intersect, the markings of the more important runway are shown, in the order precision approach, non-precision approach, then non-instrument.",
+      "The marking section covers runway designators and their parallel-runway suffixes. It goes on to centre line stripes, whose length and width depend on the approach category, and threshold stripes, whose number depends on runway width. It also covers touchdown zone and aiming point markings, and the treatment of a displaced threshold. The signal area and its white border come in here as well.",
+      "The lighting section works through runway edge, threshold, end, centre line, touchdown zone and stopway lights, then taxiway lights, aerodrome beacons and obstacle lights. Most of the questions are about the colour of a light and where it changes. The chapter finishes with the colour scheme for mandatory instruction, location and direction signs.",
+    ],
+    keyPoints: [
+      "The runway designator is a two-digit number, the magnetic heading of the approach direction to the nearest ten degrees, with a leading zero where needed (09, not 9).",
+      "Runway centre line stripes plus gaps measure 50–75 m. Each stripe is at least as long as the gap, or 30 m, whichever is greater.",
+      "Threshold stripes on each side of the centre line depend on runway width: 4 at 18 m, 6 at 23 m, 8 at 30 m, 12 at 45 m and 16 at 60 m.",
+      "Runway edge lights are variable white. They are yellow on the last 600 m or the last third of the runway, whichever is less, and red before a displaced threshold.",
+      "Threshold lights are green. Runway end lights and stopway lights are red.",
+      "Runway centre line lights are white, then alternate red and white from 900 m to 300 m before the end, then red for the last 300 m.",
+      "Taxiway centre line lights are green and taxiway edge lights are blue. On an exit taxiway, the centre line lights alternate green and yellow.",
+      "Aerodrome beacon: green and white flashes for a land aerodrome, yellow and white for a water aerodrome. A PAPI shows two red and two white lights on the glide path.",
+    ],
+    traps: [
+      "Mandatory instruction signs are white on red. Location signs are yellow on black. Direction signs are black on yellow. These are often swapped in the answer options.",
+      "Before a displaced threshold, all markings are obscured except the runway centre line, which is converted to arrows.",
+      "Runway edge lights are required for a precision approach runway by day as well as by night, not only for night use.",
+      "Where the threshold is at the very end of the runway, the threshold fittings may also serve as the runway end lights. That doesn't mean end lights are optional.",
+    ],
+  },
+  "ar-1": {
+    summary: [
+      "Every other Air Regulations chapter rests on this one, because the legal framework of international civil aviation starts here. The Chicago Convention, signed on 7 December 1944, has 96 Articles. It replaced the Paris Convention of 1919 and created ICAO, which became a specialised agency of the United Nations in 1947. Its first principle is that every State has complete and exclusive sovereignty over the airspace above its territory, and the exam expects both of those words.",
+      "The notes go through the Convention part by part. They cover the right to refuse cabotage under Article 7, and the documents every aircraft on an international flight must carry. They also cover how ICAO's Standards and Recommended Practices are adopted through the 19 Annexes, and the 60-day window a State has under Article 38 to notify the Council of a difference. ICAO's own structure is set out too: the Assembly, the Council and its President, the 19-member Air Navigation Commission, the committees and the Secretariat's bureaux.",
+      "The second half covers the freedoms of the air and the security and liability conventions. India has ratified the International Air Services Transit Agreement (the first two, technical freedoms) but not the International Air Transport Agreement (the commercial freedoms). Tokyo, The Hague and Montreal each deal with a different kind of unlawful act, and the Warsaw-to-Montreal 1999 line deals with carrier liability.",
+    ],
+    keyPoints: [
+      "Chicago Convention: signed 7 December 1944, 96 Articles. It created ICAO, which became a UN specialised agency in 1947.",
+      "Article 1 gives every State complete and exclusive sovereignty over the airspace above its territory.",
+      "Cabotage (Article 7) concerns domestic air services. A State may refuse foreign airlines the right to carry traffic between two points within its territory.",
+      "Annexes 2, 5, 7 and 8 contain only International Standards, with no Recommended Practices.",
+      "A State unable to comply with an amended Standard must notify the ICAO Council within 60 days (Article 38).",
+      "The Air Navigation Commission has 19 members appointed by the Council. The Council elects its own President.",
+      "Tokyo 1963 covers offences on board and the commander's powers of restraint. Hague 1970 covers hijacking (unlawful seizure). Montreal 1971 covers sabotage. The 1988 Montreal Protocol extends that to airports serving international aviation.",
+      "The Montreal Convention 1999 sets no financial limit on liability for passenger injury or death and is meant to replace the Warsaw system.",
+    ],
+    traps: [
+      "Any question on the aircraft commander's power to restrain an unruly passenger points to the Tokyo Convention, not Hague or Montreal.",
+      "India HAS ratified the Transit Agreement (1st and 2nd freedoms) but has NOT ratified the Transport Agreement (commercial freedoms).",
+      "Under the Tokyo Convention, an aircraft is ‘in flight’ from the moment power is applied for take-off until the landing run ends. That is not from door closure to door opening.",
+      "Regional Supplementary Procedures are approved by the Council like PANS, but only for specific regions. Don't call them worldwide Standards.",
+    ],
+  },
+  "ar-19": {
+    summary: [
+      "When something goes wrong, the investigation exists for one purpose only: to prevent the next accident. This chapter covers ICAO Annex 13 and India's Aircraft (Investigation of Accidents and Incidents) Rules, 2017, with CAR Section 5. It states the principle plainly: finding the causes is the goal, and apportioning blame or liability is not.",
+      "Most of the chapter is about definitions, because the category of an event decides who must be told and who investigates. An accident involves death or serious injury, damage or structural failure that affects the aircraft's strength, performance or flight characteristics, or an aircraft that is missing or inaccessible. The notes list the damage that does not count, such as failure of, or damage limited to, a single engine. They also define serious injury, fatal injury, serious incident and incident, and give the AIRPROX categories for air traffic incidents.",
+      "The procedural part covers how the State of Occurrence starts an investigation and when the State of Design and State of Manufacture must send representatives. It sets out the report language rules and what the PIC must do in India. The PIC must notify the AAIB, the DGCA, the District Magistrate and the officer-in-charge of the nearest police station as soon as reasonably practicable, and in any case within 24 hours.",
+    ],
+    keyPoints: [
+      "The sole objective of an investigation is preventing future accidents and incidents. It is not to apportion blame or liability.",
+      "Fatal injury: an injury that results in death within 30 days of the accident.",
+      "Serious injury includes hospitalisation for more than 48 hours, starting within 7 days of the injury. It is one of six criteria.",
+      "Damage limited to a single engine, including its cowlings or accessories, does not by itself make an event an accident.",
+      "The State of Occurrence starts the investigation. Preliminary and final reports are issued in one of ICAO's working languages.",
+      "The State of Design and the State of Manufacture name representatives for aircraft with a maximum mass over 100,000 kg.",
+      "In India the PIC notifies the AAIB, the DGCA, the District Magistrate and the O-i-C of the nearest police station within 24 hours.",
+    ],
+    traps: [
+      "Indian notification goes to the police station, not to AAI. Options listing AAI in place of the police are a classic distractor.",
+      "The notification deadline is 24 hours, not 48. 48 hours belongs to the hospitalisation criterion for serious injury.",
+      "Reports go out in an ICAO working language, not just ‘any major language’ or the investigating State's own language.",
+      "The mass threshold for State of Design and State of Manufacture representatives is 100,000 kg, not 27,000 kg or 5,700 kg.",
+    ],
+  },
+  "ar-14": {
+    summary: [
+      "This is the chapter about your own career path: what each licence needs, what it allows, and what keeps it current. It covers ICAO Annex 1 and the DGCA licensing rules, from the Student Pilot's Licence up to the ATPL. The minimum ages form a ladder: 16 for an SPL, 17 for a PPL, 18 for a CPL and 21 for an ATPL. Alongside sit the education requirements (Class 10 for SPL and PPL, and 10+2 with Physics and Mathematics for professional licences) and the medical class each licence needs.",
+      "The CPL(A) experience requirement is covered line by line. It needs at least 200 hours of flight time, including 100 hours as Pilot-in-Command, 15 hours of PIC within the six months before application, and 50 hours of cross-country PIC with a qualifying 300 NM flight. The ATPL goes up to 1,500 hours. The notes also explain ratings, such as the PPL open rating for single-piston types up to 1,500 kg AUW, and the Instrument Rating.",
+      "Renewal and recency make up the last part. The chapter gives medical validity by class and age, and the hours or checks needed to renew each licence. It also covers the age limits for commercial air transport, where the hard ceiling is 65 and a multi-crew condition applies from 60.",
+    ],
+    keyPoints: [
+      "Minimum ages: SPL 16, PPL 17, CPL 18, ATPL 21. No one under 16 may have sole control of an aircraft in motion.",
+      "CPL(A): 200 hours total, including 100 hours PIC, 15 hours PIC in the preceding six months, and 50 hours cross-country PIC with a 300 NM flight.",
+      "ATPL(A) needs 1,500 hours total, with Class 1 medical and 10+2 Physics and Mathematics.",
+      "A Class 1 medical is valid for one year up to age 60, and six months after that.",
+      "CPL/ATPL renewal: medical plus 10 hours PIC in the preceding six months (co-pilot time counts at 50%), or a day and night flying test with a current FRTOL.",
+      "The Instrument Rating is valid 12 months, renewed if the flight test is done within 2 months before expiry. A proficiency check on aircraft over 5,700 kg is valid 6 months.",
+      "At 65 no pilot may act as PIC or co-pilot in commercial air transport. From 60, it is allowed only in a multi-crew environment under the stated condition.",
+    ],
+    traps: [
+      "The minimum age for sole control of an aircraft in motion is 16, not 17. 17 is the PPL age.",
+      "Co-pilot time counts at 50% towards the 10 hours PIC for CPL renewal. It does not count in full.",
+      "The SPL renews in 12-month steps from a fresh medical, but its total validity is capped at 24 months from issue.",
+      "Renewal windows are ‘within 2 months before expiry’. A check done earlier doesn't carry the full period forward.",
+    ],
+  },
+  "ar-21": {
+    summary: [
+      "Aviation security has its own Annex because ordinary law could not cope with the wave of hijackings in the late 1960s. This chapter tells that story first. An Extraordinary Session of the ICAO Assembly in June 1970 called for the specifications that became Annex 17. Until about 1985 the threat was seen mainly as hijacking, and the scope has since widened to sabotage, bomb threats and attacks on airports. The notes then fix the formal definition: security is a combination of measures and human and material resources that safeguards international civil aviation against acts of unlawful interference.",
+      "The scope section covers what Annex 17 protects. Cabin baggage is screened at the checkpoint. Hold baggage must be reconciled with its passenger, so no bag flies unless its owner does. Terminals are designed to channel passengers through effective screening. There are also rules for armed foreign personnel such as sky marshals or protection officers.",
+      "The operational heart of the chapter is what a State must do once unlawful interference happens. That means holding the hijacked aircraft on the ground, caring for the passengers and crew, sending the required notifications, and giving the aircraft assistance. India's framework closes the chapter: the Bureau of Civil Aviation Security (BCAS), headed by a Director General appointed by the Central Government, works under the Aircraft (Security) Rules, 2011.",
+    ],
+    keyPoints: [
+      "Annex 17 came out of the June 1970 Extraordinary ICAO Assembly. Before 1985, hijacking was treated as the main threat.",
+      "Security means a combination of measures and human and material resources. All three parts appear in the definition.",
+      "Hold baggage must be reconciled with the passenger. No bag flies without its owner.",
+      "If screened passengers mix with unscreened persons after the screening point, the passengers AND their cabin baggage are re-screened before boarding.",
+      "Weapons carried by foreign agents need prior notification from the State of embarkation to the State of arrival, AND notification of the PIC.",
+      "A hijacked aircraft that lands is retained unless letting it depart is justified to protect human lives.",
+      "In India, BCAS is the regulatory and oversight body for civil aviation security, under the Aircraft (Security) Rules, 2011.",
+    ],
+    traps: [
+      "The State cares for passengers and crew ‘until their journey can be continued’, not ‘during the investigation’ or ‘until return to the country of origin’.",
+      "The notification list covers the States of Registry and Operator, States whose citizens were killed or injured, held as hostages, or known to be on board, and ICAO. Options leaving out hostages or ICAO are wrong.",
+      "Re-screening after contamination covers the passengers and their cabin baggage. ‘Only the passengers’ is a distractor.",
+      "Both weapon-carriage conditions are mandatory. State-to-State agreement without telling the PIC is not enough, and neither is telling the PIC alone.",
+    ],
+  },
+};
