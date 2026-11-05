@@ -15,7 +15,8 @@
  */
 import { studyEvent } from "./study-events";
 import { match, compile } from "path-to-regexp";
-import { headerRules, redirectRules, type HeaderRule } from "../lib/site-routing";
+import { headerRules, redirectRules, NOT_FOUND_CACHE, type HeaderRule } from "../lib/site-routing";
+import { cleanUrlPath } from "../lib/clean-url";
 import bigFiles from "./generated/big-files.json";
 
 
@@ -61,7 +62,10 @@ async function installChapterText(env: Env, url: URL) {
 
 // The Google Search Console ownership file (CLAUDE.md: never delete, never
 // edit). Must match assets.run_worker_first in wrangler.jsonc.
-const VERBATIM_HTML = new Set(["/google03c67855fee92810.html"]);
+// Both Search Console HTML-verification files in public/ are listed: with every
+// .html URL now routed here (below), the second one would otherwise be 308'd.
+const VERBATIM_HTML = new Set(["/google03c67855fee92810.html", "/google1d20102468b21f76.html"]);
+
 
 // Rules are data; compile them once per isolate.
 type CompiledRedirect = { test: ReturnType<typeof match>; to: ReturnType<typeof compile>; status: number };
@@ -179,6 +183,16 @@ const worker = {
       return Response.redirect(dest.toString(), r.status);
     }
 
+    // 1b. Trailing slash and .html -> the clean URL, permanently (308).
+    // After the redirect list, so a rule that owns a .html URL (the retired
+    // /content/.../notes.html files) still sends it straight to its target.
+    const clean = cleanUrlPath(path);
+    if (clean !== null) {
+      const dest = new URL(clean, url);
+      dest.search = url.search;
+      return Response.redirect(dest.toString(), 308);
+    }
+
     // 2. Dynamic routes.
     const load = ROUTES[path.length > 1 ? path.replace(/\/$/, "") : path];
     if (load) {
@@ -212,8 +226,13 @@ const worker = {
     if (big && (req.method === "GET" || req.method === "HEAD")) return withHeaders(path, serveBig(req, env, big, ctx));
 
     // 4. Not a file, not a route: the site's own 404 page.
+    // Its Cache-Control is set AFTER the path's header rules, which would
+    // otherwise hand a 404 under /cpl/* the content cache: a 404 for a file a
+    // later deploy adds must not outlive that deploy at the edge.
     const notFound = await env.ASSETS.fetch(new URL("/404", url));
-    return withHeaders(path, new Response(req.method === "HEAD" ? null : notFound.body, { status: 404, headers: notFound.headers }));
+    const res404 = await withHeaders(path, new Response(req.method === "HEAD" ? null : notFound.body, { status: 404, headers: notFound.headers }));
+    res404.headers.set("Cache-Control", NOT_FOUND_CACHE);
+    return res404;
   },
 };
 

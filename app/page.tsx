@@ -149,7 +149,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm underline">
                 <Link href="/cpl">Browse CPL subjects</Link>
                 <Link href="/free-dgca-mock-test">Try a free mock test</Link>
-                <a href="/study-notebook.html" download="Ghost-Aviator-study-notebook.html">Download the study notebook</a>
+                <a href="/study-notebook" rel="nofollow" download="Ghost-Aviator-study-notebook.html">Download the study notebook</a>
               </div>
               <div className="grid grid-cols-4 gap-3 max-w-xl">
                 {[[TOTAL_Q,"Questions"],[`${SUBJECT_COUNT}`,"Study areas"],["70%","Pass Mark"],["FREE","Self-study"]].map(([v,l]) => (

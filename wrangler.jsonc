@@ -13,13 +13,17 @@
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
-    // /about -> about.html, /about/ -> 307 /about, as `next export` expects.
+    // /about -> about.html, as `next export` expects. (/about/ and /about.html
+    // never reach this: run_worker_first sends them to the Worker for a 308.)
     "html_handling": "auto-trailing-slash",
     // Unmatched paths go to the Worker (redirects, API, big files, 404).
     "not_found_handling": "none",
-    // The Google verification file must answer 200 at its .html URL, which
-    // html_handling would 307 away. The Worker serves it (VERBATIM_HTML).
-    "run_worker_first": ["/google03c67855fee92810.html", "/_gini/*"]
+    // The Google verification files must answer 200 at their .html URL, which
+    // html_handling would 307 away. The Worker serves them (VERBATIM_HTML).
+    // "/*/" and "/*.html": html_handling answers a trailing slash or .html with
+    // a 307 (temporary). The Worker answers them with a 308 (permanent) to the
+    // clean URL instead (cleanUrlPath in cloudflare/worker.ts).
+    "run_worker_first": ["/google03c67855fee92810.html", "/_gini/*", "/*/", "/*.html"]
   },
   "define": {
     "process.env.NODE_ENV": "\"production\""

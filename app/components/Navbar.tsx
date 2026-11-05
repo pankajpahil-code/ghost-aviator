@@ -9,10 +9,18 @@ import { atplStudyLabel } from "@/lib/atpl-syllabus";
 import { useUser, getSupabase } from "@/lib/supabase";
 
 // Derived once — dropdowns always reflect the real subject list.
-const CPL_LINKS  = CPL_SUBJECTS.map(s => [s.name, s.id] as const);
+const ALL_CPL_LINKS = CPL_SUBJECTS.map(s => [s.name, s.id] as const);
 const ATPL_LINKS = ATPL_SUBJECTS.map(s => [atplStudyLabel(s.id, s.name), s.id] as const);
 
-export default function Navbar() {
+/** Nofollow on the account links: /login, /signup and /dashboard are noindex,
+ *  and this bar is on every page, so without it each crawl of any page queued
+ *  three URLs Google is told not to index (SEO diagnosis, 5 Nov 2026). */
+const ACCOUNT_REL = "nofollow";
+
+export default function Navbar({ cplSubjectIds }: { cplSubjectIds?: string[] } = {}) {
+  // Subjects with nothing published yet (noindex) are left out of the dropdown;
+  // the root layout passes the indexable ids. Without the prop, list them all.
+  const CPL_LINKS = cplSubjectIds ? ALL_CPL_LINKS.filter(([, id]) => cplSubjectIds.includes(id)) : ALL_CPL_LINKS;
   const [open, setOpen]   = useState(false);
   const [drop, setDrop]   = useState<string | null>(null);
   const { user } = useUser();
@@ -136,8 +144,8 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link href="/login"  className="text-sm font-medium no-underline" style={{ color:"#64748b" }}>Log In</Link>
-                <Link href="/signup" className="text-sm font-black px-4 py-2 rounded-lg no-underline"
+                <Link href="/login" rel={ACCOUNT_REL}  className="text-sm font-medium no-underline" style={{ color:"#64748b" }}>Log In</Link>
+                <Link href="/signup" rel={ACCOUNT_REL} className="text-sm font-black px-4 py-2 rounded-lg no-underline"
                       style={{ background:"linear-gradient(135deg,#c25a1e,#c25a1e)", color:"#fff" }}>
                   Get Started Free
                 </Link>
@@ -173,7 +181,7 @@ export default function Navbar() {
             <Link href="/notes" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Notes</Link>
             <Link href="/guides" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Guides</Link>
             <Link href="/resources" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Resources</Link>
-            <Link href="/dashboard" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Dashboard</Link>
+            <Link href="/dashboard" rel={ACCOUNT_REL} className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#94a3b8" }}>Dashboard</Link>
             <Link href="/cpl-cost-calculator" className="px-3 py-1.5 rounded-lg text-sm font-bold no-underline transition-colors hover:text-white" style={{ color:"#38bdf8" }}>Cost Calculator</Link>
             <GiniLauncher />
           </div>
@@ -191,7 +199,7 @@ export default function Navbar() {
           <Link href="/adapt-test"    onClick={() => setOpen(false)} className="py-2.5 text-sm font-black no-underline" style={{ color:"#f0913a" }}>🧭 ADAPT Test</Link>
           <Link href="/exam"          onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Exam Mode</Link>
           <Link href="/past-papers"   onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Past Papers</Link>
-          <Link href="/dashboard"     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
+          <Link href="/dashboard" rel={ACCOUNT_REL}     onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Dashboard</Link>
           <Link href="/video-lectures" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#f87171" }}>🎥 Video Lectures</Link>
           <Link href="/notes"         onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Notes</Link>
           <Link href="/question-bank" onClick={() => setOpen(false)} className="py-2.5 text-sm font-bold no-underline" style={{ color:"#94a3b8" }}>Question Bank</Link>
@@ -205,7 +213,7 @@ export default function Navbar() {
               ✈ {displayName} — Sign Out
             </button>
           ) : (
-            <Link href="/signup" onClick={() => setOpen(false)}
+            <Link href="/signup" rel={ACCOUNT_REL} onClick={() => setOpen(false)}
                   className="mt-2 py-3 px-4 rounded-xl text-sm font-black text-center no-underline"
                   style={{ background:"linear-gradient(135deg,#c25a1e,#c25a1e)", color:"#fff" }}>
               Get Started Free

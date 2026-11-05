@@ -32,7 +32,14 @@ const quiz = html("/cpl/air-navigation/nav-16/chapter-quiz");
 assert.doesNotMatch(quiz, /SUBJECT REVISION QUIZ/);
 assert.match(quiz, /CH\.\d+ CHAPTER QUIZ/);
 assert.match(lesson, /Chapter Quiz/);
-assert.match(home, /href="\/study-notebook.html"/);
+// The clean URL: /study-notebook.html now answers with a 308 to it, and a
+// link should not point at a redirect (SEO diagnosis, 5 Nov 2026).
+assert.match(home, /href="\/study-notebook"/);
+// No content rule may pin pages at the edge for a year again: Cloudflare's
+// cache outlives deploys. Only the hashed /_next/static/* files are immutable.
+for (const line of fs.readFileSync(path.join(out, "_headers"), "utf8").split("\n")) {
+  if (/s-maxage=31536000/.test(line)) assert.fail(`_headers pins a page for a year: ${line.trim()}`);
+}
 assert.match(fs.readFileSync(path.join(out, "study-notebook.html"), "utf8"), /My seven-session study notebook/);
 assert.match(fs.readFileSync(path.join(out, "robots.txt"), "utf8"), /Sitemap: https:\/\/ghostaviator\.com\/sitemap\.xml/i);
 assert.ok(fs.existsSync(path.join(out, "404.html")));
