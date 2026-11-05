@@ -312,4 +312,111 @@ export const AIR_REGULATIONS: VideoStudyMap = {
       "Both weapon-carriage conditions are mandatory. State-to-State agreement without telling the PIC is not enough, and neither is telling the PIC alone.",
     ],
   },
+  "ar-16": {
+    summary: [
+      "This chapter covers how a commercial operation is run safely and legally under ICAO Annex 6, ‘Operation of Aircraft’, and the matching DGCA requirements. Annex 6 has three parts. Part I covers international commercial air transport with aeroplanes. Part II covers international general aviation and became applicable in September 1969. Part III covers international helicopter operations and became applicable in November 1986. The chapter then deals with the operator’s organisation: one quality system and one quality manager, with a feedback loop to the accountable manager so that problems get fixed. It also sets out who may be carried where. Nobody rides in a part of the aeroplane not designed for people, except with the commander’s temporary permission for safety reasons or to reach accessible cargo. Only listed categories of person may enter the flight deck, and the final decision always rests with the commander.",
+      "A long list of documents must fly with the aircraft, in original or attested copies. They include the certificates of registration and airworthiness, the airworthiness review certificate, the noise document, the crew licences and radio licence, the journey log, the Operations Manual, MEL and checklists, charts, the load and trim sheet, passenger and cargo manifests and the insurance policy. Two traps stand out. A dangerous goods list must be specifically brought to the PIC’s notice before flight. Whether the Flight Manual is carried depends on what the C of A states. An Air Operator Certificate is issued only after the operator proves its organisation, training, flight operations, ground handling and maintenance are adequate. It stays valid only under the State’s continued surveillance.",
+      "The section on aerodrome operating minima adds 100 ft to the DA(H) or MDA(H) and 400 m to the visibility or RVR for restricted minima. Under the approach ban, an approach may not be started if the reported RVR is below minimum. If the RVR drops after the approach has passed 1000 ft above the aerodrome or entered the final approach segment, the aircraft may continue to DA/MDA. The equipment rules include spare fuses (10% of each rating or three, whichever is greater) and wipers above 5,700 kg.",
+    ],
+    keyPoints: [
+      "Annex 6: Part I commercial air transport aeroplanes, Part II general aviation (1969), Part III helicopters (1986).",
+      "One quality system and one quality manager, with feedback to the accountable manager.",
+      "The commander has the final say on flight deck admission, even over an authorised inspector if safety is at stake.",
+      "The dangerous goods list must be brought to the PIC’s notice before flight. Carrying the Flight Manual depends on the C of A.",
+      "An AOC requires an adequate organisation, training, flight operations, ground handling and maintenance, under continued surveillance.",
+      "Restricted minima: +100 ft on DA(H)/MDA(H) and +400 m on visibility/RVR.",
+      "Approach ban: don’t commence below minimum RVR. Once below 1000 ft or in the FAS, you may continue to DA/MDA.",
+      "Spare fuses: 10% of each rating or 3, whichever is greater. Wipers are required above 5,700 kg MTOM.",
+    ],
+    traps: [
+      "The touchdown-zone RVR always controls. In the notes, a mid-point reading below 125 m makes the runway below minima even when the TDZ is fine.",
+      "Special VFR is not permitted for commercial air transport aeroplanes.",
+      "Spare fuses are the GREATER of 10% and three, not the lesser.",
+    ],
+  },
+  "ar-17": {
+    summary: [
+      "This chapter gathers the special procedures and hazards that the regulations expect every crew to handle. It begins with dispatch with defects. The manufacturer writes the Master Minimum Equipment List (MMEL). The operator tailors it into its own MEL inside the Operations Manual, and the DGCA approves both. The MEL can never be less restrictive than the MMEL. It may require different equipment for night or IMC sectors than for day VMC, so the same defect can ground one flight and not another. The aeroplane must be flown within its Certificate of Airworthiness and the limits of the approved Flight Manual. Performance must account for mass, procedures, pressure altitude, temperature, wind, slope and runway surface.",
+      "Icing gets detailed treatment. De-icing removes existing frost, ice, snow or slush. Anti-icing protects an already clean surface for a limited holdover time. Ground fluids are only needed until the aircraft is airborne. Roughness as thin as 0.40 mm can seriously cut lift and raise drag. Contamination raises the stalling speed and makes the wing stall at a lower angle of attack, so ‘there is no such thing as an insignificant amount of ice’. Cold-soaked fuel can freeze rain onto a wing even when the outside air is above 0°C. The resulting clear ice is hard to see, so it is checked by touch or with ice-detection systems. Sheets of it shed on take-off can damage engines mounted at the rear.",
+      "Further sections cover bird strikes, noise abatement and fire. In the notes, 90% of bird strikes happen below 500 m, and a hazardous flock seen after take-off must be reported to ATC immediately. Noise abatement procedures are not started below 800 ft (240 m) and are not used in wind shear. Noise abatement can’t decide the runway when the crosswind exceeds 15 kt, the tailwind exceeds 5 kt or the runway isn’t clear and dry. Fires are classified A to D by fuel, each with suitable extinguishants. The chapter goes on to overheated brakes, decompression, wind shear, wake turbulence, unlawful interference, ditching, fuel jettison, dangerous goods and contaminated runways.",
+    ],
+    keyPoints: [
+      "MMEL from the manufacturer, MEL from the operator (in the Operations Manual), both approved by the DGCA. The MEL is never less restrictive.",
+      "De-icing removes contamination. Anti-icing protects a clean surface for the holdover time.",
+      "Ice roughness as thin as 0.40 mm seriously degrades lift. The stall speed rises and the stall angle falls.",
+      "Cold-soaking can produce invisible clear ice above 0°C OAT. Detect it by touch or a ground ice detection system.",
+      "Bird strikes: 90% occur below 500 m in the notes. Report a hazardous flock to the ground station immediately.",
+      "Noise abatement: not below 240 m (800 ft), not in wind shear, and not when crosswind >15 kt, tailwind >5 kt or runway not dry.",
+      "Fire classes: A solids (cool with water), B liquids (foam/Halon), C electrical (non-conducting agent), D metals (special powder, never Halon).",
+    ],
+    traps: [
+      "Ice INCREASES the stalling speed and DECREASES the stalling angle of attack.",
+      "Never use Halon on a Class D metal fire. Don’t use alcohol-containing liquids on a Class A fire.",
+      "With an inoperative item before departure, the crew consults the MEL first, not the Flight Manual.",
+    ],
+  },
+  "ar-18": {
+    summary: [
+      "Clear, standard radio communication is a safety tool, and this chapter sets out the rules for it under ICAO Annex 10 and Doc 4444 as applied in India. It starts with conventions that are easy to overlook. Common abbreviations such as ILS, QNH, RVR, VOR and ATIS are spoken as letters, not in the phonetic alphabet. Q-codes are three-letter groups that can be a question or an answer. The notes concentrate on the bearing codes. QDM is the magnetic heading to steer to reach the station in still air. QDR gives the magnetic bearing of the aircraft from the station. QTE is the true bearing from the station, and QUJ the true track to it. QFE, QNH and QNE are the altimeter settings, and QFU gives the magnetic direction of the runway in use.",
+      "Messages have a strict order of priority: distress (MAYDAY), urgency (PAN PAN, including medical transports), direction-finding traffic, flight safety, meteorological and finally flight regularity messages. Numbers use the ICAO pronunciations: TREE, FOW-er, FIFE, AIT, NIN-er and DAY-SEE-MAL. Altitudes, heights, cloud heights, visibility and RVR containing whole hundreds or thousands are spoken digit by digit followed by HUNDRED or THOUSAND, so 13 500 becomes ‘one three thousand five hundred’. Flight levels never use that rule: FL180 is ‘flight level one eight zero’. Time is in UTC, normally minutes only unless confusion is possible, and time checks are given to the nearest half minute.",
+      "The rest of the chapter works through the practical procedures. These include standard phraseology from A to W and call signs for aeronautical stations and aircraft, including when an abbreviated call sign may be used. They also cover the read-back of clearances and safety-related instructions, transfer of communication, the readability scale from 1 to 5 and test calls. Further sections deal with radar and traffic phraseology, weather broadcasts (ATIS and VOLMET), distress and urgency calls, position reports and AIREP specials. The last sections cover radio propagation, line of sight, satellite communications and CPDLC.",
+    ],
+    keyPoints: [
+      "Abbreviations like ILS, QNH, RVR, VOR and ATIS are spoken as letters, not phonetically.",
+      "Bearing codes in one line: QDM magnetic heading to steer in nil wind, QDR magnetic bearing from, QTE true bearing from, QUJ true track to.",
+      "QFE gives height above the aerodrome, QNH gives elevation/altitude, QNE is the 1013.2 hPa standard setting, and QFU is the runway direction.",
+      "Priority: distress > urgency > direction finding > flight safety > meteorological > flight regularity.",
+      "ICAO numbers: ZE-RO, WUN, TOO, TREE, FOW-er, FIFE, SIX, SEV-en, AIT, NIN-er, DAY-SEE-MAL.",
+      "Whole hundreds and thousands: say the digits then HUNDRED or THOUSAND (e.g. ‘one one thousand’). Flight levels are always digit by digit.",
+      "Time in UTC, normally minutes only. Time checks to the nearest half minute.",
+    ],
+    traps: [
+      "QDR is a bearing FROM the station, while QDM is TO it. They differ by 180°.",
+      "FL100 is ‘flight level one zero zero’, never ‘flight level one hundred’.",
+      "QTE and QUJ are TRUE, while QDM and QDR are MAGNETIC. Watch the reference in the question.",
+    ],
+  },
+  "ar-24": {
+    summary: [
+      "This chapter is the psychology half of human performance. It explains how pilots take in information, decide and act, and why they make mistakes. Aviation psychology aims to describe, predict, understand and influence behaviour in the aviation system so that flying is safer, more efficient and more comfortable. Human error is treated as inevitable. Most pilot-related errors come from failures of interpersonal skills, communication, decision-making and leadership. The goal is to reduce how often errors happen and to stop them from causing harm. The notes put it this way: a superior pilot uses superior judgment to avoid situations needing superior skill.",
+      "Workload is the mental effort needed to process information. It depends on how difficult the task is, how many tasks run at once or in sequence, and how much time is available. Symptoms of rising workload include funnelling of attention, regression to old habits, mental blocking and eventually panic. The information-processing model follows a stimulus from the senses through perception and attention to a decision and response. It also describes memory. Sensory (iconic) memory holds an image for about half a second to a second. Short-term memory holds about 7 ± 2 items for 10–20 seconds and can be stretched by chunking. Long-term memory comes in semantic, episodic and procedural forms. Situational awareness is the accurate appraisal of yourself, the aircraft and the environment. It is eroded by stress, boredom, fatigue, emotion, poor communication and interruptions.",
+      "The later sections cover decision-making models, communication barriers and crew cooperation, and automation and complacency. They also cover cockpit design, including anthropometry, the eye datum and why analogue dials suit trend information while digital read-outs suit exact values. Stress and arousal, life-event stress scores, fatigue, sleep stages and circadian rhythm come next. On jet lag the notes summarise it as ‘East is least, West is best’: eastbound adaptation is slower. The chapter closes with mental health and a simple risk formula, risk = probability × impact.",
+    ],
+    keyPoints: [
+      "Aviation psychology aims to describe, predict, understand and influence behaviour for safety, efficiency and comfort.",
+      "Most pilot errors stem from failures of interpersonal skills, communication, decision-making and leadership.",
+      "Workload drivers: task difficulty, parallel tasks, tasks in series and time available.",
+      "High-workload symptoms: funnelling, regression, mental blocking, panic.",
+      "Memory: iconic about 0.5–1 s. Short-term about 7 ± 2 items for 10–20 s (expanded by chunking). Long-term is semantic, episodic or procedural.",
+      "Situational awareness killers: stress, boredom, fatigue, emotion, poor communication, interruptions.",
+      "Displays: digital for exact quantities, analogue for trends. Standardisation is the first design rule.",
+      "Risk = probability of occurrence × impact. Jet lag: eastbound adaptation is slower than westbound.",
+    ],
+    traps: [
+      "Short-term memory is limited in CAPACITY (about 7 items) and DURATION (seconds) unless the information is rehearsed.",
+      "Complacency is satisfaction with your own performance combined with unawareness of danger, not simply tiredness.",
+      "A three-pointer altimeter produces MORE misreadings than a single-pointer design.",
+    ],
+  },
+  "ar-25": {
+    summary: [
+      "This chapter covers the physiology half of human performance: what altitude, acceleration and the flight environment do to the body. It starts with the atmosphere and the gas laws, which explain most altitude effects. Boyle’s law means trapped gas in the ears, sinuses, teeth and gut expands as you climb. Dalton’s law of partial pressures explains why the oxygen available to the lungs falls with altitude even though the air stays about 21% oxygen. Henry’s law explains how dissolved nitrogen comes out of solution to cause decompression sickness. In practice, healthy people need supplementary oxygen above about 10,000–12,000 ft, and pilots normally start using it from 10,000 ft.",
+      "Hypoxia is the central topic. Mild hypoxia brings inattention, poor judgement and clumsy movement, often without the pilot noticing, because symptoms can be hard to recognise before performance is already affected. Severe hypoxia leads to coma and death. The time of useful consciousness is the period after the oxygen supply fails during which a pilot can still take corrective action. It is not the time until unconsciousness. It shrinks sharply with altitude, so prevention matters more than cure. Hyperventilation, carbon monoxide, alcohol and blood donation follow. The notes give the 24-hour rule: don’t fly within 24 hours of compressed-air diving to 30 ft or more.",
+      "The second half covers the senses and orientation. Topics include the eye, night vision and visual defects, and the ear and hearing protection. The vestibular system senses rotation with the semicircular canals and linear acceleration with the otoliths. Its blind spots cause the classic illusions. Strong acceleration on take-off feels like a nose-up pitch (the somatogravic illusion), tempting a pilot to push into the ground. A narrow runway makes the pilot feel too high, so they flare too low. A black-hole approach over unlit terrain tends to end short. The rule is simple: in IMC, believe the instruments. G-forces close the chapter. Load factor is 2 G in a level 60° turn and about 3 G at 70°, and tensing the legs and stomach delays greyout and blackout.",
+    ],
+    keyPoints: [
+      "Boyle’s law: trapped gas expands on climb. Dalton’s law: oxygen partial pressure falls with altitude. Henry’s law: nitrogen comes out of solution (DCS).",
+      "Supplementary oxygen is normally used from 10,000 ft.",
+      "Hypoxia impairs judgement early, and symptoms may not be recognised before performance is affected.",
+      "TUC is the time available for useful corrective action, not the time to unconsciousness. It shortens sharply with altitude.",
+      "Don’t fly within 24 hours after compressed-air diving (30 ft or deeper in the notes).",
+      "Somatogravic illusion: acceleration feels like nose-up pitch. Narrow runway: feels high, so the pilot flares low. Black hole: lands short.",
+      "Load factor: 2 G at 60° bank, about 3 G at 70°. Tense the thighs and stomach and ease the back pressure to resist G.",
+    ],
+    traps: [
+      "TUC ends when USEFUL function stops. The pilot may still be conscious for a while afterwards.",
+      "A narrow runway makes the pilot think they are too HIGH, so they round out too LOW.",
+      "Oxygen percentage barely changes with altitude. Its partial pressure is what falls.",
+    ],
+  },
 };
