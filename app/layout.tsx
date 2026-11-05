@@ -4,6 +4,8 @@ import "./globals.css";
 import "./gini-reader.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "./components/Navbar";
+import { CPL_SUBJECTS } from "@/lib/subjects";
+import { isIndexableSubject } from "@/lib/indexability";
 import Footer from "./components/Footer";
 import LiveClassInvitation from "./components/LiveClassInvitation";
 import ProgressSync from "./components/ProgressSync";
@@ -113,13 +115,18 @@ const JSON_LD = {
   ],
 };
 
+// The CPL dropdown lists only subjects whose page is indexable (see the same
+// filter in Footer.tsx). Computed here because the predicate reads the
+// filesystem and Navbar is a client component.
+const NAV_CPL_SUBJECT_IDS = CPL_SUBJECTS.filter(isIndexableSubject).map(s => s.id);
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`h-full ${inter.className}`}>
       <body className="min-h-full flex flex-col" style={{ background: "#0a0f14" }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <ProgressSync />
-        <Navbar />
+        <Navbar cplSubjectIds={NAV_CPL_SUBJECT_IDS} />
         <main className="flex-1">{children}</main>
         <LiveClassInvitation />
         <Footer />

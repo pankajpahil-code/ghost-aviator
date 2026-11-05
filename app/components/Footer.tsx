@@ -2,12 +2,20 @@ import Link from "next/link";
 import { Ghost, Send, Phone } from "lucide-react";
 import EmailCapture from "./EmailCapture";
 import { CPL_SUBJECTS, ATPL_SUBJECTS } from "@/lib/subjects";
+import { isIndexableSubject } from "@/lib/indexability";
 import { atplStudyLabel } from "@/lib/atpl-syllabus";
 import { OFFICIAL_CHANNELS } from "@/lib/site";
 
 // The footer's "Follow Ghost Aviator" row: the channels flagged `footer` in
 // lib/site.ts, in that order, plus the /official hub that lists every account.
 const FOOTER_SOCIALS = OFFICIAL_CHANNELS.filter(c => c.footer);
+
+// CPL subjects worth a site-wide link: the same predicate that decides whether
+// the subject page is indexable. A subject with no published notes or lectures
+// yet (today: Flight Planning) is noindex, and linking it from all ~680 pages
+// only spent Google's crawl on a page we ask it not to index (SEO diagnosis,
+// 5 Nov 2026). It reappears here on its own the day it gets content.
+const FOOTER_CPL_SUBJECTS = CPL_SUBJECTS.filter(isIndexableSubject);
 
 export default function Footer() {
   return (
@@ -79,7 +87,7 @@ export default function Footer() {
           </div>
 
           {([
-            ["cpl", CPL_SUBJECTS],
+            ["cpl", FOOTER_CPL_SUBJECTS],
             ["atpl", ATPL_SUBJECTS],
           ] as const).map(([track, subjects]) => (
             <nav key={track} aria-label={`${track.toUpperCase()} subjects`}>

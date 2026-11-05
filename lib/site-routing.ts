@@ -78,13 +78,26 @@ export const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
 ];
 
-// Cache-Control for prerendered public content routes.
+// Cache-Control for prerendered public content routes (HTML and the Next
+// prefetch .txt files that sit beside it).
 // max-age=300: browsers reuse a page for 5 min (Iron Rule 1: corrections reach students fast).
-// s-maxage=31536000: pin the Vercel CDN copy for a year. A bare max-age=300 can let the CDN
-// treat the page as stale after 5 minutes and go back to the ISR cache - an ISR Read, the
-// metered quantity on Hobby (1M/month). These pages only change on deploy, and every deploy
-// starts with a fresh CDN cache, so a long s-maxage cannot serve stale answers after a publish.
-export const STATIC_CACHE = "public, max-age=300, s-maxage=31536000";
+// s-maxage=3600 + stale-while-revalidate=86400: a shared cache keeps a copy for an
+// hour and may serve it for a day more while it refetches in the background.
+//
+// This was `s-maxage=31536000` (one year), written for Vercel, where every
+// deploy starts with an empty CDN. Cloudflare's cache SURVIVES deploys, so a
+// year-long s-maxage pinned stale HTML, and a 404 for a Next prefetch file
+// (/cpl/__next.cpl.__PAGE__.txt), at the edge for up to a year: about 30% of
+// edge requests were such cached 404s (SEO diagnosis, 5 Nov 2026). One hour
+// bounds how long any deploy can take to reach every visitor and Googlebot.
+// Hashed build files (/_next/static/*) are immutable and keep their one-year
+// cache; that rule is written in tools/cloudflare/build.mts.
+export const STATIC_CACHE = "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
+
+// Cache-Control for 404s made by the Worker. It used to inherit STATIC_CACHE
+// for /cpl/* paths, i.e. a year at the edge. A missing file must stop being
+// missing as soon as a deploy adds it, so a 404 is only reused for a minute.
+export const NOT_FOUND_CACHE = "public, max-age=0, s-maxage=60";
 
 
 export async function headerRules(): Promise<HeaderRule[]> {
