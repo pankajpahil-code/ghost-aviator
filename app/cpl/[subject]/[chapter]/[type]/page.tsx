@@ -18,6 +18,7 @@ import ChapterTestPage        from "@/app/components/content/ChapterTestPage";
 import ChapterQuizPage        from "@/app/components/content/ChapterQuizPage";
 import HtmlNotesPage          from "@/app/components/content/HtmlNotesPage";
 import VideoPage              from "@/app/components/content/VideoPage";
+import { getVideoStudy }      from "@/lib/video-study";
 import ComingSoonPage         from "@/app/components/content/ComingSoonPage";
 import ChapterStudyLinks      from "@/app/components/content/ChapterStudyLinks";
 
@@ -260,6 +261,7 @@ export default async function Page({
             hasNotes={isIndexableChapterRoute(subject.id, chapter.id, "notes")}
             hasQuestions={isIndexableChapterRoute(subject.id, chapter.id, "questions")}
             notesHeadings={notesSectionHeadings(subject.id, chapter.id, chapter.title)}
+            study={getVideoStudy(subject.id, chapter.id)}
           />
         </>
       );

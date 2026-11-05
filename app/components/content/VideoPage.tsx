@@ -6,6 +6,7 @@ import { ChevronRight, ChevronLeft, BookOpen, ListChecks, HelpCircle } from "luc
 import type { Subject, Chapter } from "@/lib/subjects";
 import type { ChapterVideo } from "@/lib/chapter-videos";
 import VideoLectureCard from "@/app/components/content/VideoLectureCard";
+import type { VideoStudy } from "@/lib/video-study";
 
 /** One lecture part, with the runtime read off YouTube (null when unknown). */
 export type LecturePart = { id: string; label: string; minutes: number | null };
@@ -25,11 +26,14 @@ type Props = {
   /** Section headings of this chapter's published notes, verbatim
    *  (lib/notes-inline.ts notesSectionHeadings). Empty when there are none. */
   notesHeadings?: string[];
+  /** Summary, key exam points and traps for this chapter (lib/video-study),
+   *  written from the chapter's notes. Null where none is written yet. */
+  study?: VideoStudy | null;
 };
 
 export default function VideoPage({
   track, subject, chapter, prevChapter, nextChapter, videos,
-  parts = [], hasNotes = true, hasQuestions = true, notesHeadings = [],
+  parts = [], hasNotes = true, hasQuestions = true, notesHeadings = [], study = null,
 }: Props) {
   const totalMinutes = parts.reduce((sum, p) => sum + (p.minutes ?? 0), 0);
   return (
@@ -114,6 +118,46 @@ export default function VideoPage({
             {" · free, no sign-up."}
           </p>
         </div>
+
+        {/* Study guide: summary, key exam points, traps (SEO diagnosis, 5 Nov
+            2026: 91 of 95 CPL watch pages had under 300 words of their own).
+            Written from the chapter's notes, not from the video, and labelled
+            so. Visible text in the server HTML, like everything else here. */}
+        {study && (
+          <section className="rounded-2xl p-5 mb-6" aria-labelledby="chapter-study-summary"
+                   style={{ background: "rgba(17,24,32,0.7)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <h2 id="chapter-study-summary" className="text-sm font-black mb-1" style={{ color: subject.color, letterSpacing: "0.06em" }}>
+              CHAPTER {chapter.number} IN BRIEF
+            </h2>
+            <p className="text-xs mt-0 mb-3" style={{ color: "#64748b" }}>
+              A summary of the Chapter {chapter.number} notes, to read before or after the lecture.
+            </p>
+            {study.summary.map((para, i) => (
+              <p key={i} className="text-sm leading-relaxed mb-3" style={{ color: "#94a3b8" }}>{para}</p>
+            ))}
+
+            <h3 className="text-sm font-black mt-5 mb-2 text-white">Key exam points</h3>
+            <ul className="m-0 pl-5 space-y-1.5">
+              {study.keyPoints.map(k => (
+                <li key={k} className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{k}</li>
+              ))}
+            </ul>
+
+            <h3 className="text-sm font-black mt-5 mb-2 text-white">Common exam traps</h3>
+            <ul className="m-0 pl-5 space-y-1.5">
+              {study.traps.map(t => (
+                <li key={t} className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{t}</li>
+              ))}
+            </ul>
+
+            <p className="text-sm mt-5 mb-0">
+              <Link href={hasNotes ? `/${track}/${subject.id}/${chapter.id}/notes` : `/${track}/${subject.id}`}
+                    className="font-bold no-underline hover:underline" style={{ color: subject.color }}>
+                {hasNotes ? `Read the full notes: Chapter ${chapter.number}, ${chapter.title} →` : `All ${subject.name} chapters →`}
+              </Link>
+            </p>
+          </section>
+        )}
 
         {/* The chapter notes' own section headings (ticket #4). Read off the
             published notes.html, never written for this page — so the watch
