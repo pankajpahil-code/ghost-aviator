@@ -3,6 +3,7 @@ import { AIR_REGULATIONS } from "./air-regulations";
 import { AIR_NAVIGATION } from "./air-navigation";
 import { METEOROLOGY } from "./meteorology";
 import { INSTRUMENTATION } from "./instrumentation";
+import { RADIO_NAVIGATION } from "./radio-navigation";
 
 export type { VideoStudy } from "./types";
 
@@ -12,6 +13,7 @@ const BY_SUBJECT: Record<string, VideoStudyMap> = {
   "air-navigation": AIR_NAVIGATION,
   "meteorology": METEOROLOGY,
   "instrumentation": INSTRUMENTATION,
+  "radio-navigation": RADIO_NAVIGATION,
 };
 
 /** The study guide for a CPL chapter's video page, or null if none is written yet. */
