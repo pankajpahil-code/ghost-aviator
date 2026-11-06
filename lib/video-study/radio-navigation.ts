@@ -1,0 +1,398 @@
+import type { VideoStudyMap } from "./types";
+
+// Chapter summaries written from the site's own notes for each chapter.
+// Shown on the matching /cpl/<subject>/<chapter>/video page.
+export const RADIO_NAVIGATION: VideoStudyMap = {
+  "rnav-1": {
+    summary: [
+      "Every radio navigation aid in the syllabus uses electromagnetic waves, so this opening chapter covers the physics they all share. A radio wave is made of an electric field and a magnetic field at right angles to each other and to the direction of travel. Polarisation is defined by the plane of the electric field. A receiving aerial picks up most signal when it lies in the same plane as that field. Circular polarisation, used by some weather radars, rejects rain clutter and doesn’t depend on how the receiving aerial is aligned.",
+      "The chapter then sets up the basic arithmetic. Frequency is the number of cycles per second and the period is the time for one cycle (f = 1/τ). Wavelength is the distance one cycle covers, so λ = c/f. The speed of radio waves is 300 × 10⁶ m/s, or 162,000 NM per second, which gives the exam shortcut λ (metres) = 300 ÷ f (MHz). The radio spectrum runs from 3 kHz to 300 GHz in eight bands, each ten times the frequency of the one below. In aviation, LF and MF carry NDBs, HF long-range voice, VHF voice, VOR and the ILS localiser. UHF carries the glidepath, DME, SSR and GNSS, and SHF carries weather radar and the radio altimeter.",
+      "The final section introduces phase comparison, the method behind VOR bearings and other aids. Two signals on the same frequency are compared, and the difference between their phases gives the information. The notes show graphical and mathematical methods and the rule that a negative answer has 360° added. ICAO’s position is also noted: terrestrial aids must be kept as a backup to satellite navigation.",
+    ],
+    keyPoints: [
+      "An EM wave has electric and magnetic fields at 90° to each other and to the direction of travel. Polarisation = plane of the electric field.",
+      "Best reception comes when the receiving aerial is in the plane of polarisation. Circular polarisation reduces rain clutter.",
+      "c = 300 × 10⁶ m/s = 162,000 NM/s.",
+      "f = 1/τ and λ = c/f. Exam shortcut: λ (m) = 300 ÷ f (MHz).",
+      "Spectrum 3 kHz–300 GHz in eight bands: VLF, LF, MF, HF, VHF, UHF, SHF, EHF.",
+      "VHF (30–300 MHz): VHF comms, VOR, ILS localiser. UHF (300–3000 MHz): glidepath, DME, SSR, GNSS. SHF: weather radar, radio altimeter.",
+      "Phase comparison needs signals on the same frequency. Phase difference = reference − variable (+360° if negative).",
+    ],
+    traps: [
+      "The ILS glidepath is UHF, although the localiser it is paired with is VHF.",
+      "Higher frequency means SHORTER wavelength. 300 MHz is 1 m, not 1 km.",
+      "Signals can only be phase-compared if they are on the same frequency.",
+    ],
+  },
+  "rnav-2": {
+    summary: [
+      "How far a radio signal travels, and by what path, depends mainly on its frequency. This chapter explains why. It starts with what weakens a signal. Attenuation comes from absorption and the inverse square law, so doubling the range needs four times the power. Static interference and fading also degrade signals, while transmitter power, receiver sensitivity and aerial directivity all affect range. There are three propagation paths: surface wave, space wave and sky wave.",
+      "The surface wave follows the Earth’s curvature by diffraction and is the useful path at LF and lower MF, roughly 30 kHz to 2 MHz. Its range is greater over sea than land and at lower frequencies. The space wave is line-of-sight, so VHF and above are limited to about 1.23 × (√h₁ + √h₂) nautical miles, with heights in feet. The sky wave is refracted back to Earth by the ionosphere. This layer of ionised gas begins at about 60 km, with D, E and F layers whose ionisation peaks in the early afternoon. The D layer absorbs lower frequencies by day and largely disappears at night. Sky wave gives HF its long range and causes skip distance and dead space. The notes give maximum single-hop ranges of about 1350 NM off the E layer and 2200 NM off the F layer.",
+      "HF frequency planning uses the maximum usable frequency, with the optimum working frequency about 0.85 × MUF. At night roughly half the daytime frequency is needed. The chapter closes with super-refraction, which can extend VHF range by up to about 40% and form ducts over warm, dry air above a cool, moist surface, and with sub-refraction, which shortens range.",
+    ],
+    keyPoints: [
+      "Inverse square law: doubling the range needs ×4 power.",
+      "Surface wave: the useful path at LF and lower MF (about 30 kHz–2 MHz). Range is greater over sea and at lower frequency.",
+      "Space wave (VHF and above): line of sight, range ≈ 1.23 × (√h₁ + √h₂) NM with heights in feet.",
+      "Ionosphere: base about 60 km. D (~75 km), E (~125 km) and F (~225 km) layers.",
+      "Ionisation peaks around 1400 local time. The D layer absorbs by day and largely disappears at night.",
+      "Maximum single-hop sky wave in the notes: E layer about 1350 NM, F layer about 2200 NM.",
+      "OWF ≈ 0.85 × MUF. Night frequency is about half the day frequency.",
+      "Super-refraction: up to about +40% VHF range, with ducting in inversions over moist surfaces.",
+    ],
+    traps: [
+      "Skip distance is measured from the transmitter to the first sky-wave return. Dead space is the gap between the end of surface-wave coverage and that point.",
+      "At night HF needs a LOWER frequency, because ionisation weakens and higher frequencies pass through.",
+      "VHF range is limited by line of sight, not by power. Climbing extends it much more than adding power.",
+    ],
+  },
+  "rnav-3": {
+    summary: [
+      "A plain carrier wave carries no information. Modulation is how speech, identification codes or navigation signals are put onto it. This chapter covers each method and where it is used. Keyed modulation switches the carrier on and off in Morse, which is how NDBs send their ident. Amplitude modulation (AM) varies the carrier’s amplitude with the audio signal. Combining the audio with the carrier produces upper and lower sidebands, at the carrier frequency plus and minus the audio frequency. AM bandwidth is therefore twice the highest audio frequency. In the notes’ fully modulated example, two-thirds of the power is in the carrier and only one-third, the sidebands, carries information.",
+      "Single sideband (SSB) transmits just one sideband with the carrier suppressed. That doubles the number of channels, improves signal-to-noise and needs less power, which is why it is used for HF voice. In frequency modulation (FM), the audio amplitude sets how far the carrier frequency swings and the audio frequency sets how fast. FM is robust against noise but needs wide bandwidth. Even narrow-band FM at about 8 kHz exceeds the 6 kHz aeronautical channel limit given in the notes, so aviation voice stays on AM. Phase modulation shifts the carrier’s phase. In digital form as phase-shift keying it carries GPS (BPSK) and MLS (DPSK) data. Pulse modulation sends brief bursts and is used by radar, DME and SSR.",
+      "The chapter ends with ICAO emission designators, three symbols for the modulation type, the modulating signal and the information carried. A3E is VHF voice, J3E is HF single-sideband voice and P0N is DME’s pulsed ranging with no information content.",
+    ],
+    keyPoints: [
+      "Keyed (on/off) modulation: Morse idents, for example from NDBs.",
+      "AM: audio amplitude → carrier amplitude. Sidebands at RF ± AF. Bandwidth = 2 × AF.",
+      "In the notes’ AM power split, the carrier holds 2/3 and each sideband 1/6. Only the sidebands carry information.",
+      "SSB (J3E) for HF voice: twice the channels, better signal-to-noise, less power.",
+      "FM: audio amplitude → frequency deviation and audio frequency → rate of deviation. Too wide for 6 kHz aviation voice channels.",
+      "Phase modulation: GPS uses BPSK and MLS uses DPSK.",
+      "Pulse modulation: primary radar, DME and SSR.",
+      "Designators: A3E = VHF RTF, J3E = HF SSB RTF, P0N = DME ranging pulses.",
+    ],
+    traps: [
+      "In FM, the audio’s AMPLITUDE sets the size of the frequency swing. The audio’s frequency sets how often it swings.",
+      "AM bandwidth is twice the audio frequency, not equal to it.",
+      "J3E has the carrier suppressed. Don’t confuse it with A3E double-sideband AM.",
+    ],
+  },
+  "rnav-4": {
+    summary: [
+      "An aerial converts electrical energy into radio waves and back again. Its size and shape decide how well it does this and in which directions. This chapter starts with the two basic types. The half-wave dipole is a centre-fed conductor half a wavelength long that radiates most strongly at right angles to its length. The quarter-wave Marconi aerial is mounted on a ground plane, which acts as the missing half. Marconi aerials are used throughout aircraft, where the metal skin provides the ground plane.",
+      "Signals travel along a real conductor slightly slower than in free space, so a practical aerial is cut about 5% shorter than its theoretical length. This velocity factor is about 0.95. The notes work through examples: at 75 MHz, for a marker beacon, a quarter-wave aerial is about 95 cm, and at 125 MHz a half-wave dipole is about 114 cm. Feeders carry the signal between transmitter and aerial. They change with frequency: simple wire at LF and MF, twin wire at HF and VHF, coaxial cable at UHF and hollow waveguide above that. A waveguide’s internal dimension is half a wavelength.",
+      "The second half covers directivity, shown on polar diagrams. A dipole’s pattern is a doughnut shape, or a figure-of-eight in section. Adding a reflector behind and directors in front, as in a Yagi array, concentrates the beam forward. An ILS localiser array of 16 or 24 elements spaced half a wavelength apart forms two narrow lobes. The ADF loop has a figure-of-eight pattern whose sharp nulls are used for direction finding. Radar dishes and modern phased arrays produce narrow beams. Phased arrays give fewer side lobes, need less power and give better resolution.",
+    ],
+    keyPoints: [
+      "Half-wave dipole = λ/2, centre-fed. Marconi = λ/4 above a ground plane, the usual aircraft aerial.",
+      "Velocity factor about 0.95: a practical aerial is about 5% shorter than theory.",
+      "Lengths: dipole ≈ 0.95 × 150/f(MHz) m. Marconi ≈ 0.95 × 75/f(MHz) m.",
+      "Feeders by frequency: wire (LF/MF) → twin wire (HF/VHF) → coax (UHF) → waveguide (SHF and above).",
+      "Waveguide internal dimension = λ/2.",
+      "Reflector: about 5% longer than the aerial, λ/4 behind it. Directors are shorter and in front, narrowing the beam.",
+      "The ADF loop has a figure-of-eight pattern. Its sharp null gives bearing but with 180° ambiguity.",
+      "Phased array advantages: narrower beam, fewer side lobes, less power, narrower pulse and better resolution.",
+    ],
+    traps: [
+      "The ADF loop uses the NULL, not the maximum, because the null is sharper.",
+      "The reflector is LONGER than the aerial and the directors are SHORTER. The two are easily swapped in questions.",
+      "Velocity factor makes a real aerial shorter than λ/2 or λ/4, not longer.",
+    ],
+  },
+  "rnav-5": {
+    summary: [
+      "Doppler navigation measures the aircraft’s own groundspeed and drift by bouncing radar beams off the ground and timing nothing at all. It reads the change in frequency. The chapter explains the Doppler principle with the analogy of waves on a beach. When source and receiver close on each other, the waves are compressed and the received frequency rises. When they separate, the frequency falls. The Doppler shift is the received frequency minus the transmitted frequency, and it is proportional to the relative speed.",
+      "The airborne system uses a slotted waveguide aerial, shared by a screened transmitter and receiver, to send narrow beams down towards the ground. The usual layout is the four-beam Janus array, named after the Roman god who faces both ways. Two beams point forward and two aft. When the aircraft moves forward, the forward beams return a higher frequency and the aft beams a lower one. The size of that fore-and-aft shift gives groundspeed. If the aircraft is drifting, the port and starboard beams show different shifts, and that difference gives the drift angle. With no drift, the shifts are equal and opposite.",
+      "The navigation computer combines groundspeed, drift and a heading input to give a continuous dead-reckoning position. The weak points are the accuracy of that heading reference and loss of signal over calm water. A smooth surface reflects the beams away like a mirror instead of scattering them back. Modern Doppler sensors are integrated with IRS, VOR/DME and GPS. The same principle appears elsewhere, in police radar, Doppler VOR, VDF and weather radar.",
+    ],
+    keyPoints: [
+      "Doppler shift = f received − f transmitted. Closing → higher frequency. Opening → lower frequency.",
+      "The shift is proportional to the relative velocity along the beam.",
+      "Janus array: two forward and two aft beams from a slotted waveguide aerial.",
+      "Groundspeed comes from the size of the fore-and-aft shift. Drift comes from the port–starboard difference.",
+      "Zero drift: the fore and aft shifts are equal and opposite.",
+      "Navigation computer inputs: groundspeed + drift + heading → position.",
+      "Limitations: accuracy of the heading reference and signal loss over calm water (specular reflection).",
+    ],
+    traps: [
+      "Doppler gives GROUNDSPEED and drift directly, not airspeed or wind. Wind has to be derived using TAS and heading.",
+      "Calm water is the problem, not rough sea. Rough water scatters energy back and gives a good return.",
+      "Position accuracy is only as good as the heading input. Doppler itself measures no direction relative to north.",
+    ],
+  },
+  "rnav-6": {
+    summary: [
+      "VHF direction finding (VDF) puts the direction-finding equipment on the ground instead of in the aircraft. The pilot just transmits on the published VHF frequency, and the ground station measures the bearing of the signal and passes it back. So the only airborne equipment needed is an ordinary VHF radio. The chapter starts with the Q-codes used to ask for bearings. QDM is the magnetic heading to steer to reach the station in still air, used for homing and let-downs. QDR is the magnetic bearing from the station. QTE is the true bearing from the station, and QUJ the true track to it, which is rarely used.",
+      "Each bearing is given an accuracy class. Class A is within ±2°, B within ±5°, C within ±10°, and D is worse than that. If no class is stated, assume Class B. The notes add that modern Doppler VDF stations can achieve about ±0.5°. The equipment works in the 118–137 MHz band with vertically polarised A3E voice signals. The ground aerial senses direction either from the signal’s phase across an aerial array or, in the Doppler type, from a rotating aerial’s Doppler effect.",
+      "Because it uses VHF, VDF range is limited to line of sight, and the chapter works several height-and-range examples. Accuracy can be degraded by propagation and site errors, the aircraft’s attitude, the overhead effect close to the station, multipath reflections and simultaneous transmissions. Where several stations are linked, an automatic triangulation fix can be obtained on the emergency frequency 121.5 MHz, but its availability isn’t guaranteed.",
+    ],
+    keyPoints: [
+      "VDF needs only a standard VHF radio in the aircraft. The bearing is measured on the ground.",
+      "QDM = magnetic heading TO the station (nil wind). QDR = magnetic bearing FROM the station.",
+      "QTE = true bearing FROM the station. QUJ = true track TO the station.",
+      "Accuracy classes: A ±2°, B ±5°, C ±10°, D worse than ±10°. If no class is given, assume B.",
+      "Band 118–137 MHz, A3E emission, vertically polarised.",
+      "Range is line of sight and grows with both aircraft and station height.",
+      "Errors: propagation, site, aircraft attitude, overhead effect, multipath and simultaneous transmissions.",
+      "Auto-triangulation fixes are available on 121.5 MHz only where provided, and not guaranteed.",
+    ],
+    traps: [
+      "QDM and QDR are reciprocals and both magnetic. QTE is TRUE, so convert with variation at the STATION.",
+      "QDM is a heading in nil wind. To track inbound in a crosswind you still need to apply drift.",
+      "No class stated means Class B (±5°), not Class A.",
+    ],
+  },
+  "rnav-7": {
+    summary: [
+      "The non-directional beacon (NDB) and the airborne automatic direction finder (ADF) are the oldest radio aids still in common use. The beacon is a simple ground transmitter in the 190–1750 kHz LF/MF band. It radiates the same vertically polarised surface-wave signal in all directions, and the ADF in the aircraft works out which way it is coming from. Range depends heavily on power. The notes’ rules of thumb are about 3√P nautical miles over water and 2√P over land, with power in watts. Locators used for approaches have ranges of 10–25 NM and en-route beacons 50 NM or more.",
+      "Inside the ADF, a loop aerial has a figure-of-eight pattern with two sharp nulls. That gives a bearing, but with 180° ambiguity. Adding a sense aerial produces a cardioid with a single null, which resolves it. Modern sets switch between two cardioids at about 120 Hz, and a fixed loop with a goniometer replaces the rotating loop. Emission types matter for tuning. An N0NA1A beacon identifies by keying the carrier, so the beat frequency oscillator (BFO) must stay on. An N0NA2A beacon uses a modulated tone, so the BFO is needed only while tuning.",
+      "The practical half covers the relative bearing indicator and the RMI, homing, tracking inbound and outbound, drift assessment, holding and NDB approaches. It closes with the errors. Static comes from precipitation or thunderstorms. Night effect is sky-wave contamination, worst at dawn and dusk. Other errors are station interference, mountain effect and coastal refraction, which makes the aircraft appear closer to the coast than it is. Quadrantal error is greatest at 045°, 135°, 225° and 315° relative. Dip error arises in banked turns. Most ADFs give no failure warning at all. Stated accuracy is ±5° within the designated operational coverage, by day only.",
+    ],
+    keyPoints: [
+      "NDB: 190–1750 kHz (LF/MF), vertically polarised, surface wave.",
+      "Range rules in the notes: about 3√P NM over water and 2√P NM over land. Locator 10–25 NM, en route 50+ NM.",
+      "Loop alone = figure-of-eight with two nulls (ambiguous). Loop + sense aerial = cardioid with one null.",
+      "N0NA1A: BFO on for tuning, identifying and monitoring. N0NA2A: BFO on for tuning only.",
+      "RBI reads relative bearing (add heading for magnetic bearing). RMI reads magnetic bearing directly. Needle head = QDM, tail = QDR.",
+      "Night effect (sky wave) is worst at dawn and dusk. The DOC protection does not apply at night.",
+      "Quadrantal error is greatest at relative bearings 045°, 135°, 225° and 315°, and zero at 000°, 090°, 180° and 270°.",
+      "Accuracy is ±5° within the DOC by day. Most ADFs have no failure flag.",
+    ],
+    traps: [
+      "Coastal refraction makes the aircraft appear CLOSER to the coast. Use beacons sited on the coast and cross the coastline near 90°.",
+      "Thunderstorm static can swing the needle towards a Cb, so a wandering needle may be pointing at the storm.",
+      "With an N0NA1A beacon and the BFO off you hear nothing and may wrongly conclude the beacon is off the air.",
+      "Dip error occurs in banked turns, so read ADF bearings in level flight.",
+    ],
+  },
+  "rnav-8": {
+    summary: [
+      "The VHF omni-directional range (VOR) gives the aircraft its magnetic bearing from the station, called a radial. It does this by phase comparison. The station sends a reference 30 Hz signal that has the same phase in all directions, and a variable 30 Hz signal whose phase changes with direction. The phase difference between them is the radial. In the conventional VOR the variable signal comes from a rotating pattern. In the Doppler VOR the roles of the two signals are reversed and the variable signal is generated by the Doppler effect around a ring of aerials, which greatly reduces site error. VORs operate between 108.0 and 117.95 MHz with 160 channels. The 40 channels in the 108–112 MHz block are interleaved with ILS localiser frequencies.",
+      "Each VOR identifies in Morse with three letters, roughly every 10 seconds, on a 1020 Hz tone. A monitor shuts the station down or removes its ident if the bearing shifts by more than 1°. Range is line of sight, and the designated operational coverage applies day and night. The notes give site error of about ±1° and overall system accuracy of about ±5°. A VOT test transmitter lets the receiver be checked on the ground to within ±4°. Close above the station there is a cone of confusion where the signal is unusable: the needle swings and the OFF flag shows.",
+      "The display section is where most mistakes happen. The CDI shows deviation from the course set on the OBS at 2° per dot, with full-scale deflection at 10°. It is not affected by heading. So if the OBS is set to the reciprocal of the intended track, the needle senses are reversed. The RMI shows magnetic bearing to the station directly. The HSI combines both on a heading-oriented compass card. Variation is applied at the station, not at the aircraft.",
+    ],
+    keyPoints: [
+      "VOR principle: phase comparison of a 30 Hz reference signal with a 30 Hz variable signal. The difference is the radial.",
+      "Band 108.0–117.95 MHz, 160 channels. The 108–112 MHz block is shared (interleaved) with ILS.",
+      "Ident: three-letter Morse about every 10 s on 1020 Hz. The monitor acts on a 1° bearing shift.",
+      "Doppler VOR greatly reduces site error. The notes give site error of about ±1° and total system error of about ±5°.",
+      "VOT ground check tolerance: ±4°.",
+      "A radial is the magnetic bearing FROM the station. Variation is applied at the VOR, not the aircraft.",
+      "CDI: 2°/dot with full scale at 10°, independent of heading. The HSI rotates with heading.",
+      "Cone of confusion overhead (about 50° from vertical in the notes): the OFF flag shows and indications are unreliable.",
+    ],
+    traps: [
+      "The CDI doesn’t know your heading. With the OBS set to the reciprocal of your track, ‘fly towards the needle’ takes you the wrong way.",
+      "Convert a radial using variation at the VOR station, not at the aircraft’s position.",
+      "TO/FROM shows which side of the station you are on relative to the selected course, not which way the aircraft is heading.",
+    ],
+  },
+  "rnav-9": {
+    summary: [
+      "The instrument landing system (ILS) is a precision approach aid. It gives the pilot guidance in azimuth and elevation down to low minima. This chapter covers each ground component. The localiser transmits on VHF between 108 and 111.975 MHz, using the odd-tenth channels, from an aerial array at the far end of the runway. The glide path transmits on UHF between 329.15 and 335 MHz from an aerial beside the touchdown zone. Its frequency is paired with the localiser, so one selection tunes both. Marker beacons on 75 MHz, or a DME zero-referenced to the threshold, give range checks.",
+      "Both the localiser and the glide path work by comparing two lobes. One is modulated at 90 Hz and the other at 150 Hz. On the centreline or glide path the depth of modulation of the two is equal (DDM zero), and any imbalance moves the needle. Seen on approach, the 90 Hz lobe is to the left of the localiser and above the glide path. Coverage is 25 NM within ±10° of the centreline and 17 NM within ±35° for the localiser. For the glide path it is 10 NM within ±8° in azimuth and from 0.45 to 1.75 times the glide-path angle vertically. False glide paths exist above the true one, the first at about twice the angle. That is why the glide path is intercepted from below.",
+      "The marker beacons are identified by colour and tone. The outer marker is blue with 400 Hz dashes, the middle marker amber with alternating dots and dashes at 1300 Hz, and the inner marker white with 3000 Hz dots. On the CDI, each localiser dot is 0.5° (full scale 2.5°) and each glide-path dot about 0.14° (full scale 0.7°). The chapter ends with ILS categories, monitoring and two rules of thumb for a 3° path: about 300 ft of height per NM, and a descent rate of about 5 × groundspeed.",
+    ],
+    keyPoints: [
+      "Localiser: VHF 108–111.975 MHz (odd tenths), 40 channels, with the aerial at the upwind end of the runway.",
+      "Glide path: UHF 329.15–335 MHz, frequency-paired with the localiser, with the aerial beside the touchdown zone.",
+      "Both use 90 Hz and 150 Hz lobes. DDM = 0 on course or path. The 90 Hz lobe is left of the localiser and above the glide path.",
+      "Coverage: localiser 25 NM ±10° and 17 NM ±35°. Glide path 10 NM ±8°, from 0.45θ to 1.75θ.",
+      "The first false glide path is at about 2θ (about 6° for a 3° path), so intercept from below.",
+      "Markers on 75 MHz: OM blue 400 Hz dashes, MM amber 1300 Hz dot-dash, IM white 3000 Hz dots.",
+      "CDI: localiser 0.5°/dot (full scale 2.5°), glide path 0.14°/dot (full scale 0.7°).",
+      "Rules of thumb for 3°: height ≈ 300 ft per NM, rate of descent ≈ 5 × groundspeed (ft/min).",
+    ],
+    traps: [
+      "The glide path is UHF, not VHF. Only the localiser is selected, and the glide path follows by pairing.",
+      "Intercepting the glide path from ABOVE risks capturing a false glide path at about twice the angle.",
+      "The localiser is much more sensitive than a VOR: a full-scale deflection is 2.5°, not 10°.",
+      "The ILS ident starts with ‘I’. A continuous tone or no ident means the system is under maintenance or unusable.",
+    ],
+  },
+  "rnav-10": {
+    summary: [
+      "The microwave landing system (MLS) was designed as ICAO’s successor to the ILS. This short chapter explains why a replacement was wanted, how MLS works and why few installations were ever built. It starts with the ILS’s weaknesses. There are only 40 channels worldwide. The narrow fixed beams force every aircraft onto the same straight-in path, so traffic has to be sequenced and delays build up. There is no provision for curved or steep approaches for helicopters and short take-off aircraft. Sites need large areas of flat, cleared ground. Vehicles, taxiing aircraft and buildings can bend the beams.",
+      "MLS answers these by moving to SHF, at 5031–5090.7 MHz, with 200 channels. It uses one frequency per channel and time-division multiplexing, so all the ground transmissions share a synchronised timetable. Guidance comes from the time-referenced scanning beam (TRSB) principle. The azimuth beam sweeps ‘to’ and then ‘fro’ across the coverage, and the aircraft receiver measures the time between the two passes. That interval converts directly into the aircraft’s angle from the centreline. An elevation beam sweeps up and down in the same way, and a precision DME (DME/P, accurate to about 100 ft) gives range. A back-azimuth function supports go-arounds and departures.",
+      "Azimuth coverage is ±40° of the runway, with glide paths selectable from 0.9° to 20°. The notes give a usable range of about 20 NM, extendable to 30 NM, and coverage up to 20,000 ft. Pilots can therefore fly segmented or curved approaches suited to noise abatement or their aircraft type. The airborne side uses familiar cross-bar displays relative to the selected course, often in multi-mode receivers that also handle ILS and GPS.",
+    ],
+    keyPoints: [
+      "MLS was designed to replace ILS. Few were installed, and they co-exist with ILS.",
+      "ILS weaknesses: only 40 channels, one fixed narrow path, demanding sites and beam bending from vehicles and buildings.",
+      "MLS: SHF 5031–5090.7 MHz, 200 channels, time-division multiplexed on one frequency per channel.",
+      "TRSB: the time between the ‘to’ and ‘fro’ sweeps gives azimuth angle. The up/down sweep gives elevation angle.",
+      "Coverage: azimuth ±40°, selectable glide path 0.9°–20°, range about 20 NM (up to 30 NM) in the notes.",
+      "Range from a built-in precision DME (DME/P, about ±100 ft for Cat II/III).",
+      "Allows curved and segmented approaches, with a back-azimuth function for missed approaches and departures.",
+    ],
+    traps: [
+      "MLS measures angle by TIME between beam sweeps, not by comparing 90 Hz and 150 Hz lobes as ILS does.",
+      "MLS works at SHF (around 5 GHz), not UHF.",
+      "Displays show deviation from the SELECTED course and path, which needn’t be the runway centreline.",
+    ],
+  },
+  "rnav-11": {
+    summary: [
+      "Radar (radio detection and ranging) finds a target and measures how far away it is by timing an echo. This chapter lays down the theory used in the ground radar, weather radar, SSR and DME chapters that follow. Primary radar sends a pulse and listens for the reflection, so it needs nothing from the target. Secondary radar sends an interrogation that a transponder on the target answers on a different frequency. SSR and DME are secondary systems. Radar uses VHF and higher frequencies because they are free of static and ionospheric effects. They also allow narrow beams and short pulses and reflect well from small objects.",
+      "The pulse arithmetic is the heart of the chapter. Radio waves travel 162,000 NM per second, so a radar mile, one nautical mile out and back, takes about 12.36 µs. Range in NM is echo time divided by 12.36. Maximum range is limited by the pulse recurrence frequency, because each echo must return before the next pulse leaves. Maximum range in NM is 81,000 ÷ PRF, so longer range needs a lower PRF. Minimum range is limited by pulse width at about 150 m per microsecond. Short pulses are used for short-range work.",
+      "Doubling primary radar range needs sixteen times the power, because the energy is lost on the way out and on the way back. Range also depends on the target’s size, material and aspect, line of sight and refraction. The choice of wavelength trades rain penetration against resolution. A point target is drawn as a small rectangle whose depth is half the pulse length and whose width is the beam width. Moving target indication suppresses fixed echoes, and PRF jitter removes second-trace returns.",
+    ],
+    keyPoints: [
+      "Primary radar: reflected echo, no cooperation needed. Secondary radar: a transponder replies on a different frequency (SSR, DME).",
+      "Radar mile = 12.36 µs. Range (NM) = echo time (µs) ÷ 12.36.",
+      "Maximum range (NM) = 81,000 ÷ PRF. Lower PRF gives longer range.",
+      "Minimum range (m) ≈ pulse width (µs) × 150.",
+      "Primary radar power ∝ range⁴: double the range needs 16 × the power.",
+      "Rain attenuation increases as wavelength shortens. Long-range radars avoid wavelengths under about 3 cm.",
+      "Range resolution = half the pulse width (150 m per µs). Azimuth resolution = beam width, so larger aerials give better resolution.",
+      "MTI removes stationary returns. PRF jitter eliminates second-trace echoes.",
+    ],
+    traps: [
+      "PRF and maximum range are INVERSELY related. A higher PRF means a shorter maximum range.",
+      "Primary radar range follows a fourth-power law, not the inverse square law for one-way signals.",
+      "DME is a secondary radar. It needs a ground transponder to reply.",
+    ],
+  },
+  "rnav-12": {
+    summary: [
+      "This chapter applies the radar theory to the systems air traffic control uses on the ground. Primary radar sees every aircraft, including those without transponders, and is often combined with secondary radar and moving target indication. The radars form a family designed for different ranges. The design choices of pulse length, PRF, wavelength and scan rate follow from the trade-offs in the previous chapter.",
+      "The area surveillance radar (ASR) covers airways and en-route sectors out to about 200–300 NM. It uses long wavelengths of 10–50 cm to cut through rain, long pulses of 2–4 µs to put enough energy on distant targets, a low PRF of 300–400 pps so that echoes return before the next pulse, and a slow scan of about 5–6 rpm. The terminal area radar (TAR) works the TMA out to about 75 NM with shorter pulses. The aerodrome surveillance approach radar covers about 25 NM on 3 or 10 cm wavelengths. It is used for vectoring onto the ILS and for surveillance radar approaches.",
+      "At the short end is the airport surface movement indicator (ASMI), sometimes called ASMR. It shows aircraft and vehicles on runways and taxiways in poor visibility. To draw individual aircraft shapes it needs very fine resolution. That means very short pulses of about 0.03 µs, a high PRF of 4,000–20,000 pps, a narrow beam and a fast scan of about 60 rpm on wavelengths around 2 cm (15–17 GHz). The price is heavy attenuation in rain, which can cut its 2.5–6 NM range. Processing can strip fixed features to leave only moving targets. A summary table compares the radars side by side.",
+    ],
+    keyPoints: [
+      "Ground radars in the notes: ASR (en route), TAR (terminal), aerodrome surveillance approach, PAR (talk-down) and ASMI (surface).",
+      "ASR: 200–300 NM, 10–50 cm wavelength, 2–4 µs pulses, PRF 300–400 pps, 5–6 rpm.",
+      "TAR: up to about 75 NM, on 10, 23 or 50 cm.",
+      "Aerodrome radar: up to about 25 NM on 3 or 10 cm. Used for ILS vectoring and SRA.",
+      "ASMI: 15–17 GHz (about 2 cm), 0.03 µs pulses, PRF 4,000–20,000 pps, 60 rpm, 2.5–6 NM.",
+      "Long range → long wavelength, long pulse and low PRF. Fine detail → short wavelength, short pulse and high PRF.",
+      "ASMI range falls in heavy precipitation because of SHF attenuation.",
+    ],
+    traps: [
+      "Long-range radar uses LONG pulses and LOW PRF. Reversing either is a common wrong answer.",
+      "ASMI is short-ranged because of rain attenuation and its design for detail, not for lack of power.",
+      "Primary ground radar detects aircraft without transponders. Secondary radar cannot.",
+    ],
+  },
+  "rnav-13": {
+    summary: [
+      "Airborne weather radar (AWR) lets the crew see and avoid the cores of heavy precipitation that mark the worst turbulence, hail and icing in a thunderstorm. It is a primary radar operating at about 9375 MHz in the SHF band, a wavelength of about 3.2 cm. That wavelength is short enough to reflect strongly from large water droplets but long enough to see through the nearer weather to some extent. The system has a transmitter-receiver, a stabilised scanner in the nose, a control unit and a display. Range comes from echo timing and bearing from the scanner position, the ‘searchlight’ principle. The range displayed is slant range.",
+      "Two beam shapes are used. A narrow pencil beam of about 3–5° is used for weather and for long-range mapping beyond about 60 NM. A cosecant-squared fan beam spreads energy downwards for ground mapping at shorter ranges. That gives a picture of coastlines, rivers and towns that is useful for checking navigation. The aerial is stabilised in pitch and roll. If the stabilisation fails, one side of the display shows more ground returns than the other. Tilt, typically adjustable through ±15°, is set to scan the right slice of the weather and to keep the ground out of the picture.",
+      "Colour displays show returns from weak to strong as black, green, yellow and red, with magenta for the most intense. Turbulence is suggested by shapes as well as colour: U-shapes, finger-like protrusions, scalloped edges and hooks. Steep colour gradients also mark severe weather. Automatic gain control works up to about 25 NM in the contour weather mode, and the maximum practical range is about 150 NM. AWR does not detect clear air turbulence, because dry air returns no echo.",
+    ],
+    keyPoints: [
+      "AWR is a primary radar at 9375 MHz (SHF), wavelength about 3.2 cm.",
+      "Range from echo timing and bearing from the searchlight principle. The displayed range is slant range.",
+      "Pencil beam (3–5°) for weather and mapping beyond about 60 NM. Cosecant² fan beam for short-range ground mapping.",
+      "The aerial is stabilised in pitch and roll. A lopsided display of ground returns suggests stabilisation failure.",
+      "Tilt is adjustable through about ±15°.",
+      "Colours from weak to strong: black, green, yellow, red, magenta.",
+      "Turbulence clues: U-shapes, fingers, scalloped edges, hooks and steep colour gradients.",
+      "Maximum practical range is about 150 NM. AWR CANNOT detect clear air turbulence.",
+    ],
+    traps: [
+      "The radar sees precipitation, not cloud or turbulence. Clear air turbulence and dry hail shafts can be invisible.",
+      "The fan beam is for MAPPING. Weather is viewed with the pencil beam.",
+      "A black area behind strong returns may be shadowing, not clear air. Attenuation can hide weather behind a storm.",
+    ],
+  },
+  "rnav-14": {
+    summary: [
+      "Secondary surveillance radar (SSR) adds identity and altitude to the controller’s picture. Instead of relying on a weak reflected echo, the ground station interrogates on 1030 MHz and the aircraft’s transponder replies on 1090 MHz. The reply is a strong signal that carries data, so SSR needs much less power than primary radar for the same range, and it doesn’t suffer clutter from weather or ground. The ground interrogator is usually mounted on top of the primary radar aerial and rotates with it.",
+      "The interrogation mode is set by the spacing of the pulses the ground station sends. Mode A, with an 8 µs spacing, asks for identity. The pilot sets a four-digit code using digits 0 to 7, giving 4096 possible codes. Mode C, with a 21 µs spacing, asks for pressure altitude. This is always referenced to 1013.25 hPa and reported in 100 ft steps, whatever is set on the altimeter subscale. Pressing IDENT adds a special position identification pulse that makes the return stand out on the controller’s display for a short time. The chapter also covers the codes reserved for emergency, radio failure and unlawful interference.",
+      "SSR has its own problems. Garbling happens when two aircraft are within about 1.7 NM in slant range of each other along the same bearing, so their reply trains overlap. Fruiting is caused by replies triggered by other interrogators that are picked up as phantom returns. Mode S fixes much of this by addressing each aircraft selectively with a unique 24-bit address, about 16.7 million combinations. It reports altitude in 25 ft steps and supports data exchange.",
+    ],
+    keyPoints: [
+      "SSR: the ground interrogates on 1030 MHz and the transponder replies on 1090 MHz.",
+      "Mode A (8 µs spacing) = identity. Four digits 0–7 give 4096 codes.",
+      "Mode C (21 µs spacing) = pressure altitude referenced to 1013.25 hPa, in 100 ft increments.",
+      "IDENT sends an SPI pulse that highlights the return for a short period.",
+      "Garbling: replies overlap when aircraft are within about 1.7 NM of each other in slant range on similar bearings.",
+      "Fruiting: unwanted replies to other interrogators appear as phantom returns.",
+      "Mode S: selective 24-bit address (about 16.7 million codes), 25 ft altitude resolution and data link.",
+    ],
+    traps: [
+      "Mode C always reports pressure altitude on 1013.25 hPa. The ground system converts it, and the pilot’s QNH setting does not change it.",
+      "The digits 8 and 9 don’t exist in SSR codes, because each digit is octal (0–7).",
+      "Garbling and fruiting are different. Garbling is overlapping replies from nearby aircraft. Fruiting is replies to someone else’s interrogation.",
+    ],
+  },
+  "rnav-15": {
+    summary: [
+      "Distance measuring equipment (DME) gives the slant range from the aircraft to a ground station. It is a secondary radar in the UHF band, 960–1215 MHz, with 252 channels. The aircraft interrogator sends pairs of pulses. The ground transponder receives them, waits a fixed 50 µs, and replies on a frequency 63 MHz above or below. The airborne equipment measures the total time, subtracts the delay and converts the rest to distance. Because many aircraft use the same station, each interrogator jitters its pulse timing at random. It then recognises its own replies as the ones that keep coming back with the same delay.",
+      "The interrogator works in phases. It searches at a high pulse rate, about 150 pulse pairs per second, until it finds its replies, then drops to about 60 during acquisition and about 27 when tracking. If replies are lost it holds the last reading in memory for about 10 seconds. The ground transponder can handle about 2700 pulse pairs per second, roughly 100 aircraft. Beyond that it saturates and reduces its sensitivity, so the most distant users lose lock first. The station identifies in Morse on a 1350 Hz tone, about once every 30 seconds.",
+      "System accuracy in the notes is ±0.25 NM plus 1.25% of the distance. The reading is slant range, which differs noticeably from ground range only when close to the station at height. The rule of thumb is that it can be ignored beyond about three times the height in thousands of feet. Overhead, the DME shows the aircraft’s height in nautical miles. A DME paired with a VOR shares a single selection. The notes give the co-location tolerances: within 100 ft for terminal use and within 2000 ft elsewhere.",
+    ],
+    keyPoints: [
+      "DME is a secondary radar: UHF 960–1215 MHz, 252 channels, with a ±63 MHz offset between interrogation and reply.",
+      "The ground transponder adds a fixed 50 µs delay. The aircraft subtracts it before converting time to range.",
+      "Jittered pulse-pair timing lets each aircraft recognise its own replies.",
+      "Pulse rates: search about 150, acquisition about 60, tracking about 27 pulse pairs per second.",
+      "Memory holds the reading for about 10 s if replies are lost.",
+      "Saturation at about 2700 ppps (roughly 100 aircraft). The weakest, most distant interrogators drop out first.",
+      "Ident: three-letter Morse about every 30 s on 1350 Hz.",
+      "Accuracy in the notes: ±0.25 NM + 1.25% of range. Slant range error is negligible beyond about 3 × height (thousands of feet).",
+    ],
+    traps: [
+      "DME measures SLANT range. Directly overhead at 6000 ft it reads about 1 NM, not zero.",
+      "Saturation removes the most distant users first, not the newest interrogators.",
+      "A paired VOR/DME has one ident pattern. The DME ident is heard once for every three or four VOR idents.",
+    ],
+  },
+  "rnav-16": {
+    summary: [
+      "Area navigation (RNAV) frees an aircraft from flying directly to and from beacons. It allows navigation on any desired track within the coverage of ground aids, within the limits of a self-contained system such as an IRS, or a combination of both. The benefits are shorter, more direct routes, more parallel tracks and better use of airspace, and fewer ground stations are needed. The chapter introduces the accuracy standards behind this: basic RNAV requires track-keeping within ±5 NM for 95% of the time, and precision RNAV for terminal routes requires ±1 NM. It then grades systems by capability. 2D RNAV is lateral only, 3D adds vertical guidance, and 4D adds timing so the aircraft can meet a required time of arrival.",
+      "The simplest 2D system uses one VOR/DME. The pilot enters a waypoint as a radial and distance (rho/theta) from a real station. The computer then creates a ‘phantom station’ at that point and drives the HSI and distance display as if a beacon stood there. This explains a classic exam question: the distance shown is from the phantom waypoint, not from the real VOR/DME.",
+      "At the top end is the flight management system. It brings together the flight management computer, control display units, inertial reference systems and a navigation and performance database. The database is updated every 28 days on the AIRAC cycle. The notes walk through the CDU initialisation sequence: identification, position initialisation, route, then the climb, cruise and descent pages. The FMC blends the IRS positions with external references such as DME/DME and GPS using Kalman filtering. This statistical method weights each source by its expected error, keeping the smooth short-term output of the inertial system while removing its long-term drift. The IRS itself is aligned only on the ground and is not reset in flight.",
+    ],
+    keyPoints: [
+      "RNAV: flying any desired track within the coverage of ground aids or self-contained systems, or both.",
+      "B-RNAV: ±5 NM for 95% of the time (en route). P-RNAV: ±1 NM for 95% of the time (terminal).",
+      "2D = lateral only. 3D adds vertical (VNAV). 4D adds time (RTA).",
+      "A simple VOR/DME RNAV creates a phantom station from a rho/theta entry. Displays read to the phantom station.",
+      "FMS = FMC + CDU + IRS + navigation and performance database. It provides full 4D capability.",
+      "The navigation database is updated every 28 days (AIRAC).",
+      "CDU initialisation order: IDENT → POS INIT → RTE → performance pages.",
+      "Kalman filtering optimally blends IRS output with DME/DME or GPS updates. The IRS is aligned on the ground only.",
+    ],
+    traps: [
+      "With a phantom-station RNAV, the DME read-out is the distance to the WAYPOINT, not to the real station.",
+      "Kalman filtering corrects the FMC’s best position estimate. It does not realign the IRS in flight.",
+      "‘95% of the time’ is part of every RNAV accuracy definition. An answer that drops it may be the wrong one.",
+    ],
+  },
+  "rnav-17": {
+    summary: [
+      "The electronic flight instrument system (EFIS) replaces the mechanical attitude director and horizontal situation indicator with screens. This chapter focuses on the electronic HSI, which pulls together almost every navigation source on the aircraft: VOR, DME, ILS, ADF, the FMS route, weather radar returns and TCAS traffic. The data passes through symbol generators, typically one for each side with a spare that can be switched in. Each pilot has an EFIS control panel to choose display mode, range, and overlays such as weather, navaids, airports and waypoints.",
+      "The modes are the core of the exam questions. The full-rose VOR and ILS modes look like a conventional HSI, with a complete compass card and a deviation bar. The expanded modes show an arc of about 90° ahead, giving a larger picture of the area in front. MAP mode draws the active FMS route against heading, with the aircraft symbol near the bottom of the screen. It is the main mode for normal flight. PLAN mode shows the route oriented to true north and is used to review or check the flight plan rather than to fly it. Weather radar and TCAS can be overlaid only in the expanded and MAP modes. All modes except PLAN are heading-up.",
+      "Colour coding follows the certification guidance in EASA CS-25, which the notes quote. Red is kept for warnings and amber or yellow for cautions. Green shows engaged or active modes, white shows scales and current data, and magenta shows the active route and FMS commands. Cyan is generally used for items that are selected but not active. The chapter ends with practice in reading EHSI displays to work out position and heading from the symbols.",
+    ],
+    keyPoints: [
+      "EHSI inputs: VOR, DME, ILS, ADF, FMS, AWR and TCAS, processed by the symbol generators.",
+      "Modes: full-rose VOR/ILS, expanded VOR/ILS, MAP and PLAN.",
+      "MAP mode shows the active route ahead of the aircraft and is used for normal flight.",
+      "PLAN mode is true-north-up and used to review the route. All other modes are heading-up.",
+      "Weather radar and TCAS can be displayed in the expanded and MAP modes only.",
+      "Colours: red = warning, amber/yellow = caution, green = active/engaged, white = scales and current data, magenta = active route and FMS commands.",
+      "Each pilot selects mode and range on their own EFIS control panel.",
+    ],
+    traps: [
+      "PLAN mode is NORTH-up. Don’t read the aircraft’s heading from its orientation on the screen as you would in MAP mode.",
+      "Weather and TCAS can’t be shown in full-rose or PLAN modes.",
+      "Magenta means the active route or FMS commands. It is not a warning colour.",
+    ],
+  },
+  "rnav-18": {
+    summary: [
+      "Global navigation satellite systems (GNSS) give a three-dimensional position and very accurate time anywhere on Earth. The chapter uses the American GPS as its main example and compares it with the other constellations. GPS has three segments. The space segment is a nominal 24 satellites in six orbital planes inclined at 55°, at about 20,180 km, each orbiting in about 11 hours 56 minutes. The control segment is a network of ground stations that track the satellites and upload orbit and clock corrections. The user segment is the receiver. Positions are given on the WGS84 Earth model, which is the ICAO standard.",
+      "Each satellite broadcasts its position and the exact time of transmission. Civil users take the C/A code on L1, 1575.42 MHz. L2, 1227.6 MHz, carries the military P code. The receiver turns the travel time into a ‘pseudo-range’, which is not yet a true range because the receiver’s cheap clock is not exact. Four satellites solve for latitude, longitude, altitude and the clock error. With three satellites plus a separate altitude input, a 3D position is still possible. A full almanac takes 12.5 minutes to download.",
+      "The largest error for a single-frequency receiver is the ionospheric delay. Others include tropospheric delay, clock and orbit (ephemeris) errors, multipath, receiver noise and poor satellite geometry. Selective availability, a deliberate degradation, was switched off in May 2000. The notes quote ICAO accuracy figures of 13 m horizontally and 22 m vertically, 95% of the time. Integrity comes from RAIM: five satellites are needed to detect a faulty one and six to exclude it. Augmentation improves accuracy further. Ground-based systems (GBAS/LAAS) broadcast local corrections over a VHF data link. Satellite-based systems such as WAAS, EGNOS and MSAS relay wide-area corrections from geostationary satellites.",
+    ],
+    keyPoints: [
+      "GPS space segment: 24 satellites, 6 planes, 55° inclination, about 20,180 km, 11 h 56 min orbit.",
+      "Civil C/A code on L1 1575.42 MHz. The military P code is also on L2 1227.6 MHz.",
+      "WGS84 is the ICAO standard datum for GNSS positions.",
+      "4 satellites give a 3D fix plus time. 3 satellites plus an altitude input give a 3D fix only.",
+      "The largest single-frequency error is ionospheric propagation delay. Selective availability ended in May 2000.",
+      "ICAO accuracy figures in the notes: 13 m horizontal, 22 m vertical (95%).",
+      "RAIM needs 5 satellites to detect and 6 to exclude a faulty one.",
+      "Augmentation: GBAS/LAAS (local, VHF data link) and SBAS such as WAAS, EGNOS and MSAS (geostationary relays).",
+    ],
+    traps: [
+      "The receiver measures PSEUDO-range. The fourth satellite is needed to solve the receiver clock error.",
+      "RAIM detection needs 5 satellites. Exclusion needs 6.",
+      "SBAS corrections come from GEOSTATIONARY satellites, not from extra GPS satellites.",
+    ],
+  },
+};
