@@ -17,6 +17,7 @@ export const RADIO_TELEPHONY: VideoStudyMap = {
       "Legal layers: ITU Radio Regulations and ICAO Annex 10 internationally, then the Bharatiya Vayuyan Adhiniyam 2024, the RTR Rules 2025 and the CAR in India.",
       "Two parts: written theory, then a simulated practical. Pass marks are 70% written and 50% practical.",
       "A written pass is valid for three years. Exemptions apply to the written paper only, never the practical.",
+      "Eligibility under the RTR Rules 2025: at least 16 years old with Class X passed. A failed candidate waits six weeks before re-examination, and the licence stays valid until age 80, with extension possible.",
     ],
     traps: [
       "The RTR licenses the PERSON to operate radio. The aircraft radio station needs its own separate licence.",
