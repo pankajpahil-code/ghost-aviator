@@ -1,3 +1,5 @@
+import { CHECKED_ON } from "@/lib/dgca-exam-info";
+import { PAPER_META } from "@/lib/dgca-syllabus";
 import type { MetadataRoute } from "next";
 import { CPL_SUBJECTS, ATPL_SUBJECTS, type Subject } from "@/lib/subjects";
 import { ALL_PAST_PAPERS } from "@/lib/past-papers";
@@ -65,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: url("/pilot-training-india"), lastModified: new Date("2026-10-31"), changeFrequency: "monthly" as const, priority: 0.9 },
+    // Exam facts checked against DGCA documents on CHECKED_ON (lib/dgca-exam-info.ts);
+    // lastmod is that date, because that is when what they say last changed.
+    { url: url("/dgca-exam-dates"), lastModified: new Date(CHECKED_ON), changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: url("/dgca-cpl-eligibility-and-fees"), lastModified: new Date(CHECKED_ON), changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: url("/dgca-syllabus"), lastModified: new Date(CHECKED_ON), changeFrequency: "monthly" as const, priority: 0.9 },
+    ...PAPER_META.map(m => ({ url: url(`/dgca-syllabus/${m.slug}`), lastModified: new Date(CHECKED_ON), changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: url("/"),             changeFrequency: "weekly"  as const, priority: 1.0 },
     { url: url("/live-classes"), changeFrequency: "weekly"  as const, priority: 0.9 },
     { url: url("/about"),        changeFrequency: "monthly" as const, priority: 0.8 },
