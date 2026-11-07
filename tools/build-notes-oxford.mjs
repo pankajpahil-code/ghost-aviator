@@ -33,7 +33,7 @@ const CONFIGS = [
     name: "OXFORD_INSTRUMENTATION",
     out: "oxford-instrumentation.ts",
     subjectIds: ["instrumentation"],
-    source: "Oxford ATPL — Instrumentation",
+    source: "Ghost Aviator — Instrumentation",
     srcBase: join(ROOT, "..", "oxford instrumentation notes claude", "DGCA Study Notes"),
     // [ source notes.html (relative to srcBase), chapterId, subtopic ]
     chapters: Array.from({ length: 40 }, (_, i) => [
@@ -44,7 +44,7 @@ const CONFIGS = [
     name: "OXFORD_RADIO_NAV",
     out: "oxford-radio-nav.ts",
     subjectIds: ["radio-navigation"],
-    source: "Oxford ATPL — Radio Navigation",
+    source: "Ghost Aviator — Radio Navigation",
     srcBase: join("C:", "Users", "Admin", "Downloads", "radio navigation antigravity"),
     chapters: [
       ["Chapter_01_Properties_of_Radio_Waves.html", "rnav-1", "Properties of Radio Waves"],
@@ -86,7 +86,7 @@ const CONFIGS = [
     name: "OXFORD_GEN_NAV",
     out: "oxford-gen-nav.ts",
     subjectIds: ["air-navigation"],
-    source: "Oxford ATPL — General Navigation",
+    source: "Ghost Aviator — General Navigation",
     srcBase: join("C:", "Users", "Admin", "Downloads", "radio navigation antigravity"),
     chapters: [
       ["GN_Chapter_01_Direction_Lat_Long.html",  "nav-13", "Direction, Latitude & Longitude"],

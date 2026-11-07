@@ -84,7 +84,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
     totalQuestions: 50,
     passMark: 70,
     chapters: [
-      // ── Oxford General Navigation — book chapters (renumbered 1–21) ──
+      // ── General Navigation — book chapters (renumbered 1–21) ──
       {
         id: "nav-13", number: 1, title: "Direction, Latitude and Longitude",
         description: "Shape of the Earth, poles and equator, latitude/longitude, d-lat and d-long, true/magnetic/compass direction and position expression. Study notes with practice Q&A.",
@@ -1105,7 +1105,7 @@ const CPL_SUBJECTS_STUDY: Subject[] = [
     ],
   },
 
-  // ── INSTRUMENTATION (Oxford ATPL Book 5) ─────────────────────────────────
+  // ── INSTRUMENTATION ──────────────────── ─────────────────────────────────
   {
     id: "instrumentation",
     name: "Navigation — Instrumentation",

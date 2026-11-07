@@ -27,7 +27,7 @@ import { ANSWER_CORRECTIONS, applyAnswerCorrections, sameOption } from "./answer
 export type { DemoQuestion };
 
 // For any Meteorology chapter that has been fully re-verified (answers checked
-// against the Oxford/CAE ATPL manual + standard meteorology, book errors fixed,
+// against the reference ATPL manual + standard meteorology, book errors fixed,
 // duplicates removed), the old auto-extracted met banks are dropped entirely so
 // the verified bank is the single source of truth for that chapter.
 const dropVerifiedMet = (q: DemoQuestion) =>
@@ -55,7 +55,7 @@ export const BANK_BEFORE_DEDUPE: DemoQuestion[] = applyAnswerCorrections([
   ...ICJOSHI_NOTES_MET.filter(dropVerifiedMet),   // rich HTML-notes Q&A (unverified met chapters only)
   ...OXFORD_INSTRUMENTATION, // Instrumentation HTML-notes Q&A (inst-1..23)
   ...OXFORD_RADIO_NAV,       // Radio Navigation HTML-notes Q&A (rnav-1..20)
-  ...OXFORD_GEN_NAV,         // Oxford Gen-Nav notes Q&A (air-navigation nav-13..20)
+  ...OXFORD_GEN_NAV,         // Gen-Nav notes Q&A (air-navigation nav-13..20)
   ...REGS_NOTES,             // Air Regulations HTML-notes Q&A (ar-2, ar-22, ar-23)
   ...AR25_PHYSIOLOGY_QUESTIONS, // Aviation Physiology Q&A (ar-25)
   ...RTF_QUESTIONS,              // Radio Telephony Q&A (rtf-1..24, 779 questions)
