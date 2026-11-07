@@ -141,10 +141,9 @@ type HasChapterId = { chapterId?: string };
  * True when `questions` is a subject-wide fallback rather than the chapter's own
  * bank. `chapterSpecific` is authoritative when the route passes it
  * (getChapterSpecificQuestions(...).length > 0). Without it we read the data:
- * a chapter's own set always shares ONE bank chapterId (including the Air
- * Regulations sets that CPL_AR_CHAPTER_MAP routes to a different id), while a
- * subject pool spans several, or carries questions with no chapterId at all.
- * Checked against all 302 chapters on 2026-10-08, zero disagreements.
+ * a chapter's own set always shares ONE chapterId (Air Regulations questions
+ * carry their site chapter since 2026-11-07), while a subject pool spans
+ * several, or carries questions with no chapterId at all.
  */
 export function isSubjectFallback(
   questions: readonly HasChapterId[],

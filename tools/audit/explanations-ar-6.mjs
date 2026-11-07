@@ -1,11 +1,11 @@
 // Verified explanations for Air Regulations bank chapter ar-6 (Air Traffic Services).
 //
-// NOTE ON THE CHAPTER ID. This is BANK ar-6, which the site serves at
-// /cpl/air-regulations/ar-4 — CPL_AR_CHAPTER_MAP in lib/questions.ts routes
-// site ar-4 -> bank ar-6. The bank ids and the site ids do not correspond and
-// have no name relationship; reading the site's chapter titles to decide what a
-// bank chapter contains gives the wrong answer, and has already produced a
-// wrongly-scoped plan once. Read the map, not the titles.
+// NOTE ON THE CHAPTER ID. This is BANK ar-6 (the old ATS chapter). Since
+// 2026-11-07 each Air Regs question is served on the site chapter its topic
+// belongs to (lib/generated/air-regs-site-chapters.ts): most of bank ar-6 is on
+// /cpl/air-regulations/ar-4, its separation, surveillance and aerodrome-control
+// questions on ar-5/ar-6/ar-7/ar-8. Bank ids and site ids do not correspond;
+// look a question up in that map, never guess from the chapter titles.
 //
 // SCOPE DISCIPLINE — read before adding to this file.
 // An explanation is answer-key-grade content. A confidently-worded wrong rule

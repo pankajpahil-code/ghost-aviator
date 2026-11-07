@@ -309,12 +309,12 @@ function chapterRoutes(track: "cpl" | "atpl", subjects: Subject[]) {
         put(`/${track}/${s.id}/${ch.id}/notes`, newestOf(notesFile));
       }
       if (isIndexableChapterRoute(s.id, ch.id, "questions")) {
-        // CPL Air Regs chapters (26) are mapped onto the older bank chapter IDs in
-        // lib/questions.ts, so a chapter with no directly tagged bank is dated by
-        // that mapping plus every Air Regs bank it can draw from.
+        // Air Regs questions are tagged with the OLD bank chapter in their source
+        // files and placed on a site chapter by lib/generated/air-regs-site-chapters.ts,
+        // so an Air Regs chapter is dated by that map plus every Air Regs bank.
         const direct = BANKS.get(`${s.id}/${ch.id}`) ?? [];
-        const banks = direct.length || s.id !== "air-regulations" ? direct : [
-          "lib/questions.ts",
+        const banks = s.id !== "air-regulations" ? direct : [
+          "lib/generated/air-regs-site-chapters.ts",
           ...new Set([...BANKS].filter(([k]) => k.startsWith("air-regulations/")).flatMap(([, v]) => v)),
         ];
         put(`/${track}/${s.id}/${ch.id}/questions`, newestOf(...banks));

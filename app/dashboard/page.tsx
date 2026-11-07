@@ -60,26 +60,25 @@ function ScoreTrend({ attempts, passMark }: { attempts: ExamAttempt[]; passMark:
 
 // Horizontal bar list of weakest chapters — bars capped at 24px, rounded data-end,
 // severity colour by accuracy band (this list is already filtered to the weak tail).
-// Air Regulations attempts store the BANK chapter id, which is not the site chapter
-// of the same spelling (bank ar-6 is site Ch.4). The map lives beside the question
-// bank, so it is loaded on demand: a static import would put the bank back in this page.
-const isAirRegsBankId = (id: string) => /^ar-\d+$/.test(id) || id === "sar";
-type StoredLabel = (id: string, labelOf: (siteId: string) => string | undefined) => string | undefined;
+// Air Regulations attempts saved since 2026-11-07 store "site:ar-N", the site chapter.
+// Older attempts stored the OLD bank chapter, which is not the site chapter of the
+// same spelling (bank ar-6 was site Ch.4). Until that date every site chapter drew a
+// whole bank chapter, so an old id is labelled with every site chapter it fed. This
+// table is that old routing, frozen; it must never change.
+const LEGACY_AR_BANK_TO_SITE: Record<string, string[]> = {
+  "ar-1": ["ar-1"], "ar-2": ["ar-2", "ar-14", "ar-15"], "ar-3": ["ar-3"], "ar-4": ["ar-7", "ar-12"],
+  "ar-5": ["ar-5", "ar-6", "ar-8"], "ar-6": ["ar-4"], "ar-7": ["ar-9", "ar-11"], "ar-8": ["ar-19", "ar-21"],
+  "ar-9": ["ar-13"], "sar": ["ar-10"], "ar-10": ["ar-26"], "ar-11": ["ar-24"],
+  "ar-12": ["ar-16", "ar-17", "ar-20"], "ar-13": ["ar-18"], "ar-22": ["ar-22"], "ar-23": ["ar-23"], "ar-25": ["ar-25"],
+};
 
 function WeakChapterBars({ items }: { items: { chapterId: string; accuracy: number; total: number }[] }) {
-  const needsMap = items.some(it => isAirRegsBankId(it.chapterId));
-  const [storedLabel, setStoredLabel] = useState<StoredLabel | null>(null);
-  useEffect(() => {
-    if (!needsMap) return;
-    let live = true;
-    import("@/lib/air-regs-chapter-label")
-      .then(m => { if (live) setStoredLabel(() => m.siteChapterLabelForStoredId); })
-      .catch(() => {});
-    return () => { live = false; };
-  }, [needsMap]);
   const labelFor = (id: string) => {
-    if (!isAirRegsBankId(id)) return CHAPTER_LABEL[id] ?? id;
-    return (storedLabel && storedLabel(id, s => CHAPTER_LABEL[s])) ?? "Air Regulations";
+    if (id.startsWith("site:")) return CHAPTER_LABEL[id.slice(5)] ?? "Air Regulations";
+    const legacy = LEGACY_AR_BANK_TO_SITE[id];
+    if (!legacy) return CHAPTER_LABEL[id] ?? id;
+    const labels = legacy.map(s => CHAPTER_LABEL[s]).filter(Boolean);
+    return labels.length > 0 ? labels.join(" / ") : "Air Regulations";
   };
   const color = (acc: number) => (acc < 50 ? "#ef4444" : acc < 70 ? "#f59e0b" : "#64748b");
   return (
