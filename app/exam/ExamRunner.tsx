@@ -66,10 +66,14 @@ export default function ExamRunner({ paper }: { paper: ExamPaper }) {
     const chapterBreakdown: ChapterBreakdown = {};
     questions.forEach((q, i) => {
       if (!q.chapterId) return;
-      const cur = chapterBreakdown[q.chapterId] ?? { correct: 0, total: 0 };
+      // Air Regulations attempts saved before 2026-11-07 stored the OLD bank chapter
+      // ("ar-6" meant site Ch.4). Today's ids are site chapters, so they are written
+      // as "site:ar-N" and can never be read as one of those older ids.
+      const key = q.subjectIds.includes("air-regulations") ? `site:${q.chapterId}` : q.chapterId;
+      const cur = chapterBreakdown[key] ?? { correct: 0, total: 0 };
       cur.total += 1;
       if (answers[i] === q.ans) cur.correct += 1;
-      chapterBreakdown[q.chapterId] = cur;
+      chapterBreakdown[key] = cur;
     });
     recordExamAttempt({
       paperId: paper.id,

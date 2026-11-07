@@ -45,12 +45,12 @@ export const CORPUS = {
           "speakable": 355
       },
       "instrumentation": {
-          "total": 835,
-          "speakable": 830
+          "total": 995,
+          "speakable": 855
       },
       "radio-navigation": {
-          "total": 448,
-          "speakable": 399
+          "total": 463,
+          "speakable": 413
       },
       "human-performance": {
           "total": 1,
